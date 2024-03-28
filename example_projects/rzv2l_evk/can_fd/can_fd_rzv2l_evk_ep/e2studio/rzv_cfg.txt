@@ -1,0 +1,160 @@
+FSP Configuration
+  Board "RZ/V2L Evaluation Kit (SMARC)"
+  R9A07G054L23GBG_CM33
+    part_number: R9A07G054L23GBG_CM33
+    rom_size_bytes: 0
+    ram_size_bytes: 131072
+    package_style: LFBGA
+    package_pins: 456
+    
+  RZV2L
+    series: 2
+    
+  RZV2L Family
+  RZ/V2L Common
+    Secure stack size (bytes): 0x200
+    Main stack size (bytes): 0x600
+    Heap size (bytes): 0
+    MCU Vcc (mV): 3300
+    Parameter checking: Disabled
+    Assert Failures: Return FSP_ERR_ASSERTION
+    Error Log: No Error Log
+    PFS Protect: Enabled
+    C Runtime Initialization : Enabled
+    
+  Clocks
+    OSC 24000000Hz
+    ICLK 1200000000Hz
+    I2CLK 200000000Hz
+    GCLK 500000000Hz
+    S0CLK 12000Hz
+    SPI0CLK 200000000Hz
+    SPI1CLK 100000000Hz
+    SD0CLK 533000000Hz
+    SD1CLK 533000000Hz
+    M0CLK 200000000Hz
+    M1CLK 3000000000Hz
+    M2CLK 266500000Hz
+    M3CLK 3000000000Hz
+    M4CLK 16656000Hz
+    HPCLK 250000000Hz
+    TSUCLK 80000000Hz
+    ZTCLK 100000000Hz
+    P0CLK 100000000Hz
+    P1CLK 200000000Hz
+    P2CLK 100000000Hz
+    ATCLK 400000000Hz
+    
+  User Events
+    
+  Module "I/O Port Driver on r_ioport"
+    Parameter Checking: Default (BSP)
+    
+  Module "CANFD Driver on r_canfd"
+    Parameter Checking: Default (BSP)
+    Global Error Interrupt: Priority: 2
+    Global Error Interrupt: Sources: DLC Check, Message Lost, FD Payload Overflow
+    Global Error Interrupt: Callback Channel: Channel 1
+    Transmission Priority: Buffer Number
+    DLC Check: Disabled
+    Clock Source: P0CLK/2
+    Flexible Data (FD): Protocol Exceptions: Enabled (ISO 11898-1)
+    Flexible Data (FD): Payload Overflow: Reject
+    Reception: Message Buffers: Number of Buffers: 1
+    Reception: Message Buffers: Payload Size: 16 bytes
+    Reception: FIFOs: Interrupt Priority: 24
+    Reception: FIFOs: FIFO 0: Enable: Enabled
+    Reception: FIFOs: FIFO 0: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 0: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 0: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 0: Depth: 16 stages
+    Reception: FIFOs: FIFO 1: Enable: Disabled
+    Reception: FIFOs: FIFO 1: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 1: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 1: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 1: Depth: 16 stages
+    Reception: FIFOs: FIFO 2: Enable: Disabled
+    Reception: FIFOs: FIFO 2: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 2: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 2: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 2: Depth: 16 stages
+    Reception: FIFOs: FIFO 3: Enable: Disabled
+    Reception: FIFOs: FIFO 3: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 3: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 3: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 3: Depth: 16 stages
+    Reception: FIFOs: FIFO 4: Enable: Disabled
+    Reception: FIFOs: FIFO 4: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 4: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 4: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 4: Depth: 16 stages
+    Reception: FIFOs: FIFO 5: Enable: Disabled
+    Reception: FIFOs: FIFO 5: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 5: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 5: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 5: Depth: 16 stages
+    Reception: FIFOs: FIFO 6: Enable: Disabled
+    Reception: FIFOs: FIFO 6: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 6: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 6: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 6: Depth: 16 stages
+    Reception: FIFOs: FIFO 7: Enable: Disabled
+    Reception: FIFOs: FIFO 7: Interrupt Mode: Every Frame
+    Reception: FIFOs: FIFO 7: Interrupt Threshold: 1/2 full
+    Reception: FIFOs: FIFO 7: Payload Size: 64 bytes
+    Reception: FIFOs: FIFO 7: Depth: 16 stages
+    Reception: Acceptance Filtering: Channel 0 Rule Count: 64
+    Reception: Acceptance Filtering: Channel 1 Rule Count: 64
+    
+  HAL
+    Instance "g_ioport I/O Port Driver on r_ioport"
+      Name: g_ioport
+      
+    Instance "g_canfd_ch0 CANFD Driver on r_canfd"
+      General: Name: g_canfd_ch0
+      General: Channel: 0
+      Bitrate: Automatic: Clock source frequency (Set 0 if P0CLK use): 0
+      Bitrate: Automatic: Nominal Rate (bps): 500000
+      Bitrate: Automatic: Data Rate (bps): 2000000
+      Bitrate: Automatic: Sample Point (%): 75
+      Bitrate: Delay Compensation: Enable
+      Bitrate: Manual: Nominal: Prescaler (divisor): 2
+      Bitrate: Manual: Nominal: Time Segment 1 (Tq): 74
+      Bitrate: Manual: Nominal: Time Segment 2 (Tq): 25
+      Bitrate: Manual: Nominal: Sync Jump Width (Tq): 10
+      Bitrate: Manual: Data: Prescaler (divisor): 1
+      Bitrate: Manual: Data: Time Segment 1 (Tq): 16
+      Bitrate: Manual: Data: Time Segment 2 (Tq): 8
+      Bitrate: Manual: Data: Sync Jump Width (Tq): 1
+      Bitrate: Manual: Use manual settings: Yes
+      Interrupts: Callback: canfd_ch0_callback
+      Transmit Interrupts: TXMB 0
+      Channel Error Interrupts: Error Warning, Error Passive, Bus-Off Entry, Bus-Off Recovery, Overload
+      Interrupts: Channel Interrupt Priority Level: 12
+      TX Buffer Merge Mode: Disable (Transmit Payloads 20bytes or less)
+      Filter List Array: p_canfd_ch0_afl
+      
+    Instance "g_canfd_ch1 CANFD Driver on r_canfd"
+      General: Name: g_canfd_ch1
+      General: Channel: 1
+      Bitrate: Automatic: Clock source frequency (Set 0 if P0CLK use): 0
+      Bitrate: Automatic: Nominal Rate (bps): 500000
+      Bitrate: Automatic: Data Rate (bps): 2000000
+      Bitrate: Automatic: Sample Point (%): 75
+      Bitrate: Delay Compensation: Enable
+      Bitrate: Manual: Nominal: Prescaler (divisor): 2
+      Bitrate: Manual: Nominal: Time Segment 1 (Tq): 74
+      Bitrate: Manual: Nominal: Time Segment 2 (Tq): 25
+      Bitrate: Manual: Nominal: Sync Jump Width (Tq): 10
+      Bitrate: Manual: Data: Prescaler (divisor): 1
+      Bitrate: Manual: Data: Time Segment 1 (Tq): 16
+      Bitrate: Manual: Data: Time Segment 2 (Tq): 8
+      Bitrate: Manual: Data: Sync Jump Width (Tq): 1
+      Bitrate: Manual: Use manual settings: Yes
+      Interrupts: Callback: canfd_ch1_callback
+      Transmit Interrupts: TXMB 0
+      Channel Error Interrupts: Error Warning, Error Passive, Bus-Off Entry, Bus-Off Recovery, Overload
+      Interrupts: Channel Interrupt Priority Level: 12
+      TX Buffer Merge Mode: Disable (Transmit Payloads 20bytes or less)
+      Filter List Array: p_canfd_ch1_afl
+      

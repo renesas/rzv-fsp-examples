@@ -1,0 +1,141 @@
+FSP Configuration
+  Board "RZ/V2L Evaluation Kit (SMARC)"
+  R9A07G054L23GBG_CM33
+    part_number: R9A07G054L23GBG_CM33
+    rom_size_bytes: 0
+    ram_size_bytes: 131072
+    package_style: LFBGA
+    package_pins: 456
+    
+  RZV2L
+    series: 2
+    
+  RZV2L Family
+  RZ/V2L Common
+    Secure stack size (bytes): 0x200
+    Main stack size (bytes): 0x400
+    Heap size (bytes): 0x200
+    MCU Vcc (mV): 3300
+    Parameter checking: Disabled
+    Assert Failures: Return FSP_ERR_ASSERTION
+    Error Log: No Error Log
+    PFS Protect: Enabled
+    C Runtime Initialization : Enabled
+    
+  Clocks
+    OSC 24000000Hz
+    ICLK 1200000000Hz
+    I2CLK 200000000Hz
+    GCLK 500000000Hz
+    S0CLK 12000Hz
+    SPI0CLK 200000000Hz
+    SPI1CLK 100000000Hz
+    SD0CLK 533000000Hz
+    SD1CLK 533000000Hz
+    M0CLK 200000000Hz
+    M1CLK 3000000000Hz
+    M2CLK 266500000Hz
+    M3CLK 3000000000Hz
+    M4CLK 16656000Hz
+    HPCLK 250000000Hz
+    TSUCLK 80000000Hz
+    ZTCLK 100000000Hz
+    P0CLK 100000000Hz
+    P1CLK 200000000Hz
+    P2CLK 100000000Hz
+    ATCLK 400000000Hz
+    
+  User Events
+    
+  Module "I/O Port Driver on r_ioport"
+    Parameter Checking: Default (BSP)
+    
+  Module "Timer Driver on r_gpt"
+    Parameter Checking: Default (BSP)
+    Pin Output Support: Enabled
+    Write Protect Enable: Disabled
+    
+  HAL
+    Instance "g_ioport I/O Port Driver on r_ioport"
+      Name: g_ioport
+      
+    Instance "g_timer Timer Driver on r_gpt"
+      General: Name: g_timer
+      General: Channel: 4
+      General: Mode: Periodic
+      General: Buffer Mode: Single Buffer
+      General: Period: 500
+      General: Period Unit: Milliseconds
+      Output: Duty Cycle Percent (only applicable in PWM mode): 50
+      Output: GTIOCA Output Enabled: True
+      Output: GTIOCA Stop Level: Pin Level Low
+      Output: GTIOCB Output Enabled: False
+      Output: GTIOCB Stop Level: Pin Level Low
+      Input: Count Up Source: 
+      Input: Count Down Source: 
+      Input: Start Source: 
+      Input: Stop Source: 
+      Input: Clear Source: 
+      Input: Capture A Source: 
+      Input: Capture B Source: 
+      Input: Noise Filter A Sampling Clock Select: No Filter
+      Input: Noise Filter B Sampling Clock Select: No Filter
+      Interrupts: Callback: NULL
+      Interrupts: Overflow/Crest Interrupt Priority: 4
+      Interrupts: Capture A Interrupt Priority: 4
+      Interrupts: Capture B Interrupt Priority: 4
+      Interrupts: Trough Interrupt Priority: 4
+      Extra Features: Extra Features: Disabled
+      Extra Features: Output Disable: POEG Link: POEG Channel 0
+      Extra Features: Output Disable: Output Disable POEG Trigger: 
+      Extra Features: ADC Trigger: Start Event Trigger: 
+      Extra Features: Dead Time: Dead Time Count Up (Raw Counts): 0
+      Extra Features: Dead Time: Dead Time Count Down (Raw Counts): 0
+      Extra Features: ADC Trigger: ADC A Compare Match (Raw Counts): 0
+      Extra Features: ADC Trigger: ADC B Compare Match (Raw Counts): 0
+      Extra Features: Interrupt Skipping: Interrupt to Count: None
+      Extra Features: Interrupt Skipping: Interrupt Skip Count: 0
+      Extra Features: Interrupt Skipping: Skip ADC Events: None
+      Extra Features: Output Disable: GTIOCA Disable Setting: Disable Prohibited
+      Extra Features: Output Disable: GTIOCB Disable Setting: Disable Prohibited
+      
+    Instance "g_input_capture Timer Driver on r_gpt"
+      General: Name: g_input_capture
+      General: Channel: 3
+      General: Mode: Periodic
+      General: Buffer Mode: Single Buffer
+      General: Period: 0x100000000
+      General: Period Unit: Raw Counts
+      Output: Duty Cycle Percent (only applicable in PWM mode): 50
+      Output: GTIOCA Output Enabled: False
+      Output: GTIOCA Stop Level: Pin Level Low
+      Output: GTIOCB Output Enabled: False
+      Output: GTIOCB Stop Level: Pin Level Low
+      Input: Count Up Source: 
+      Input: Count Down Source: 
+      Input: Start Source: GTIOCA Rising Edge While GTIOCB Low
+      Input: Stop Source: GTIOCA Falling Edge While GTIOCB Low
+      Input: Clear Source: GTIOCA Rising Edge While GTIOCB Low
+      Input: Capture A Source: GTIOCA Falling Edge While GTIOCB Low
+      Input: Capture B Source: 
+      Input: Noise Filter A Sampling Clock Select: No Filter
+      Input: Noise Filter B Sampling Clock Select: No Filter
+      Interrupts: Callback: input_capture_user_callback
+      Interrupts: Overflow/Crest Interrupt Priority: 4
+      Interrupts: Capture A Interrupt Priority: 4
+      Interrupts: Capture B Interrupt Priority: 4
+      Interrupts: Trough Interrupt Priority: 4
+      Extra Features: Extra Features: Disabled
+      Extra Features: Output Disable: POEG Link: POEG Channel 0
+      Extra Features: Output Disable: Output Disable POEG Trigger: 
+      Extra Features: ADC Trigger: Start Event Trigger: 
+      Extra Features: Dead Time: Dead Time Count Up (Raw Counts): 0
+      Extra Features: Dead Time: Dead Time Count Down (Raw Counts): 0
+      Extra Features: ADC Trigger: ADC A Compare Match (Raw Counts): 0
+      Extra Features: ADC Trigger: ADC B Compare Match (Raw Counts): 0
+      Extra Features: Interrupt Skipping: Interrupt to Count: None
+      Extra Features: Interrupt Skipping: Interrupt Skip Count: 0
+      Extra Features: Interrupt Skipping: Skip ADC Events: None
+      Extra Features: Output Disable: GTIOCA Disable Setting: Disable Prohibited
+      Extra Features: Output Disable: GTIOCB Disable Setting: Disable Prohibited
+      

@@ -1,0 +1,202 @@
+FSP Configuration
+  Board "RZ/V2L Evaluation Kit (SMARC)"
+  R9A07G054L23GBG_CM33
+    part_number: R9A07G054L23GBG_CM33
+    rom_size_bytes: 0
+    ram_size_bytes: 131072
+    package_style: LFBGA
+    package_pins: 456
+    
+  RZV2L
+    series: 2
+    
+  RZV2L Family
+  RZ/V2L Common
+    Secure stack size (bytes): 0x200
+    Main stack size (bytes): 0x200
+    Heap size (bytes): 0
+    MCU Vcc (mV): 3300
+    Parameter checking: Disabled
+    Assert Failures: Return FSP_ERR_ASSERTION
+    Error Log: No Error Log
+    PFS Protect: Enabled
+    C Runtime Initialization : Enabled
+    
+  Clocks
+    OSC 24000000Hz
+    ICLK 1200000000Hz
+    I2CLK 200000000Hz
+    GCLK 500000000Hz
+    S0CLK 12000Hz
+    SPI0CLK 200000000Hz
+    SPI1CLK 100000000Hz
+    SD0CLK 533000000Hz
+    SD1CLK 533000000Hz
+    M0CLK 200000000Hz
+    M1CLK 3000000000Hz
+    M2CLK 266500000Hz
+    M3CLK 3000000000Hz
+    M4CLK 16656000Hz
+    HPCLK 250000000Hz
+    TSUCLK 80000000Hz
+    ZTCLK 100000000Hz
+    P0CLK 100000000Hz
+    P1CLK 200000000Hz
+    P2CLK 100000000Hz
+    ATCLK 400000000Hz
+    
+  User Events
+    
+  Module "I/O Port Driver on r_ioport"
+    Parameter Checking: Default (BSP)
+    
+  Module "Timer Driver on r_gtm"
+    Parameter Checking: Default (BSP)
+    
+  Module "Heap 2"
+  Module "FreeRTOS Port (rm_freertos_port)"
+  FreeRTOS
+    General: Custom FreeRTOSConfig.h: 
+    General: Use MPU: Disabled
+    General: Use TRUSTZONE: Disabled
+    General: Use Preemption: Enabled
+    General: Use Port Optimised Task Selection: Disabled
+    General: Use Tickless Idle: Disabled
+    Hooks: Use Idle Hook: Enabled
+    Hooks: Use Malloc Failed Hook: Disabled
+    Hooks: Use Daemon Task Startup Hook: Disabled
+    Hooks: Use Tick Hook: Disabled
+    General: Cpu Clock Hz: SystemCoreClock
+    General: Tick Rate Hz: 1000
+    General: Max Priorities: 5
+    General: Minimal Stack Size: 128
+    General: Max Task Name Len: 16
+    Stats: Use Trace Facility: Disabled
+    Stats: Use Stats Formatting Functions: Disabled
+    General: Use 16-bit Ticks: Disabled
+    General: Idle Should Yield: Enabled
+    General: Use Task Notifications: Enabled
+    General: Use Mutexes: Disabled
+    General: Use Recursive Mutexes: Disabled
+    General: Use Counting Semaphores: Enabled
+    Hooks: Check For Stack Overflow: Disabled
+    General: Queue Registry Size: 10
+    General: Use Queue Sets: Disabled
+    General: Use Time Slicing: Disabled
+    General: Use Newlib Reentrant: Disabled
+    General: Enable Backward Compatibility: Disabled
+    General: Num Thread Local Storage Pointers: 5
+    General: Stack Depth Type: uint32_t
+    General: Message Buffer Length Type: size_t
+    Memory Allocation: Support Static Allocation: Enabled
+    Memory Allocation: Support Dynamic Allocation: Enabled
+    Memory Allocation: Total Heap Size: 4096
+    Memory Allocation: Application Allocated Heap: Enabled
+    Stats: Generate Run Time Stats: Disabled
+    Timers: Use Timers: Enabled
+    Timers: Timer Task Priority: 3
+    Timers: Timer Queue Length: 10
+    Timers: Timer Task Stack Depth: 128
+    General: Library Max Syscall Interrupt Priority: Priority 1
+    General: Assert: assert(x)
+    General: Include Application Defined Privileged Functions: Disabled
+    Optional Functions: vTaskPrioritySet() Function: Enabled
+    Optional Functions: uxTaskPriorityGet() Function: Enabled
+    Optional Functions: vTaskDelete() Function: Enabled
+    Optional Functions: vTaskSuspend() Function: Enabled
+    Optional Functions: xResumeFromISR() Function: Enabled
+    Optional Functions: vTaskDelayUntil() Function: Enabled
+    Optional Functions: vTaskDelay() Function: Enabled
+    Optional Functions: xTaskGetSchedulerState() Function: Enabled
+    Optional Functions: xTaskGetCurrentTaskHandle() Function: Enabled
+    Optional Functions: uxTaskGetStackHighWaterMark() Function: Disabled
+    Optional Functions: xTaskGetIdleTaskHandle() Function: Disabled
+    Optional Functions: eTaskGetState() Function: Enabled
+    Optional Functions: xEventGroupSetBitFromISR() Function: Enabled
+    Optional Functions: xTimerPendFunctionCall() Function: Disabled
+    Optional Functions: xTaskAbortDelay() Function: Disabled
+    Optional Functions: xTaskGetHandle() Function: Disabled
+    Optional Functions: xTaskResumeFromISR() Function: Enabled
+    Logging: Print String Function: printf(x)
+    Logging: Logging Max Message Length: 192
+    Logging: Logging Include Time and Task Name: Disabled
+    
+  HAL
+    Instance "g_ioport I/O Port Driver on r_ioport"
+      Name: g_ioport
+      
+    Instance "g_periodic_timer_msgq Timer Driver on r_gtm"
+      General: Name: g_periodic_timer_msgq
+      General: Channel: 1
+      General: Mode: Periodic
+      General: Period: 1
+      General: Period Unit: Seconds
+      General: Count Source: P0CLK
+      Interrupts: Callback: periodic_timer_msgq_cb
+      Interrupts: Underflow Interrupt Priority: 2
+      Interrupts: Generate at Start: Disable
+      Extra Features: GTM Mode: Interval timer mode
+      
+    Instance "g_periodic_timer_sem Timer Driver on r_gtm"
+      General: Name: g_periodic_timer_sem
+      General: Channel: 1
+      General: Mode: Periodic
+      General: Period: 1
+      General: Period Unit: Seconds
+      General: Count Source: P0CLK
+      Interrupts: Callback: periodic_timer_semphr_cb
+      Interrupts: Underflow Interrupt Priority: 2
+      Interrupts: Generate at Start: Disable
+      Extra Features: GTM Mode: Interval timer mode
+      
+    Instance "Heap 2"
+    Instance "FreeRTOS Port (rm_freertos_port)"
+      Instance "g_timer2 Timer Driver on r_gtm"
+        General: Name: g_timer2
+        General: Channel: 2
+        General: Mode: Periodic
+        General: Period: 1000
+        General: Period Unit: Hertz
+        General: Count Source: P0CLK
+        Interrupts: Callback: NULL
+        Interrupts: Underflow Interrupt Priority: 255
+        Interrupts: Generate at Start: Disable
+        Extra Features: GTM Mode: Interval timer mode
+        
+  Thread "Sender Task"
+    Symbol: sender_task
+    Name: Sender Task
+    Stack size (bytes): 1024
+    Priority: 1
+    Thread Context: NULL
+    Memory Allocation: Static
+    Allocate Secure Context: Enable
+    
+  Thread "Receiver Task"
+    Symbol: receiver_task
+    Name: Receiver Task
+    Stack size (bytes): 512
+    Priority: 1
+    Thread Context: NULL
+    Memory Allocation: Dynamic
+    Allocate Secure Context: Enable
+    
+  Thread "Semaphore Task"
+    Symbol: semaphore_task
+    Name: Semaphore Task
+    Stack size (bytes): 1024
+    Priority: 1
+    Thread Context: NULL
+    Memory Allocation: Dynamic
+    Allocate Secure Context: Enable
+    
+  Object "g_queue Queue"
+    Symbol: g_queue
+    Item Size (Bytes): 15
+    Queue Length (Items): 4
+    Memory Allocation: Static
+    
+  Object "g_binary_semaphore Binary Semaphore"
+    Symbol: g_binary_semaphore
+    Memory Allocation: Static
+    
