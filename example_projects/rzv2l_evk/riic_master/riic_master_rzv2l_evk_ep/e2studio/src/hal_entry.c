@@ -2,38 +2,34 @@
  * File Name    : hal_entry.c
  * Description  : Contains data structures and functions used in hal_entry.c.
  **********************************************************************************************************************/
-/***********************************************************************************************************************
- * Copyright 2024 Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
- *
- * This software and documentation are supplied by Renesas Electronics Corporation and/or its affiliates and may only
- * be used with products of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.
- * Renesas products are sold pursuant to Renesas terms and conditions of sale.  Purchasers are solely responsible for
- * the selection and use of Renesas products and Renesas assumes no liability.  No license, express or implied, to any
- * intellectual property right is granted by Renesas.  This software is protected under all applicable laws, including
- * copyright laws. Renesas reserves the right to change or discontinue this software and/or this documentation.
- * THE SOFTWARE AND DOCUMENTATION IS DELIVERED TO YOU "AS IS," AND RENESAS MAKES NO REPRESENTATIONS OR WARRANTIES, AND
- * TO THE FULLEST EXTENT PERMISSIBLE UNDER APPLICABLE LAW, DISCLAIMS ALL WARRANTIES, WHETHER EXPLICITLY OR IMPLICITLY,
- * INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT, WITH RESPECT TO THE
- * SOFTWARE OR DOCUMENTATION.  RENESAS SHALL HAVE NO LIABILITY ARISING OUT OF ANY SECURITY VULNERABILITY OR BREACH.
- * TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT WILL RENESAS BE LIABLE TO YOU IN CONNECTION WITH THE SOFTWARE OR
- * DOCUMENTATION (OR ANY PERSON OR ENTITY CLAIMING RIGHTS DERIVED FROM YOU) FOR ANY LOSS, DAMAGES, OR CLAIMS WHATSOEVER,
- * INCLUDING, WITHOUT LIMITATION, ANY DIRECT, CONSEQUENTIAL, SPECIAL, INDIRECT, PUNITIVE, OR INCIDENTAL DAMAGES; ANY
- * LOST PROFITS, OTHER ECONOMIC DAMAGE, PROPERTY DAMAGE, OR PERSONAL INJURY; AND EVEN IF RENESAS HAS BEEN ADVISED OF THE
- * POSSIBILITY OF SUCH LOSS, DAMAGES, CLAIMS OR COSTS.
- **********************************************************************************************************************/
+/*
+ * Copyright (c) 2020 - 2024 Renesas Electronics Corporation and/or its affiliates
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 
+
+#include "hal_data.h"
 #include "common_utils.h"
 #include "i2c_sensor.h"
 #include "stdbool.h"
 #include "stdint.h"
 
+FSP_CPP_HEADER
+void R_BSP_WarmStart(bsp_warm_start_event_t event);
+void SCL_Toggle(void);
 /*******************************************************************************************************************//**
  * @addtogroup r_riic_master_ep
  * @{
  **********************************************************************************************************************/
+/*******************************************************************************************************************//**
+ * @brief The RZ Configuration tool generates main() and uses it to generate threads if an RTOS is used.  This function is
+ *        called by main() when no RTOS is used.
+ * @param[IN]   None
+ * @retval      None
+ **********************************************************************************************************************/
+FSP_CPP_FOOTER
 
-void R_BSP_WarmStart(bsp_warm_start_event_t event);
-void SCL_Toggle(void);
 
 void hal_entry(void)
 {
@@ -49,12 +45,7 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_1);
-    APP_PRINT(BANNER_2);
-    APP_PRINT(BANNER_3,EP_VERSION);
-    APP_PRINT(BANNER_4,version.major, version.minor, version.patch);
-    APP_PRINT(BANNER_5);
-    APP_PRINT(BANNER_6);
+    APP_PRINT(BANNER_INFO,EP_VERSION,version.major, version.minor, version.patch );
     APP_PRINT("\nThis project utilizes PMOD ACL sensor as iic slave device\n");
     APP_PRINT("Upon successful initialization, MPU displays sensor axis data\n");
     APP_PRINT("\nIf SDA line is kept in LOW by any error \n");
@@ -76,7 +67,7 @@ void hal_entry(void)
      * Note: For Demonstration Purpose the failure ends up with TRAP.
      * Note: This can be handled in many ways as per the Application needs
      */
-    while (true)
+    while (1)
     {
         /* Read PMOD ACL sensor data */
         err =  read_sensor_data(xyz_axis);
@@ -130,7 +121,6 @@ void hal_entry(void)
         }
     }
 }
-
 /*******************************************************************************************************************//**
  * This function create the extra SCL Clock cycle by controlling SCLO bit
  **********************************************************************************************************************/
@@ -151,7 +141,6 @@ void SCL_Toggle(void)
         R_BSP_SoftwareDelay(2, BSP_DELAY_UNITS_MICROSECONDS);
         }
 }
-
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is
  * called right before main() to set up the pins.
@@ -160,14 +149,18 @@ void SCL_Toggle(void)
  **********************************************************************************************************************/
 void R_BSP_WarmStart(bsp_warm_start_event_t event)
 {
+    if (BSP_WARM_START_RESET == event)
+    {
+    }
+
     if (BSP_WARM_START_POST_C == event)
     {
         /* C runtime environment and system clocks are setup. */
+
         /* Configure pins. */
         R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
     }
 }
-
 /*******************************************************************************************************************//**
  * @} (end addtogroup r_riic_master_ep)
  **********************************************************************************************************************/

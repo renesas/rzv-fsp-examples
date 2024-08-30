@@ -1,31 +1,22 @@
-/***********************************************************************************************************************
- * Copyright 2024 Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
- *
- * This software and documentation are supplied by Renesas Electronics Corporation and/or its affiliates and may only
- * be used with products of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.
- * Renesas products are sold pursuant to Renesas terms and conditions of sale.  Purchasers are solely responsible for
- * the selection and use of Renesas products and Renesas assumes no liability.  No license, express or implied, to any
- * intellectual property right is granted by Renesas.  This software is protected under all applicable laws, including
- * copyright laws. Renesas reserves the right to change or discontinue this software and/or this documentation.
- * THE SOFTWARE AND DOCUMENTATION IS DELIVERED TO YOU "AS IS," AND RENESAS MAKES NO REPRESENTATIONS OR WARRANTIES, AND
- * TO THE FULLEST EXTENT PERMISSIBLE UNDER APPLICABLE LAW, DISCLAIMS ALL WARRANTIES, WHETHER EXPLICITLY OR IMPLICITLY,
- * INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT, WITH RESPECT TO THE
- * SOFTWARE OR DOCUMENTATION.  RENESAS SHALL HAVE NO LIABILITY ARISING OUT OF ANY SECURITY VULNERABILITY OR BREACH.
- * TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT WILL RENESAS BE LIABLE TO YOU IN CONNECTION WITH THE SOFTWARE OR
- * DOCUMENTATION (OR ANY PERSON OR ENTITY CLAIMING RIGHTS DERIVED FROM YOU) FOR ANY LOSS, DAMAGES, OR CLAIMS WHATSOEVER,
- * INCLUDING, WITHOUT LIMITATION, ANY DIRECT, CONSEQUENTIAL, SPECIAL, INDIRECT, PUNITIVE, OR INCIDENTAL DAMAGES; ANY
- * LOST PROFITS, OTHER ECONOMIC DAMAGE, PROPERTY DAMAGE, OR PERSONAL INJURY; AND EVEN IF RENESAS HAS BEEN ADVISED OF THE
- * POSSIBILITY OF SUCH LOSS, DAMAGES, CLAIMS OR COSTS.
- **********************************************************************************************************************/
+/*
+ * Copyright (c) 2020 - 2024 Renesas Electronics Corporation and/or its affiliates
+ * 
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
 
 1. Project Overview:
      The example project demonstrates the typical use of the RSPI HAL module APIs.The project configure 
      RSPI channels (Channel 0 and Channel 1) in Master and Slave mode.Once the module is initialised and the 
      channels are configured, Master and Slave can transmit and receive data based on commands from user sent through 
      JLinkRTTViewer.
+	 
+	 This project supports the DMAC feature. In cases where this feature is not used in the application,
+     please invalid the DMAC feature by the following steps.
+     - Set DMAC Support to Disabled on the main stack of the driver in FSP configuration.
+     - Remove the DMAC sub stacks that linked to the main stack .
 
 2. Software Requirement:
-    Software          : JLink RTT Viewer v7.84f
+    Software          : JLink RTT Viewer v7.96e
 
 3. Hardware settings:
     Boot Mode:
@@ -78,7 +69,6 @@
         CK    ----> P44_0(PMOD0 PIN4) - P43_0(PMOD0 PIN7)
         SSL   ----> P44_3(PMOD0 PIN1) - GND  (PMOD0 PIN11)
 
-    Since the RZ/V2L FSP does not support the pin configuration -> Pin setting is in pin_data.c file inside "/src".
 
 NOTE:
 1. User is expected to enter data of size not exceeding 64 bytes.

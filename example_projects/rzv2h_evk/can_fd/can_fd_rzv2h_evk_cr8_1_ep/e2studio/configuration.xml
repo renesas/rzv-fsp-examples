@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<raConfiguration version="9">
+  <generalSettings>
+    <option key="#Board#" value="board.rzv2h_evk"/>
+    <option key="CPU" value="RZV2H"/>
+    <option key="Core" value="CR8_1"/>
+    <option key="#TargetName#" value="R9A09G057H44GBG"/>
+    <option key="#TargetARCHITECTURE#" value="cortex-r8"/>
+    <option key="#DeviceCommand#" value="R9A09G057H44GBG"/>
+    <option key="#RTOS#" value="_none"/>
+    <option key="#pinconfiguration#" value="R9A09G057H44GBG.pincfg"/>
+    <option key="#FSPVersion#" value="2.0.1"/>
+    <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
+    <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
+    <option key="#ToolchainVersion#" value="12.2.1.arm-12-24"/>
+    <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
+  </generalSettings>
+  <raBspConfiguration>
+    <config id="config.bsp.rzv2h.R9A09G057H44GBG">
+      <property id="config.bsp.part_number" value="config.bsp.part_number.value"/>
+      <property id="config.bsp.rom_size_bytes" value="config.bsp.rom_size_bytes.value"/>
+      <property id="config.bsp.ram_size_bytes" value="config.bsp.ram_size_bytes.value"/>
+      <property id="config.bsp.package_style" value="config.bsp.package_style.value"/>
+      <property id="config.bsp.package_pins" value="config.bsp.package_pins.value"/>
+    </config>
+    <config id="config.bsp.rzv2h.cr8_1">
+      <property id="config.bsp.series" value="config.bsp.series.value"/>
+    </config>
+    <config id="config.bsp.rzv2h.fsp.cr8_1">
+      <property id="config.bsp.fsp.mcu.spi.max_bitrate" value="50000000"/>
+      <property id="config.bsp.fsp.mcu.sci_b_uart.max_baud" value="16666667"/>
+      <property id="config.bsp.fsp.mcu.sci_b_spi.max_bitrate" value="25000000"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_data_rate_hz" value="8"/>
+      <property id="config.bsp.fsp.mcu.canfd.min_nominal_timeseg1" value="2"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_nominal_timeseg1" value="256"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_nominal_timeseg2" value="128"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_nominal_sync_jump_width" value="128"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_data_prescaler" value="1024"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_data_timeseg1" value="32"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_data_timeseg2" value="16"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_data_sync_jump_width" value="16"/>
+      <property id="config.bsp.fsp.mcu.canfd.max_rxmb_number" value="96"/>
+      <property id="config.bsp.fsp.mcu.canfd.afl_rules" value="768"/>
+      <property id="config.bsp.fsp.mcu.canfd.afl_rules_each_chnl" value="128"/>
+    </config>
+    <config id="config.bsp.rz.cr8">
+      <property id="config.bsp.common.fiq" value="0x1000"/>
+      <property id="config.bsp.common.irq" value="0x1000"/>
+      <property id="config.bsp.common.abt" value="0x1000"/>
+      <property id="config.bsp.common.und" value="0x1000"/>
+      <property id="config.bsp.common.sys" value="0x1000"/>
+      <property id="config.bsp.common.svc" value="0x1000"/>
+      <property id="config.bsp.common.heap" value="0x8000"/>
+      <property id="config.bsp.common.vcc" value="3300"/>
+      <property id="config.bsp.common.checking" value="config.bsp.common.checking.disabled"/>
+      <property id="config.bsp.common.assert" value="config.bsp.common.assert.none"/>
+      <property id="config.bsp.common.error_log" value="config.bsp.common.error_log.none"/>
+      <property id="config.bsp.common.pfs_protect" value="config.bsp.common.pfs_protect.enabled"/>
+      <property id="config.bsp.common.c_runtime_init" value="config.bsp.common.c_runtime_init.enabled"/>
+      <property id="config.caches" value="config.caches.enabled"/>
+    </config>
+  </raBspConfiguration>
+  <raComponentSelection>
+    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="2.0.1">
+      <description>Board Support Package Common Files</description>
+      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="2.0.1">
+      <description>I/O Port</description>
+      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="2.0.1">
+      <description>Board support package for R9A09G057H44GBG</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="2.0.1">
+      <description>Board support package for RZV2H</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="2.0.1">
+      <description>Board support package for RZ/V2H (RZ/V2H) - FSP Data</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="2.0.1">
+      <description>Evaluation Kit RZ/V2H Support Files (RZ/V2H)</description>
+      <originalPack>Renesas.RZV_board_rzv2h_evk.2.0.1.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_canfd" variant="" vendor="Renesas" version="2.0.1">
+      <description>Controller Area Network - Flexible Data</description>
+      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+    </component>
+  </raComponentSelection>
+  <raElcConfiguration/>
+  <raIcuConfiguration/>
+  <raModuleConfiguration>
+    <module id="module.driver.ioport_on_ioport.0">
+      <property id="module.driver.ioport.name" value="g_ioport"/>
+      <property id="module.driver.ioport.pincfg" value="g_bsp_pin_cfg"/>
+      <property id="module.driver.ioport.elc_trigger_output_group1" value="_disabled"/>
+      <property id="module.driver.ioport.port_select_output_group1" value=""/>
+      <property id="module.driver.ioport.operation_output_group1" value="module.driver.ioport.operation_output_group.low"/>
+      <property id="module.driver.ioport.elc_trigger_output_group2" value="_disabled"/>
+      <property id="module.driver.ioport.port_select_output_group2" value=""/>
+      <property id="module.driver.ioport.operation_output_group2" value="module.driver.ioport.operation_output_group.low"/>
+      <property id="module.driver.ioport.elc_trigger_input_group1" value="_disabled"/>
+      <property id="module.driver.ioport.event_control_input_group1" value="module.driver.ioport.event_control_input_group.disable"/>
+      <property id="module.driver.ioport.port_select_input_group1" value=""/>
+      <property id="module.driver.ioport.edge_detect_input_group1" value="module.driver.ioport.edge_detect_input_group.rising"/>
+      <property id="module.driver.ioport.buffer_overwrite_input_group1" value="module.driver.ioport.buffer_overwrite_input_group.disable"/>
+      <property id="module.driver.ioport.p60_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p61_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p62_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p63_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p64_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p65_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p66_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p67_initial_value_input_group1" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.elc_trigger_input_group2" value="_disabled"/>
+      <property id="module.driver.ioport.event_control_input_group2" value="module.driver.ioport.event_control_input_group.disable"/>
+      <property id="module.driver.ioport.port_select_input_group2" value=""/>
+      <property id="module.driver.ioport.edge_detect_input_group2" value="module.driver.ioport.edge_detect_input_group.rising"/>
+      <property id="module.driver.ioport.buffer_overwrite_input_group2" value="module.driver.ioport.buffer_overwrite_input_group.disable"/>
+      <property id="module.driver.ioport.p80_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p81_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p82_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p83_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p84_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p85_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p86_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.p87_initial_value_input_group2" value="module.driver.ioport.initial_value_input_group.low"/>
+      <property id="module.driver.ioport.event_control_single_port0" value="module.driver.ioport.event_control_single_port.disable"/>
+      <property id="module.driver.ioport.event_direction_single_port0" value="module.driver.ioport.event_direction_single_port.output"/>
+      <property id="module.driver.ioport.port_number_single_port0" value="module.driver.ioport.port_number_single_port.p60"/>
+      <property id="module.driver.ioport.elc_trigger_single_output_port0" value="_disabled"/>
+      <property id="module.driver.ioport.operation_single_output_port0" value="module.driver.ioport.operation_single_output_port.low"/>
+      <property id="module.driver.ioport.edge_detect_single_input_port0" value="module.driver.ioport.edge_detect_single_input_port.rising"/>
+      <property id="module.driver.ioport.event_control_single_port1" value="module.driver.ioport.event_control_single_port.disable"/>
+      <property id="module.driver.ioport.event_direction_single_port1" value="module.driver.ioport.event_direction_single_port.output"/>
+      <property id="module.driver.ioport.port_number_single_port1" value="module.driver.ioport.port_number_single_port.p60"/>
+      <property id="module.driver.ioport.elc_trigger_single_output_port1" value="_disabled"/>
+      <property id="module.driver.ioport.operation_single_output_port1" value="module.driver.ioport.operation_single_output_port.low"/>
+      <property id="module.driver.ioport.edge_detect_single_input_port1" value="module.driver.ioport.edge_detect_single_input_port.rising"/>
+      <property id="module.driver.ioport.event_control_single_port2" value="module.driver.ioport.event_control_single_port.disable"/>
+      <property id="module.driver.ioport.event_direction_single_port2" value="module.driver.ioport.event_direction_single_port.output"/>
+      <property id="module.driver.ioport.port_number_single_port2" value="module.driver.ioport.port_number_single_port.p60"/>
+      <property id="module.driver.ioport.elc_trigger_single_output_port2" value="_disabled"/>
+      <property id="module.driver.ioport.operation_single_output_port2" value="module.driver.ioport.operation_single_output_port.low"/>
+      <property id="module.driver.ioport.edge_detect_single_input_port2" value="module.driver.ioport.edge_detect_single_input_port.rising"/>
+      <property id="module.driver.ioport.event_control_single_port3" value="module.driver.ioport.event_control_single_port.disable"/>
+      <property id="module.driver.ioport.event_direction_single_port3" value="module.driver.ioport.event_direction_single_port.output"/>
+      <property id="module.driver.ioport.port_number_single_port3" value="module.driver.ioport.port_number_single_port.p60"/>
+      <property id="module.driver.ioport.elc_trigger_single_output_port3" value="_disabled"/>
+      <property id="module.driver.ioport.operation_single_output_port3" value="module.driver.ioport.operation_single_output_port.low"/>
+      <property id="module.driver.ioport.edge_detect_single_input_port3" value="module.driver.ioport.edge_detect_single_input_port.rising"/>
+    </module>
+    <module id="module.driver.canfd_on_canfd.855474355">
+      <property id="module.driver.canfd.name" value="g_canfd_ch0"/>
+      <property id="module.driver.canfd.channel" value="0"/>
+      <property id="module.driver.canfd.bitrate.automatic.clock_source_freq" value="0"/>
+      <property id="module.driver.canfd.bitrate.automatic.nominal_rate" value="500000"/>
+      <property id="module.driver.canfd.bitrate.automatic.data_rate" value="2000000"/>
+      <property id="module.driver.canfd.bitrate.automatic.sample_point" value="75"/>
+      <property id="module.driver.canfd.bitrate.automatic.delay_compensation" value="module.driver.canfd.bitrate.automatic.delay_compensation.enabled"/>
+      <property id="module.driver.canfd.manual.nominal.prescaler" value="2"/>
+      <property id="module.driver.canfd.manual.nominal.time_segment_1" value="74"/>
+      <property id="module.driver.canfd.manual.nominal.time_segment_2" value="25"/>
+      <property id="module.driver.canfd.manual.nominal.sync_jump_width" value="10"/>
+      <property id="module.driver.canfd.manual.data.prescaler" value="1"/>
+      <property id="module.driver.canfd.manual.data.time_segment_1" value="16"/>
+      <property id="module.driver.canfd.manual.data.time_segment_2" value="8"/>
+      <property id="module.driver.canfd.manual.data.sync_jump_width" value="1"/>
+      <property id="module.driver.canfd.bitrate.manual.use_manual" value="module.driver.canfd.bitrate.manual.use_manual.enabled"/>
+      <property id="module.driver.canfd.p_callback" value="canfd_ch0_callback"/>
+      <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0"/>
+      <property id="module.driver.canfd.ch_err.int" value="module.driver.canfd.ch_err.int.err_warning,module.driver.canfd.ch_err.int.err_passive,module.driver.canfd.ch_err.int.bus_off_entry,module.driver.canfd.ch_err.int.bus_off_recovery,module.driver.canfd.ch_err.int.overload"/>
+      <property id="module.driver.canfd.ipl" value="12"/>
+      <property id="module.driver.canfd.txmb_merge_mode" value="module.driver.canfd.txmb_merge_mode.disable"/>
+      <property id="module.driver.canfd.afl_array" value="p_canfd_ch0_afl"/>
+    </module>
+    <module id="module.driver.canfd_on_canfd.113208189">
+      <property id="module.driver.canfd.name" value="g_canfd_ch1"/>
+      <property id="module.driver.canfd.channel" value="1"/>
+      <property id="module.driver.canfd.bitrate.automatic.clock_source_freq" value="0"/>
+      <property id="module.driver.canfd.bitrate.automatic.nominal_rate" value="500000"/>
+      <property id="module.driver.canfd.bitrate.automatic.data_rate" value="2000000"/>
+      <property id="module.driver.canfd.bitrate.automatic.sample_point" value="75"/>
+      <property id="module.driver.canfd.bitrate.automatic.delay_compensation" value="module.driver.canfd.bitrate.automatic.delay_compensation.enabled"/>
+      <property id="module.driver.canfd.manual.nominal.prescaler" value="2"/>
+      <property id="module.driver.canfd.manual.nominal.time_segment_1" value="74"/>
+      <property id="module.driver.canfd.manual.nominal.time_segment_2" value="25"/>
+      <property id="module.driver.canfd.manual.nominal.sync_jump_width" value="10"/>
+      <property id="module.driver.canfd.manual.data.prescaler" value="1"/>
+      <property id="module.driver.canfd.manual.data.time_segment_1" value="16"/>
+      <property id="module.driver.canfd.manual.data.time_segment_2" value="8"/>
+      <property id="module.driver.canfd.manual.data.sync_jump_width" value="1"/>
+      <property id="module.driver.canfd.bitrate.manual.use_manual" value="module.driver.canfd.bitrate.manual.use_manual.enabled"/>
+      <property id="module.driver.canfd.p_callback" value="canfd_ch1_callback"/>
+      <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0"/>
+      <property id="module.driver.canfd.ch_err.int" value="module.driver.canfd.ch_err.int.err_warning,module.driver.canfd.ch_err.int.err_passive,module.driver.canfd.ch_err.int.bus_off_entry,module.driver.canfd.ch_err.int.bus_off_recovery,module.driver.canfd.ch_err.int.overload"/>
+      <property id="module.driver.canfd.ipl" value="12"/>
+      <property id="module.driver.canfd.txmb_merge_mode" value="module.driver.canfd.txmb_merge_mode.disable"/>
+      <property id="module.driver.canfd.afl_array" value="p_canfd_ch1_afl"/>
+    </module>
+    <context id="_hal.0">
+      <stack module="module.driver.ioport_on_ioport.0"/>
+      <stack module="module.driver.canfd_on_canfd.855474355"/>
+      <stack module="module.driver.canfd_on_canfd.113208189"/>
+    </context>
+    <config id="config.driver.ioport">
+      <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
+    </config>
+    <config id="config.driver.canfd">
+      <property id="config.driver.canfd.param_checking_enable" value="config.driver.canfd.param_checking_enable.bsp"/>
+      <property id="config.driver.canfd.global_err.ipl" value="2"/>
+      <property id="config.driver.canfd.global_err.sources" value="config.driver.canfd.global_err.sources.dlc_check,config.driver.canfd.global_err.sources.message_lost,config.driver.canfd.global_err.sources.overflow"/>
+      <property id="config.driver.canfd.global_err.cb_channel" value="config.driver.canfd.global_err.cb_channel.1"/>
+      <property id="config.driver.canfd.tx_priority" value="config.driver.canfd.tx_priority.buffer"/>
+      <property id="config.driver.canfd.dlc_check" value="config.driver.canfd.dlc_check.disabled"/>
+      <property id="config.driver.canfd.clock_source" value="config.driver.canfd.clock_source.canfd_pclk"/>
+      <property id="config.driver.canfd.fd.protocol_exception" value="config.driver.canfd.fd.protocol_exception.iso"/>
+      <property id="config.driver.canfd.fd.overflow" value="config.driver.canfd.fd.overflow.reject"/>
+      <property id="config.driver.canfd.rxmb.number" value="1"/>
+      <property id="config.driver.canfd.rxmb.size" value="config.driver.canfd.rxmb.size.16"/>
+      <property id="config.driver.canfd.rxfifo.ipl" value="12"/>
+      <property id="config.driver.canfd.rxfifo.0.enable" value="config.driver.canfd.rxfifo.0.enable.enabled"/>
+      <property id="config.driver.canfd.rxfifo.0.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.0.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.0.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.0.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.1.enable" value="config.driver.canfd.rxfifo.1.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.1.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.1.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.1.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.1.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.2.enable" value="config.driver.canfd.rxfifo.2.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.2.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.2.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.2.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.2.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.3.enable" value="config.driver.canfd.rxfifo.3.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.3.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.3.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.3.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.3.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.4.enable" value="config.driver.canfd.rxfifo.4.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.4.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.4.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.4.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.4.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.5.enable" value="config.driver.canfd.rxfifo.5.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.5.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.5.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.5.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.5.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.6.enable" value="config.driver.canfd.rxfifo.6.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.6.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.6.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.6.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.6.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.rxfifo.7.enable" value="config.driver.canfd.rxfifo.7.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.7.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
+      <property id="config.driver.canfd.rxfifo.7.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
+      <property id="config.driver.canfd.rxfifo.7.payload" value="enum.driver.canfd.fifo.payload.64"/>
+      <property id="config.driver.canfd.rxfifo.7.depth" value="enum.driver.canfd.fifo.depth.16"/>
+      <property id="config.driver.canfd.afl.ch0_num" value="64"/>
+      <property id="config.driver.canfd.afl.ch1_num" value="64"/>
+      <property id="config.driver.canfd.afl.ch2_num" value="0"/>
+      <property id="config.driver.canfd.afl.ch3_num" value="0"/>
+      <property id="config.driver.canfd.afl.ch4_num" value="0"/>
+      <property id="config.driver.canfd.afl.ch5_num" value="0"/>
+    </config>
+  </raModuleConfiguration>
+  <raPinConfiguration>
+    <pincfg active="true" name="RZV2H-EVK.pincfg" selected="true" symbol="g_bsp_pin_cfg">
+      <configSetting altId="canfd0.crx0.p81" configurationId="canfd0.crx0"/>
+      <configSetting altId="canfd0.ctx0.p80" configurationId="canfd0.ctx0"/>
+      <configSetting altId="canfd0.mode.custom.free" configurationId="canfd0.mode"/>
+      <configSetting altId="canfd1.crx1.p83" configurationId="canfd1.crx1"/>
+      <configSetting altId="canfd1.ctx1.p82" configurationId="canfd1.ctx1"/>
+      <configSetting altId="canfd1.mode.custom.free" configurationId="canfd1.mode"/>
+      <configSetting altId="p50.output.low" configurationId="p50"/>
+      <configSetting altId="p50.gpio_mode.gpio_mode_out.low" configurationId="p50.gpio_mode"/>
+      <configSetting altId="p51.output.low" configurationId="p51"/>
+      <configSetting altId="p51.gpio_mode.gpio_mode_out.low" configurationId="p51.gpio_mode"/>
+      <configSetting altId="p52.output.low" configurationId="p52"/>
+      <configSetting altId="p52.gpio_mode.gpio_mode_out.low" configurationId="p52.gpio_mode"/>
+      <configSetting altId="p53.output.low" configurationId="p53"/>
+      <configSetting altId="p53.gpio_mode.gpio_mode_out.low" configurationId="p53.gpio_mode"/>
+      <configSetting altId="p80.canfd0.ctx0" configurationId="p80"/>
+      <configSetting altId="p80.gpio_mode.gpio_mode_peripheral" configurationId="p80.gpio_mode"/>
+      <configSetting altId="p81.canfd0.crx0" configurationId="p81"/>
+      <configSetting altId="p81.gpio_mode.gpio_mode_peripheral" configurationId="p81.gpio_mode"/>
+      <configSetting altId="p82.canfd1.ctx1" configurationId="p82"/>
+      <configSetting altId="p82.gpio_mode.gpio_mode_peripheral" configurationId="p82.gpio_mode"/>
+      <configSetting altId="p83.canfd1.crx1" configurationId="p83"/>
+      <configSetting altId="p83.gpio_mode.gpio_mode_peripheral" configurationId="p83.gpio_mode"/>
+      <configSetting altId="riic8.mode.custom.free" configurationId="riic8.mode"/>
+      <configSetting altId="xspi.mode.custom.free" configurationId="xspi.mode"/>
+    </pincfg>
+    <pincfg active="false" name="R9A09G057H44GBG.pincfg" selected="false" symbol=""/>
+  </raPinConfiguration>
+</raConfiguration>

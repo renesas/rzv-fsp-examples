@@ -16,6 +16,7 @@ Example projects demonstrate the operation of various peripherals available on R
 ## References
 
 - RZ/V2L Product Information:     [www.renesas.com/rz-mpus/rzv2l](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzv2l-general-purpose-microprocessor-equipped-renesas-original-ai-accelerator-drp-ai-12ghz-dual-core-arm)
+- RZ/V2H Product Information:     [www.renesas.com/rz-mpus/rzv2h](https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzv2h-quad-core-vision-ai-mpu-drp-ai3-accelerator-and-high-performance-real-time-processor)
 - RZ/V Flexible Software Package: [github.com/renesas/rzv-fsp](https://github.com/renesas/rzv-fsp)
 - FSP Documentation:              [www.renesas.github.io/rzv-fsp](https://renesas.github.io/rzv-fsp/)
 - Renesas Support:                [www.renesas.com/support](https://en-support.renesas.com/dashboard)
