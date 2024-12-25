@@ -48,73 +48,41 @@
  #define CR8_PRV_CPG_LP_CR8_CTL4_POWERUP_ACT_FINISHED      (0U << R_CPG_CPG_LP_CR8_CTL4_POWERUP_ACT_Pos)
  #define CR8_PRV_CPG_LP_CR8_CTL4_CLR_RESET_TRG             (0U << R_CPG_CPG_LP_CR8_CTL4_RESET_TRIG_Pos)
 
-/* System-Related Definitions */
- #define SYS_MSTACCTL2_CR80_WRITE_NON_PRIV                 (0U << R_SYSC_SYS_MSTACCCTL2_SXR80_AWPU_Pos)
- #define SYS_MSTACCTL2_CR80_WRITE_NON_SECURE               (1U << R_SYSC_SYS_MSTACCCTL2_SXR80_AWNS_Pos)
- #define SYS_MSTACCTL2_CR80_WRITE_ATTRIBUTE_SRC            (1U << R_SYSC_SYS_MSTACCCTL2_SXR80_AWSEL_Pos)
- #define SYS_MSTACCTL2_CR80_READ_NON_PRIV                  (0U << R_SYSC_SYS_MSTACCCTL2_SXR80_ARPU_Pos)
- #define SYS_MSTACCTL2_CR80_READ_NON_SECURE                (1U << R_SYSC_SYS_MSTACCCTL2_SXR80_ARNS_Pos)
- #define SYS_MSTACCTL2_CR80_READ_ATTRIBUTE_SRC             (1U << R_SYSC_SYS_MSTACCCTL2_SXR80_ARSEL_Pos)
- #define SYS_MSTACCTL2_CR81_WRITE_NON_PRIV                 (0U << R_SYSC_SYS_MSTACCCTL2_SXR81_AWPU_Pos)
- #define SYS_MSTACCTL2_CR81_WRITE_NON_SECURE               (1U << R_SYSC_SYS_MSTACCCTL2_SXR81_AWNS_Pos)
- #define SYS_MSTACCTL2_CR81_WRITE_ATTRIBUTE_SRC            (1U << R_SYSC_SYS_MSTACCCTL2_SXR81_AWSEL_Pos)
- #define SYS_MSTACCTL2_CR81_READ_NON_PRIV                  (0U << R_SYSC_SYS_MSTACCCTL2_SXR81_ARPU_Pos)
- #define SYS_MSTACCTL2_CR81_READ_NON_SECURE                (1U << R_SYSC_SYS_MSTACCCTL2_SXR81_ARNS_Pos)
- #define SYS_MSTACCTL2_CR81_READ_ATTRIBUTE_SRC             (1U << R_SYSC_SYS_MSTACCCTL2_SXR81_ARSEL_Pos)
- #define SYS_MSTACCTL2_CR8L_WRITE_NON_PRIV                 (0U << R_SYSC_SYS_MSTACCCTL2_SXR8L_AWPU_Pos)
- #define SYS_MSTACCTL2_CR8L_WRITE_NON_SECURE               (1U << R_SYSC_SYS_MSTACCCTL2_SXR8L_AWNS_Pos)
- #define SYS_MSTACCTL2_CR8L_WRITE_ATTRIBUTE_SRC            (1U << R_SYSC_SYS_MSTACCCTL2_SXR8L_AWSEL_Pos)
- #define SYS_MSTACCTL2_CR8L_READ_NON_PRIV                  (0U << R_SYSC_SYS_MSTACCCTL2_SXR8L_ARPU_Pos)
- #define SYS_MSTACCTL2_CR8L_READ_NON_SECURE                (1U << R_SYSC_SYS_MSTACCCTL2_SXR8L_ARNS_Pos)
- #define SYS_MSTACCTL2_CR8L_READ_ATTRIBUTE_SRC             (1U << R_SYSC_SYS_MSTACCCTL2_SXR8L_ARSEL_Pos)
- #define SYS_MSTACCTL2_CR8_MASK                            (0x00FFFFFFU)
- #define SYS_MSTACCTL2_CR8_NON_SECURE_SETTING              (SYS_MSTACCTL2_CR80_WRITE_NON_PRIV |      \
-                                                            SYS_MSTACCTL2_CR80_WRITE_NON_SECURE |    \
-                                                            SYS_MSTACCTL2_CR80_WRITE_ATTRIBUTE_SRC | \
-                                                            SYS_MSTACCTL2_CR80_READ_NON_PRIV |       \
-                                                            SYS_MSTACCTL2_CR80_READ_NON_SECURE |     \
-                                                            SYS_MSTACCTL2_CR80_READ_ATTRIBUTE_SRC |  \
-                                                            SYS_MSTACCTL2_CR81_WRITE_NON_PRIV |      \
-                                                            SYS_MSTACCTL2_CR81_WRITE_NON_SECURE |    \
-                                                            SYS_MSTACCTL2_CR81_WRITE_ATTRIBUTE_SRC | \
-                                                            SYS_MSTACCTL2_CR81_READ_NON_PRIV |       \
-                                                            SYS_MSTACCTL2_CR81_READ_NON_SECURE |     \
-                                                            SYS_MSTACCTL2_CR81_READ_ATTRIBUTE_SRC |  \
-                                                            SYS_MSTACCTL2_CR8L_WRITE_NON_PRIV |      \
-                                                            SYS_MSTACCTL2_CR8L_WRITE_NON_SECURE |    \
-                                                            SYS_MSTACCTL2_CR8L_WRITE_ATTRIBUTE_SRC | \
-                                                            SYS_MSTACCTL2_CR8L_READ_NON_PRIV |       \
-                                                            SYS_MSTACCTL2_CR8L_READ_NON_SECURE |     \
-                                                            SYS_MSTACCTL2_CR8L_READ_ATTRIBUTE_SRC)
-
 void release_reset_cr8 (void)
 {
-    volatile uint32_t reg32;
-
     /* Assert CR8 resets to keep the initial state constant. */
     R_CPG->CPG_RST_2 = CR8_PRV_CPG_RST_2_ASSERT_RESET_OTHERCR8_VALUE;
 
     /* Turn on the clock related to CR8 */
     R_CPG->CPG_CLKON_0 = CR8_PRV_CPG_CLKON_0_VALUE;
     R_CPG->CPG_CLKON_1 = CR8_PRV_CPG_CLKON_1_VALUE;
-    do
-    {
-        reg32 = R_CPG->CPG_CLKMON_0;
-    } while ((reg32 & CR8_PRV_CPG_CLKMON_0_VALUE) != CR8_PRV_CPG_CLKMON_0_VALUE);
+
+    FSP_HARDWARE_REGISTER_WAIT((CR8_PRV_CPG_CLKMON_0_VALUE & R_CPG->CPG_CLKMON_0), CR8_PRV_CPG_CLKMON_0_VALUE);
 
     /* Setting CR8 bus master access attributes as non-secure and non-privileged. */
-    R_SYSC->SYS_MSTACCCTL2 = SYS_MSTACCTL2_CR8_NON_SECURE_SETTING;
+    R_BSP_MASTER_ACCESS_CONTROL_SET(MST_ACCCNT_CR8_0,
+                                    BSP_MST_ACCCNT_LEVEL_NONPRIVILEGED_NONSECURE,
+                                    BSP_MST_ACCCNT_WRITE_DIRECTION);
+    R_BSP_MASTER_ACCESS_CONTROL_SET(MST_ACCCNT_CR8_0,
+                                    BSP_MST_ACCCNT_LEVEL_NONPRIVILEGED_NONSECURE,
+                                    BSP_MST_ACCCNT_READ_DIRECTION);
+    R_BSP_MASTER_ACCESS_CONTROL_SET(MST_ACCCNT_CR8_1,
+                                    BSP_MST_ACCCNT_LEVEL_NONPRIVILEGED_NONSECURE,
+                                    BSP_MST_ACCCNT_WRITE_DIRECTION);
+    R_BSP_MASTER_ACCESS_CONTROL_SET(MST_ACCCNT_CR8_1,
+                                    BSP_MST_ACCCNT_LEVEL_NONPRIVILEGED_NONSECURE,
+                                    BSP_MST_ACCCNT_READ_DIRECTION);
+    R_BSP_MASTER_ACCESS_CONTROL_SET(MST_ACCCNT_CR8_LLPP,
+                                    BSP_MST_ACCCNT_LEVEL_NONPRIVILEGED_NONSECURE,
+                                    BSP_MST_ACCCNT_WRITE_DIRECTION);
+    R_BSP_MASTER_ACCESS_CONTROL_SET(MST_ACCCNT_CR8_LLPP,
+                                    BSP_MST_ACCCNT_LEVEL_NONPRIVILEGED_NONSECURE,
+                                    BSP_MST_ACCCNT_READ_DIRECTION);
 
     /* 1: Confirm CR8 is reset state now */
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_0;
-    } while ((reg32 & CR8_PRV_CPG_RSTMON0_VALUE) != CR8_PRV_CPG_RSTMON0_VALUE);
+    FSP_HARDWARE_REGISTER_WAIT((CR8_PRV_CPG_RSTMON0_VALUE & R_CPG->CPG_RSTMON_0), CR8_PRV_CPG_RSTMON0_VALUE);
 
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_1;
-    } while ((reg32 & CR8_PRV_CPG_RSTMON1_VALUE) != CR8_PRV_CPG_RSTMON1_VALUE);
+    FSP_HARDWARE_REGISTER_WAIT((CR8_PRV_CPG_RSTMON1_VALUE & R_CPG->CPG_RSTMON_1), CR8_PRV_CPG_RSTMON1_VALUE);
 
     /* 2: Enable CR8 interrupt request output bits of CPG_LP_CR8_CTL3 */
     R_CPG->CPG_LP_CR8_CTL3 =
@@ -129,28 +97,22 @@ void release_reset_cr8 (void)
     R_CPG->CPG_RST_2 = CR8_PRV_CPG_RST_2_NMISCRESET_VALUE;
 
     /* 5: Wait until release reset sequence execution available */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CR8_CTL4;
-    } while ((reg32 & R_CPG_CPG_LP_CR8_CTL4_RESET_CTRL_READY_Msk) != R_CPG_CPG_LP_CR8_CTL4_RESET_CTRL_READY_Msk);
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_LP_CR8_CTL4_RESET_CTRL_READY_Msk & R_CPG->CPG_LP_CR8_CTL4),
+                               R_CPG_CPG_LP_CR8_CTL4_RESET_CTRL_READY_Msk);
 
     /* 6: Write CPG_LP_CR8_CTL4.RESET_TRIG bit */
     R_CPG->CPG_LP_CR8_CTL4 = R_CPG_CPG_LP_CR8_CTL4_RESET_TRIG_Msk;
 
     /* 7: Wait until Reset release request received */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CR8_CTL4;
-    } while ((reg32 & R_CPG_CPG_LP_CR8_CTL4_RESET_RELEASEREQ_Msk) != R_CPG_CPG_LP_CR8_CTL4_RESET_RELEASEREQ_Msk);
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_LP_CR8_CTL4_RESET_RELEASEREQ_Msk & R_CPG->CPG_LP_CR8_CTL4),
+                               R_CPG_CPG_LP_CR8_CTL4_RESET_RELEASEREQ_Msk);
 
     /* 8: Release all of CR8 reset bits in CPG_RST_2 */
     R_CPG->CPG_RST_2 = CR8_PRV_CPG_RST_2_RELEASE_RESET_OTHERCR8_VALUE;
 
     /* 9: Wait until Reset release sequence finished */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CR8_CTL4;
-    } while ((reg32 & R_CPG_CPG_LP_CR8_CTL4_POWERUP_ACT_Msk) != CR8_PRV_CPG_LP_CR8_CTL4_POWERUP_ACT_FINISHED);
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_LP_CR8_CTL4_POWERUP_ACT_Msk & R_CPG->CPG_LP_CR8_CTL4),
+                               CR8_PRV_CPG_LP_CR8_CTL4_POWERUP_ACT_FINISHED);
 
     /* 10: Clear CPG_LP_CR8_CTL4.RESET_TRIG bit */
     R_CPG->CPG_LP_CR8_CTL4 = CR8_PRV_CPG_LP_CR8_CTL4_CLR_RESET_TRG;

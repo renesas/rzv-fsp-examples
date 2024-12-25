@@ -8,7 +8,7 @@
 
 void pll_init_cm33boot (void)
 {
-    volatile uint32_t reg32;
+#if defined(BSP_CFG_CLOCK_PLLCLNCLK_HZ)
 
     /*****************************************/
     /* Setting PLLCLN                        */
@@ -18,10 +18,11 @@ void pll_init_cm33boot (void)
     R_CPG->CPG_PLLCLN_STBY = R_CPG_CPG_PLLCLN_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLCLN_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLCLN_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLCLN_MON_PLLn_LOCK_Msk)) != (R_CPG_CPG_PLLCLN_MON_PLLn_LOCK_Msk));
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_PLLCLN_MON_PLLn_LOCK_Msk & R_CPG->CPG_PLLCLN_MON),
+                               R_CPG_CPG_PLLCLN_MON_PLLn_LOCK_Msk);
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLDTYCLK_HZ)
 
     /*****************************************/
     /* Setting PLLDTY                        */
@@ -31,10 +32,11 @@ void pll_init_cm33boot (void)
     R_CPG->CPG_PLLDTY_STBY = R_CPG_CPG_PLLDTY_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLDTY_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDTY_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDTY_MON_PLLn_LOCK_Msk)) != (R_CPG_CPG_PLLDTY_MON_PLLn_LOCK_Msk));
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_PLLDTY_MON_PLLn_LOCK_Msk & R_CPG->CPG_PLLDTY_MON),
+                               R_CPG_CPG_PLLDTY_MON_PLLn_LOCK_Msk);
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLCA55CLK_HZ)
 
     /*****************************************/
     /* Setting PLLCA55                       */
@@ -50,10 +52,11 @@ void pll_init_cm33boot (void)
     R_CPG->CPG_PLLCA55_STBY = R_CPG_CPG_PLLCA55_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLCA55_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLCA55_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLCA55_MON_PLLn_LOCK_Msk)) != (R_CPG_CPG_PLLCA55_MON_PLLn_LOCK_Msk));
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_PLLCA55_MON_PLLn_LOCK_Msk & R_CPG->CPG_PLLCA55_MON),
+                               R_CPG_CPG_PLLCA55_MON_PLLn_LOCK_Msk);
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLVDOCLK_HZ)
 
     /*****************************************/
     /* Setting PLLVDO                        */
@@ -63,10 +66,11 @@ void pll_init_cm33boot (void)
     R_CPG->CPG_PLLVDO_STBY = R_CPG_CPG_PLLVDO_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLVDO_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLVDO_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLVDO_MON_PLLn_LOCK_Msk)) != (R_CPG_CPG_PLLVDO_MON_PLLn_LOCK_Msk));
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_PLLVDO_MON_PLLn_LOCK_Msk & R_CPG->CPG_PLLVDO_MON),
+                               R_CPG_CPG_PLLVDO_MON_PLLn_LOCK_Msk);
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLDRPCLK_HZ)
 
     /*****************************************/
     /* Setting PLLDRP                        */
@@ -82,47 +86,43 @@ void pll_init_cm33boot (void)
     R_CPG->CPG_PLLDRP_STBY = R_CPG_CPG_PLLDRP_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLDRP_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDRP_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDRP_MON_PLLn_LOCK_Msk)) != (R_CPG_CPG_PLLDRP_MON_PLLn_LOCK_Msk));
+    FSP_HARDWARE_REGISTER_WAIT((R_CPG_CPG_PLLDRP_MON_PLLn_LOCK_Msk & R_CPG->CPG_PLLDRP_MON),
+                               R_CPG_CPG_PLLDRP_MON_PLLn_LOCK_Msk);
+#endif
 }
 
 void pll_init_other (void)
 {
-    volatile uint32_t reg32;
+#if defined(BSP_CFG_CLOCK_PLLETHCLK_HZ)
 
     /*****************************************/
     /* Setting PLLETH                        */
     /*****************************************/
 
     /* Wait until the PLL is in standby mode and unlocked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLETH_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLETH_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLETH_MON_PLLn_RESETB_Msk)) !=
-             0);
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLETH_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLETH_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLETH_MON),
+                               0);
 
     /* Setting PLL for normal mode */
     R_CPG->CPG_PLLETH_STBY = R_CPG_CPG_PLLETH_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLETH_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in normal mode and locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLETH_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLETH_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLETH_MON_PLLn_RESETB_Msk)) !=
-             (R_CPG_CPG_PLLETH_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLETH_MON_PLLn_RESETB_Msk));
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLETH_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLETH_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLETH_MON),
+                               (R_CPG_CPG_PLLETH_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLETH_MON_PLLn_RESETB_Msk));
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLDSICLK_HZ)
 
     /*****************************************/
     /* Setting PLLDSI                        */
     /*****************************************/
 
     /* Wait until the PLL is in standby mode and unlocked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDSI_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDSI_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDSI_MON_PLLn_RESETB_Msk)) !=
-             0);
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLDSI_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDSI_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLDSI_MON),
+                               0);
 
     /* Output clock settings 1 */
     R_CPG->CPG_PLLDSI_CLK1 = CPG_PLLDSI_CLK1_INITVAL;
@@ -134,64 +134,61 @@ void pll_init_other (void)
     R_CPG->CPG_PLLDSI_STBY = R_CPG_CPG_PLLDSI_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLDSI_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in normal mode and locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDSI_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDSI_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDSI_MON_PLLn_RESETB_Msk)) !=
-             (R_CPG_CPG_PLLDSI_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDSI_MON_PLLn_RESETB_Msk));
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLDSI_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDSI_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLDSI_MON),
+                               (R_CPG_CPG_PLLDSI_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDSI_MON_PLLn_RESETB_Msk));
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLDDR0CLK_HZ)
 
     /*****************************************/
     /* Setting PLLDDR0                       */
     /*****************************************/
 
     /* Wait until the PLL is in standby mode and unlocked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDDR0_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDDR0_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR0_MON_PLLn_RESETB_Msk)) !=
-             0);
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLDDR0_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR0_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLDDR0_MON),
+                               0);
 
     /* Setting PLL for normal mode */
     R_CPG->CPG_PLLDDR0_STBY = R_CPG_CPG_PLLDDR0_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLDDR0_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in normal mode and locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDDR0_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDDR0_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR0_MON_PLLn_RESETB_Msk)) !=
-             (R_CPG_CPG_PLLDDR0_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR0_MON_PLLn_RESETB_Msk));
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLDDR0_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR0_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLDDR0_MON),
+                               (R_CPG_CPG_PLLDDR0_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR0_MON_PLLn_RESETB_Msk));
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLDDR1CLK_HZ)
 
     /*****************************************/
     /* Setting PLLDDR1                       */
     /*****************************************/
 
     /* Wait until the PLL is in standby mode and unlocked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDDR1_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDDR1_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR1_MON_PLLn_RESETB_Msk)) !=
-             0);
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLDDR1_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR1_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLDDR1_MON),
+                               0);
 
     /* Setting PLL for normal mode */
     R_CPG->CPG_PLLDDR1_STBY = R_CPG_CPG_PLLDDR1_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLDDR1_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in normal mode and locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLDDR1_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLDDR1_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR1_MON_PLLn_RESETB_Msk)) !=
-             (R_CPG_CPG_PLLDDR1_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR1_MON_PLLn_RESETB_Msk));
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLDDR1_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR1_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLDDR1_MON),
+                               (R_CPG_CPG_PLLDDR1_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLDDR1_MON_PLLn_RESETB_Msk));
+#endif
+
+#if defined(BSP_CFG_CLOCK_PLLGPUCLK_HZ)
 
     /*****************************************/
     /* Setting PLLGPU                        */
     /*****************************************/
 
     /* Wait until the PLL is in standby mode and unlocked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLGPU_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLGPU_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLGPU_MON_PLLn_RESETB_Msk)) !=
-             0);
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLGPU_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLGPU_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLGPU_MON),
+                               0);
 
     /* Output clock settings 1 */
     R_CPG->CPG_PLLGPU_CLK1 = CPG_PLLGPU_CLK1_INITVAL;
@@ -203,9 +200,8 @@ void pll_init_other (void)
     R_CPG->CPG_PLLGPU_STBY = R_CPG_CPG_PLLGPU_STBY_RESETB_WEN_Msk | R_CPG_CPG_PLLGPU_STBY_RESETB_Msk;
 
     /* Wait until the PLL is in normal mode and locked-state */
-    do
-    {
-        reg32 = R_CPG->CPG_PLLGPU_MON;
-    } while ((reg32 & (R_CPG_CPG_PLLGPU_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLGPU_MON_PLLn_RESETB_Msk)) !=
-             (R_CPG_CPG_PLLGPU_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLGPU_MON_PLLn_RESETB_Msk));
+    FSP_HARDWARE_REGISTER_WAIT(((R_CPG_CPG_PLLGPU_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLGPU_MON_PLLn_RESETB_Msk) &
+                                R_CPG->CPG_PLLGPU_MON),
+                               (R_CPG_CPG_PLLGPU_MON_PLLn_LOCK_Msk | R_CPG_CPG_PLLGPU_MON_PLLn_RESETB_Msk));
+#endif
 }

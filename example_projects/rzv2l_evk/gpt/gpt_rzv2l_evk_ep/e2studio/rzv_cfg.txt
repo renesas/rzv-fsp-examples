@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -163,12 +165,12 @@ FSP Configuration
       P0_0 A11 - - - - Disabled - - "GPT0: GTIOC0A; IRQ: IRQ0; MTU0: MTIOC0A; SCI0: SCI0_RXD; SCIF3: SCIF3_TXD" - None - - 
       P0_1 B12 - - - - Disabled - - "GPT0: GTIOC0B; IRQ: IRQ1; MTU0: MTIOC0B; SCI0: SCI0_TXD; SCIF3: SCIF3_RXD" - None - - 
       P10_0 AJ22 - - - - Disabled - - "CAN_: CAN_CLK; Display: DISP_DATA6; MTU6: MTIOC6A; POEG: GTETRGA" - None - - 
-      P10_1 AH22 CAN0_CAN0_TX - UltraHigh - "Peripheral mode" - - "CAN0: CAN0_TX; Display: DISP_DATA7; MTU6: MTIOC6B; POEG: GTETRGB" - O - - 
-      P11_0 AG22 CAN0_CAN0_RX - UltraHigh - "Peripheral mode" - - "CAN0: CAN0_RX; Display: DISP_DATA8; MTU6: MTIOC6C; POEG: GTETRGC" - I - - 
+      P10_1 AH22 - - - - Disabled - - "CAN0: CAN0_TX; Display: DISP_DATA7; MTU6: MTIOC6B; POEG: GTETRGB" - None - - 
+      P11_0 AG22 - - - - Disabled - - "CAN0: CAN0_RX; Display: DISP_DATA8; MTU6: MTIOC6C; POEG: GTETRGC" - None - - 
       P11_1 AF22 - - - - Disabled - - "CAN0: CAN0_TX_DATARATE_EN; Display: DISP_DATA9; MTU6: MTIOC6D; POEG: GTETRGD" - None - - 
       P12_0 AE22 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; Display: DISP_DATA10; GPT7: GTIOC7A; POE: POE0_N" - None - - 
-      P12_1 AE23 CAN1_CAN1_TX - UltraHigh - "Peripheral mode" - - "CAN1: CAN1_TX; Display: DISP_DATA11; GPT7: GTIOC7B; POE: POE4_N" - O - - 
-      P13_0 AF23 CAN1_CAN1_RX - UltraHigh - "Peripheral mode" - - "CAN1: CAN1_RX; Display: DISP_DATA12; IRQ: IRQ0; POE: POE8_N" - I - - 
+      P12_1 AE23 - - - - Disabled - - "CAN1: CAN1_TX; Display: DISP_DATA11; GPT7: GTIOC7B; POE: POE4_N" - None - - 
+      P13_0 AF23 - - - - Disabled - - "CAN1: CAN1_RX; Display: DISP_DATA12; IRQ: IRQ0; POE: POE8_N" - None - - 
       P13_1 AG23 - - - - Disabled - - "CAN1: CAN1_TX_DATARATE_EN; Display: DISP_DATA13; IRQ: IRQ1; POE: POE10_N" - None - - 
       P13_2 AG26 - - - - Disabled - - "CAN1: CAN1_RX_DATARATE_EN; Display: DISP_DATA14; IRQ: IRQ2; IRQ: IRQ7" - None - - 
       P14_0 AF27 - - - - Disabled - - "Display: DISP_DATA15; MTU: MTCLKA; SD/MMC1: SD1_CD; SSI1: SSI1_BCK" - None - - 
@@ -243,9 +245,9 @@ FSP Configuration
       P42_2 AJ3 - - - - Disabled - - "ADC: ADC_TRG; CAN0: CAN0_RX; MTU7: MTIOC7C; RSPI2: RSPI2_MISO; SCIF2: SCIF2_SCK" - None - - 
       P42_3 AH3 - - - - Disabled - - "CAN0: CAN0_TX_DATARATE_EN; MTU7: MTIOC7D; RIIC2: RIIC2_SDA; RSPI2: RSPI2_SSL; SCIF2: SCIF2_CTS" - None - - 
       P42_4 AC5 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; Camera: CAM_FIELD; RIIC2: RIIC2_SCL; SCIF2: SCIF2_RTS" - None - - 
-      P43_0 B18 GPT4_GTIOC4A - Middle - "Peripheral mode" - - "GPT4: GTIOC4A; GPT6: GTIOC6A; IRQ: IRQ4; MTU8: MTIOC8A; RSPI0: RSPI0_CK" - IO - - 
-      P43_1 D17 GPT4_GTIOC4B - Middle - "Peripheral mode" - - "GPT4: GTIOC4B; GPT6: GTIOC6B; IRQ: IRQ5; MTU8: MTIOC8B; RSPI0: RSPI0_MOSI" - IO - - 
-      P43_2 E18 GPT5_GTIOC5A - Middle - "Peripheral mode" - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - IO - - 
+      P43_0 B18 - - - - Disabled - - "GPT4: GTIOC4A; GPT6: GTIOC6A; IRQ: IRQ4; MTU8: MTIOC8A; RSPI0: RSPI0_CK" - None - - 
+      P43_1 D17 - - - - Disabled - - "GPT4: GTIOC4B; GPT6: GTIOC6B; IRQ: IRQ5; MTU8: MTIOC8B; RSPI0: RSPI0_MOSI" - None - - 
+      P43_2 E18 - - - - Disabled - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - None - - 
       P43_3 C18 - - - - Disabled - - "GPT5: GTIOC5B; IRQ: IRQ7; MTU8: MTIOC8D; RSPI0: RSPI0_SSL" - None - - 
       P44_0 A19 - - - - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU3: MTIOC3A; RSPI1: RSPI1_CK; SSI1: SSI1_BCK" - None - - 
       P44_1 F17 - - - - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU3: MTIOC3B; RSPI1: RSPI1_MOSI; SSI1: SSI1_RCK" - None - - 
@@ -620,12 +622,12 @@ FSP Configuration
       P0_0 A11 - - - - Disabled - - "GPT0: GTIOC0A; IRQ: IRQ0; MTU0: MTIOC0A; SCI0: SCI0_RXD; SCIF3: SCIF3_TXD" - None - - 
       P0_1 B12 - - - - Disabled - - "GPT0: GTIOC0B; IRQ: IRQ1; MTU0: MTIOC0B; SCI0: SCI0_TXD; SCIF3: SCIF3_RXD" - None - - 
       P10_0 AJ22 - - - - Disabled - - "CAN_: CAN_CLK; Display: DISP_DATA6; MTU6: MTIOC6A; POEG: GTETRGA" - None - - 
-      P10_1 AH22 - - Middle - Disabled - - "CAN0: CAN0_TX; Display: DISP_DATA7; MTU6: MTIOC6B; POEG: GTETRGB" - O - - 
-      P11_0 AG22 - - Middle - Disabled - - "CAN0: CAN0_RX; Display: DISP_DATA8; MTU6: MTIOC6C; POEG: GTETRGC" - I - - 
+      P10_1 AH22 - - - - Disabled - - "CAN0: CAN0_TX; Display: DISP_DATA7; MTU6: MTIOC6B; POEG: GTETRGB" - None - - 
+      P11_0 AG22 - - - - Disabled - - "CAN0: CAN0_RX; Display: DISP_DATA8; MTU6: MTIOC6C; POEG: GTETRGC" - None - - 
       P11_1 AF22 - - - - Disabled - - "CAN0: CAN0_TX_DATARATE_EN; Display: DISP_DATA9; MTU6: MTIOC6D; POEG: GTETRGD" - None - - 
       P12_0 AE22 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; Display: DISP_DATA10; GPT7: GTIOC7A; POE: POE0_N" - None - - 
-      P12_1 AE23 - - Middle - Disabled - - "CAN1: CAN1_TX; Display: DISP_DATA11; GPT7: GTIOC7B; POE: POE4_N" - O - - 
-      P13_0 AF23 - - Middle - Disabled - - "CAN1: CAN1_RX; Display: DISP_DATA12; IRQ: IRQ0; POE: POE8_N" - I - - 
+      P12_1 AE23 - - - - Disabled - - "CAN1: CAN1_TX; Display: DISP_DATA11; GPT7: GTIOC7B; POE: POE4_N" - None - - 
+      P13_0 AF23 - - - - Disabled - - "CAN1: CAN1_RX; Display: DISP_DATA12; IRQ: IRQ0; POE: POE8_N" - None - - 
       P13_1 AG23 - - - - Disabled - - "CAN1: CAN1_TX_DATARATE_EN; Display: DISP_DATA13; IRQ: IRQ1; POE: POE10_N" - None - - 
       P13_2 AG26 - - - - Disabled - - "CAN1: CAN1_RX_DATARATE_EN; Display: DISP_DATA14; IRQ: IRQ2; IRQ: IRQ7" - None - - 
       P14_0 AF27 - - - - Disabled - - "Display: DISP_DATA15; MTU: MTCLKA; SD/MMC1: SD1_CD; SSI1: SSI1_BCK" - None - - 
@@ -700,9 +702,9 @@ FSP Configuration
       P42_2 AJ3 - - - - Disabled - - "ADC: ADC_TRG; CAN0: CAN0_RX; MTU7: MTIOC7C; RSPI2: RSPI2_MISO; SCIF2: SCIF2_SCK" - None - - 
       P42_3 AH3 - - - - Disabled - - "CAN0: CAN0_TX_DATARATE_EN; MTU7: MTIOC7D; RIIC2: RIIC2_SDA; RSPI2: RSPI2_SSL; SCIF2: SCIF2_CTS" - None - - 
       P42_4 AC5 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; Camera: CAM_FIELD; RIIC2: RIIC2_SCL; SCIF2: SCIF2_RTS" - None - - 
-      P43_0 B18 - - Middle - Disabled - - "GPT4: GTIOC4A; GPT6: GTIOC6A; IRQ: IRQ4; MTU8: MTIOC8A; RSPI0: RSPI0_CK" - IO - - 
-      P43_1 D17 - - Middle - Disabled - - "GPT4: GTIOC4B; GPT6: GTIOC6B; IRQ: IRQ5; MTU8: MTIOC8B; RSPI0: RSPI0_MOSI" - IO - - 
-      P43_2 E18 - - Middle - Disabled - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - IO - - 
+      P43_0 B18 - - - - Disabled - - "GPT4: GTIOC4A; GPT6: GTIOC6A; IRQ: IRQ4; MTU8: MTIOC8A; RSPI0: RSPI0_CK" - None - - 
+      P43_1 D17 - - - - Disabled - - "GPT4: GTIOC4B; GPT6: GTIOC6B; IRQ: IRQ5; MTU8: MTIOC8B; RSPI0: RSPI0_MOSI" - None - - 
+      P43_2 E18 - - - - Disabled - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - None - - 
       P43_3 C18 - - - - Disabled - - "GPT5: GTIOC5B; IRQ: IRQ7; MTU8: MTIOC8D; RSPI0: RSPI0_SSL" - None - - 
       P44_0 A19 - - - - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU3: MTIOC3A; RSPI1: RSPI1_CK; SSI1: SSI1_BCK" - None - - 
       P44_1 F17 - - - - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU3: MTIOC3B; RSPI1: RSPI1_MOSI; SSI1: SSI1_RCK" - None - - 
@@ -971,7 +973,6 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Pin Output Support: Enabled
     Write Protect Enable: Disabled
-    Clock Source: P0CLK
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -1039,6 +1040,10 @@ FSP Configuration
       General: Channel: 7
       General: Mode: Periodic
       General: Period: 100
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Milliseconds
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -1066,9 +1071,9 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Disabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Disabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Disabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
@@ -1093,6 +1098,10 @@ FSP Configuration
       General: Channel: 7
       General: Mode: One-Shot
       General: Period: 100
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Milliseconds
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -1107,7 +1116,7 @@ FSP Configuration
       Output: GTIOCA Output Enabled: True
       Output: GTIOCA Stop Level: Pin Level Low
       Output: GTIOCB Output Enabled: True
-      Output: GTIOCB Stop Level: Pin Level Low
+      Output: GTIOCB Stop Level: Pin Level High
       Input: Count Up Source: 
       Input: Count Down Source: 
       Input: Start Source: 
@@ -1120,9 +1129,9 @@ FSP Configuration
       Interrupts: Callback: user_gpt_one_shot_callback
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
@@ -1145,8 +1154,12 @@ FSP Configuration
     Instance "g_timer_pwm Timer, General PWM (r_gpt)"
       General: Name: g_timer_pwm
       General: Channel: 7
-      General: Mode: PWM
+      General: Mode: Saw-wave PWM
       General: Period: 100
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Milliseconds
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -1174,9 +1187,9 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Disabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Disabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Disabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4

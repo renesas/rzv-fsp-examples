@@ -14,6 +14,7 @@ FSP Configuration
     Clock initialization: Disabled
     
   RZV2H Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x1000
@@ -25,6 +26,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     PLLCM33 1600000000Hz
@@ -477,9 +479,9 @@ FSP Configuration
       P75 AR25 - - - - Disabled - - "CANFD2: CRXDP2; DMAC2: DREQ2; DMAC3: TEND3; GPT4: GTIOC4B; GPT4: GTIOC4BN; IRQ: IRQ9; RSCI6: RXD6_MISO6_SCL6; SSIU3: SSI3_WS" - None - - 
       P76 AT25 - - - - Disabled - - "CANFD3: CTXDP3; DMAC1: DACK1; DMAC3: DREQ3; GPT6: GTIOC6A; GPT6: GTIOC6AN; IRQ: IRQ12; RSCI7: TXD7_MOSI7_SDA7; SSIU5: SSI5_SCK; SSIU6: SSI6_SCK" - None - - 
       P77 AM24 - - - - Disabled - - "CANFD3: CRXDP3; DMAC1: TEND1; DMAC4: DREQ4; GPT6: GTIOC6B; GPT6: GTIOC6BN; IRQ: IRQ13; RSCI7: RXD7_MISO7_SCL7; SSIU5: SSI5_WS; SSIU6: SSI6_WS" - None - - 
-      P80 AN23 GPIO - X2 - "Output mode (Low & Not Into Input)" - - "CANFD0: CTX0; DMAC2: DACK2; GPT1: GTIOC1A; GPT1: GTIOC1AN; IRQ: IRQ2; RSCI4: CTS4N; RSCI4: DE4; RSCI4: SCK4; RSCI8: TXD8_MOSI8_SDA8; SPDIF0: SPDIF0_OUT; SSIU5: SSI5_WS" - IO - - 
-      P81 AP23 GPIO - X2 - "Output mode (Low & Not Into Input)" - - "CANFD0: CRX0; DMAC2: TEND2; GPT1: GTIOC1B; GPT1: GTIOC1BN; IRQ: IRQ3; RSCI4: DE4; RSCI4: SS4_CTS4N_RTS4N; RSCI8: RXD8_MISO8_SCL8; SPDIF0: SPDIF0_IN; SSIU8: SSI8_SDATA" - IO - - 
-      P82 AT23 GPIO - X2 - "Output mode (Low & Not Into Input)" - - "CANFD1: CTX1; DMAC4: DACK4; GPT3: GTIOC3A; GPT3: GTIOC3AN; IRQ: IRQ6; RSCI5: CTS5N; RSCI5: DE5; RSCI5: SCK5; RSCI9: TXD9_MOSI9_SDA9; SPDIF2: SPDIF2_OUT; SSIU7: SSI7_WS" - IO - - 
+      P80 AN23 GPIO - X2 - "Output mode (Low & Into Input)" - - "CANFD0: CTX0; DMAC2: DACK2; GPT1: GTIOC1A; GPT1: GTIOC1AN; IRQ: IRQ2; RSCI4: CTS4N; RSCI4: DE4; RSCI4: SCK4; RSCI8: TXD8_MOSI8_SDA8; SPDIF0: SPDIF0_OUT; SSIU5: SSI5_WS" - IO - - 
+      P81 AP23 GPIO - X2 - "Output mode (Low & Into Input)" - - "CANFD0: CRX0; DMAC2: TEND2; GPT1: GTIOC1B; GPT1: GTIOC1BN; IRQ: IRQ3; RSCI4: DE4; RSCI4: SS4_CTS4N_RTS4N; RSCI8: RXD8_MISO8_SCL8; SPDIF0: SPDIF0_IN; SSIU8: SSI8_SDATA" - IO - - 
+      P82 AT23 GPIO - X2 - "Output mode (Low & Into Input)" - - "CANFD1: CTX1; DMAC4: DACK4; GPT3: GTIOC3A; GPT3: GTIOC3AN; IRQ: IRQ6; RSCI5: CTS5N; RSCI5: DE5; RSCI5: SCK5; RSCI9: TXD9_MOSI9_SDA9; SPDIF2: SPDIF2_OUT; SSIU7: SSI7_WS" - IO - - 
       P83 AN24 - - - - Disabled - - "CANFD1: CRX1; DMAC4: TEND4; GPT3: GTIOC3B; GPT3: GTIOC3BN; IRQ: IRQ7; RSCI5: DE5; RSCI5: SS5_CTS5N_RTS5N; RSCI9: RXD9_MISO9_SCL9; SPDIF2: SPDIF2_IN; SSIU7: SSI7_SDATA" - None - - 
       P84 AR24 - - - - Disabled - - "CANFD2: CTX2; GPT5: GTIOC5A; GPT5: GTIOC5AN; IRQ: IRQ10; RSCI4: TXD4_MOSI4_SDA4; RSCI6: CTS6N; RSCI6: DE6; RSCI6: SCK6; SSIU3: SSI3_SDATA; USB20: USB20_VBUSEN; USB30: USB30_VBUSEN" - None - - 
       P85 AP24 - - - - Disabled - - "CANFD2: CRX2; GPT5: GTIOC5B; GPT5: GTIOC5BN; IRQ: IRQ11; RSCI4: RXD4_MISO4_SCL4; RSCI6: DE6; RSCI6: SS6_CTS6N_RTS6N; SSIU4: SSI4_SDATA; USB20: USB20_OVRCURN; USB30: USB30_OVRCURN" - None - - 
@@ -2810,7 +2812,8 @@ FSP Configuration
     10-bit slave addressing: Disabled
     
   Module "QSPI Driver on r_xspi_qspi"
-    Parameter Checking Enable: Default (BSP)
+    Parameter Checking: Default (BSP)
+    Memory-mapping Support: Prefetch Function: Disable
     
   Module "Timer (r_gtm)"
     Parameter Checking: Default (BSP)
@@ -2890,6 +2893,7 @@ FSP Configuration
       Name: g_i2c_master0
       Channel: 8
       Rate: Standard
+      Custom Rate (bps): 0
       Rise Time (ns): 120
       Fall Time (ns): 120
       Duty Cycle (%): 50
@@ -2908,7 +2912,6 @@ FSP Configuration
       General: SPI Protocol: 1S-4S-4S
       General: Address Bytes: 4
       General: Dummy Clocks for Read: 10
-      General: Prefetch Function: Disable
       Command Definitions: Page Program Command: 0x12
       Command Definitions: Read Command: 0xEC
       Command Definitions: Write Enable Command: 0x06

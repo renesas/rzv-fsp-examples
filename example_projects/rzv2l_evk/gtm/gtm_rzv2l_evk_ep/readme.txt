@@ -12,7 +12,7 @@
 
 2. Hardware and Software Requirements:
     External Hardware : Pmod LED
-    Software          : JLink RTT Viewer v7.96h
+    Software          : JLink RTT Viewer v7.96e
 
 3. Hardware settings:
     Boot Mode:

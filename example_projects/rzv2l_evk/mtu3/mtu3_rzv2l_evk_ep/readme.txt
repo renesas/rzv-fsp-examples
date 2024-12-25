@@ -24,7 +24,6 @@
     Board:
     RZ/V2L Evaluation Board Kit 
     
-
     Hardware Connection:
     (1) Set for DIP switches and jumpers as follow.
 

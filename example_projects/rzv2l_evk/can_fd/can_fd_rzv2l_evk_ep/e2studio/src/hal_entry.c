@@ -10,6 +10,7 @@
 #include "hal_data.h"
 #include "common_utils.h"
 #include "can_fd_ep.h"
+#define MODULE_NAME             "r_canfd"
 
 /* Timeout value */
 volatile uint32_t g_time_out = WAIT_TIME;
@@ -126,8 +127,10 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_INFO, EP_VERSION, version.major, version.minor, version.patch);
+    APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
+    R_BSP_SoftwareDelay(200, BSP_DELAY_UNITS_MILLISECONDS);
     APP_PRINT(EP_INFO);
+    R_BSP_SoftwareDelay(200, BSP_DELAY_UNITS_MILLISECONDS);
 
     /* Initialize canfd module */
     err = R_CANFD_Open(&g_canfd_ch0_ctrl, &g_canfd_ch0_cfg);
@@ -205,7 +208,6 @@ static void led_pin_initialisation(void)
     }
 }
 
-
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is
  * called right before main() to set up the pins.
@@ -223,6 +225,6 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
     }
 }

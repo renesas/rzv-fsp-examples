@@ -13,7 +13,7 @@
 #include "common_utils.h"
 #include "timer_setup.h"
 #include "ext_irq_setup.h"
-
+#define MODULE_NAME		"r_wdt"
 /*
  * External Global Variables
  */
@@ -52,7 +52,7 @@ void hal_entry (void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_INFO, EP_VERSION, version.major, version.minor, version.patch);
+    APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
     APP_PRINT ("\r\nThis example project demonstrates the typical use of the WDT HAL module APIs\r\n");
     APP_PRINT ("User input initializes the WDT and start GTM timer\r\n");
     APP_PRINT ("WDT counter is refreshed periodically every 1 second when the GTM timer expires\r\n");
@@ -222,6 +222,7 @@ static void procedure_system_reset(void)
 {
     R_BSP_WDT_SYSTEM_RESET_ENABLE(g_wdt_cfg_extend.channel, system_reset_flag);
 }
+
 /*******************************************************************************************************************//**
  * This function is called at various points during the startup process.  This implementation uses the event that is
  * called right before main() to set up the pins.
@@ -239,7 +240,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
         /* Allow access to IP beyond AXI */
         pd_all_on_postproc_axi();

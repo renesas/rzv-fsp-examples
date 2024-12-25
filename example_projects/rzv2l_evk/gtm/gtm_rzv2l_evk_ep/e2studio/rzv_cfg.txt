@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -1039,7 +1041,7 @@ FSP Configuration
       General: Period Unit: Raw Counts
       General: Count Source: P0CLK
       Interrupts: Callback: one_shot_timer_callback
-      Interrupts: Underflow Interrupt Priority: 20
+      Interrupts: Underflow Interrupt Priority: 5
       Interrupts: Generate at Start: Disable
       Extra Features: GTM Mode: Interval timer mode
       
@@ -1051,7 +1053,7 @@ FSP Configuration
       General: Period Unit: Raw Counts
       General: Count Source: P0CLK
       Interrupts: Callback: periodic_timer_callback
-      Interrupts: Underflow Interrupt Priority: 20
+      Interrupts: Underflow Interrupt Priority: 5
       Interrupts: Generate at Start: Disable
       Extra Features: GTM Mode: Interval timer mode
       

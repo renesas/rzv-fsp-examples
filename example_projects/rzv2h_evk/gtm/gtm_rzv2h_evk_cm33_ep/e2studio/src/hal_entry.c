@@ -13,16 +13,17 @@
 #include "cr8_start.h"
 #include "common_utils.h"
 #include "gtm_ep.h"
+#define MODULE_NAME     "r_gtm"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
+FSP_CPP_FOOTER
+
 /*******************************************************************************************************************//**
  * @addtogroup gtm_ep
  * @{
  **********************************************************************************************************************/
-
 static fsp_err_t timer_status_check (void);
-FSP_CPP_FOOTER
 
 volatile uint8_t g_one_shot_timer_flag = RESET_FLAG;    //flag to check timer is enable or not
 volatile uint8_t g_periodic_timer_flag = RESET_FLAG;    //flag to check timer1 is enable or not
@@ -60,7 +61,7 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_INFO,EP_VERSION,version.major, version.minor, version.patch );
+    APP_PRINT(BANNER_INFO,EP_VERSION,version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch );
     APP_PRINT("\r\nThis Example Project demonstrates the functionality of GTM in"\
             "\r\nperiodic mode and one-shot mode. On providing any input on the"\
             "\r\nRTTviewer, GTM channel 2 starts in one-shot mode. GTM channel 1 "\
@@ -171,7 +172,6 @@ void hal_entry(void)
 
     APP_PRINT("\r\nEnter any key to start or stop the timers");
 
-
     while(true)
     {
         if (APP_CHECK_DATA)
@@ -224,7 +224,6 @@ void hal_entry(void)
     }
 }
 
-
 /*******************************************************************************************************************//**
  * @brief This function checks the status of both timers and starts/stops the timers.
  *
@@ -252,7 +251,6 @@ static fsp_err_t timer_status_check (void)
         APP_ERR_PRINT("\r\nStatusGet API failed");
         return err;
     }
-
 
     /* Retrieve the status of timer running in one-shot mode */
     err = R_GTM_StatusGet(&g_timer_one_shot_ctrl, &oneshot_timer_status);
@@ -324,7 +322,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open (&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
 #if defined(BSP_FEATURE_BSP_HAS_CM33BOOT_SUPPORT) && (BSP_FEATURE_BSP_HAS_CM33BOOT_SUPPORT == 1)
         pd_all_on_preproc();
@@ -367,6 +365,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
 #endif
     }
 }
+
 /*******************************************************************************************************************//**
  * @} (end addtogroup gtm_ep)
  **********************************************************************************************************************/

@@ -14,6 +14,7 @@ FSP Configuration
     Clock initialization: Disabled
     
   RZV2H Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x1000
@@ -25,6 +26,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     PLLCM33 1600000000Hz
@@ -2810,16 +2812,16 @@ FSP Configuration
     10-bit slave addressing: Disabled
     
   Module "QSPI Driver on r_xspi_qspi"
-    Parameter Checking Enable: Default (BSP)
-    
-  Module "Port Output Enable for GPT (r_poeg)"
     Parameter Checking: Default (BSP)
+    Memory-mapping Support: Prefetch Function: Disable
     
   Module "Timer, General PWM (r_gpt)"
     Parameter Checking: Default (BSP)
     Pin Output Support: Enabled with Extra Features
     Write Protect Enable: Disabled
-    Clock Source: GPT_n_clks_gpt
+    
+  Module "Port Output Enable for GPT (r_poeg)"
+    Parameter Checking: Default (BSP)
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -2886,6 +2888,7 @@ FSP Configuration
       Name: g_i2c_master0
       Channel: 8
       Rate: Standard
+      Custom Rate (bps): 0
       Rise Time (ns): 120
       Fall Time (ns): 120
       Duty Cycle (%): 50
@@ -2904,7 +2907,6 @@ FSP Configuration
       General: SPI Protocol: 1S-4S-4S
       General: Address Bytes: 4
       General: Dummy Clocks for Read: 10
-      General: Prefetch Function: Disable
       Command Definitions: Page Program Command: 0x12
       Command Definitions: Read Command: 0xEC
       Command Definitions: Write Enable Command: 0x06
@@ -2926,31 +2928,15 @@ FSP Configuration
       Extra: Pre initialize function: xspi_pre_init
       Extra: Post initialize function: xspi_post_init
       
-    Instance "g_poeg0 Port Output Enable for GPT (r_poeg)"
-      General: Name: g_poeg0
-      General: Channel: 0
-      General: Trigger: GPT Output Level
-      Input: GTETRG Polarity: Active Low
-      Input: GTETRG Noise Filter: Clock Source / 32
-      Interrupts: Callback: channel0_user_callback
-      Interrupts: POEG Interrupt Enable: Enabled
-      Interrupts: Interrupt Priority: 1
-      
-    Instance "g_poeg1 Port Output Enable for GPT (r_poeg)"
-      General: Name: g_poeg1
-      General: Channel: 1
-      General: Trigger: GTETRG Pin
-      Input: GTETRG Polarity: Active Low
-      Input: GTETRG Noise Filter: Clock Source / 32
-      Interrupts: Callback: channel1_user_callback
-      Interrupts: POEG Interrupt Enable: Enabled
-      Interrupts: Interrupt Priority: 1
-      
     Instance "g_timer_pwm1 Timer, General PWM (r_gpt)"
       General: Name: g_timer_pwm1
       General: Channel: 4
-      General: Mode: PWM
+      General: Mode: Saw-wave PWM
       General: Period: 1000
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Raw Counts
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Toggle
@@ -2978,16 +2964,16 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Disabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Disabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Disabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
       Interrupts: Dead Time Error Interrupt Enable: Disabled
       Interrupts: Dead Time Error Interrupt Priority: 4
       Extra Features: Extra Features: Enabled
-      Extra Features: Output Disable: POEG Link: POEG Channel 0 / Channel 4
+      Extra Features: Output Disable: POEG Link: POEG Channel 0
       Extra Features: Output Disable: Output Disable POEG Trigger: 
       Extra Features: ADC Trigger: Start Event Trigger: 
       Extra Features: Dead Time: Dead Time Count Up (Raw Counts): 0
@@ -3000,11 +2986,25 @@ FSP Configuration
       Extra Features: Output Disable: GTIOCA Disable Setting: Level Low
       Extra Features: Output Disable: GTIOCB Disable Setting: Level Low
       
+      Instance "g_poeg0 Port Output Enable for GPT (r_poeg)"
+        General: Name: g_poeg0
+        General: Channel: 0
+        General: Trigger: GPT Output Level
+        Input: GTETRG Polarity: Active Low
+        Input: GTETRG Noise Filter: Clock source / 32
+        Interrupts: Callback: channel0_user_callback
+        Interrupts: POEG Interrupt Enable: Enabled
+        Interrupts: Interrupt Priority: 1
+        
     Instance "g_timer_pwm2 Timer, General PWM (r_gpt)"
       General: Name: g_timer_pwm2
       General: Channel: 7
-      General: Mode: PWM
+      General: Mode: Saw-wave PWM
       General: Period: 1000
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Raw Counts
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Toggle
@@ -3032,16 +3032,16 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Disabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Disabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Disabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
       Interrupts: Dead Time Error Interrupt Enable: Disabled
       Interrupts: Dead Time Error Interrupt Priority: 4
       Extra Features: Extra Features: Enabled
-      Extra Features: Output Disable: POEG Link: POEG Channel 1 / Channel 5
+      Extra Features: Output Disable: POEG Link: POEG Channel 1
       Extra Features: Output Disable: Output Disable POEG Trigger: 
       Extra Features: ADC Trigger: Start Event Trigger: 
       Extra Features: Dead Time: Dead Time Count Up (Raw Counts): 0
@@ -3054,3 +3054,13 @@ FSP Configuration
       Extra Features: Output Disable: GTIOCA Disable Setting: Level Low
       Extra Features: Output Disable: GTIOCB Disable Setting: Level Low
       
+      Instance "g_poeg1 Port Output Enable for GPT (r_poeg)"
+        General: Name: g_poeg1
+        General: Channel: 1
+        General: Trigger: GTETRG Pin
+        Input: GTETRG Polarity: Active Low
+        Input: GTETRG Noise Filter: Clock source / 32
+        Interrupts: Callback: channel1_user_callback
+        Interrupts: POEG Interrupt Enable: Enabled
+        Interrupts: Interrupt Priority: 1
+        

@@ -9,11 +9,10 @@
     <option key="#DeviceCommand#" value="R9A09G057H44GBG"/>
     <option key="#RTOS#" value="_none"/>
     <option key="#pinconfiguration#" value="R9A09G057H44GBG.pincfg"/>
-    <option key="#FSPVersion#" value="2.0.1"/>
+    <option key="#FSPVersion#" value="3.0.0"/>
     <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
     <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
-    <option key="#ToolchainVersion#" value="12.2.1.arm-12-24"/>
-    <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
+    <option key="#ToolchainVersion#" value="13.3.1.arm-13-24"/>
   </generalSettings>
   <raBspConfiguration>
     <config id="config.bsp.rzv2h.R9A09G057H44GBG">
@@ -27,6 +26,7 @@
       <property id="config.bsp.series" value="config.bsp.series.value"/>
     </config>
     <config id="config.bsp.rzv2h.fsp.cr8">
+      <property id="config.bsp.fsp.inline_irq_functions" value="config.bsp.common.inline_irq_functions.enabled"/>
       <property id="config.bsp.fsp.mcu.spi.max_bitrate" value="50000000"/>
       <property id="config.bsp.fsp.mcu.sci_b_uart.max_baud" value="16666667"/>
       <property id="config.bsp.fsp.mcu.sci_b_spi.max_bitrate" value="25000000"/>
@@ -42,6 +42,7 @@
       <property id="config.bsp.fsp.mcu.canfd.max_rxmb_number" value="96"/>
       <property id="config.bsp.fsp.mcu.canfd.afl_rules" value="768"/>
       <property id="config.bsp.fsp.mcu.canfd.afl_rules_each_chnl" value="128"/>
+      <property id="config.bsp.fsp.mcu.canfd.buffer_ram" value="14592"/>
     </config>
     <config id="config.bsp.rz.cr8">
       <property id="config.bsp.common.fiq" value="0x1000"/>
@@ -61,41 +62,41 @@
     </config>
   </raBspConfiguration>
   <raComponentSelection>
-    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="3.0.0">
       <description>Board Support Package Common Files</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="2.0.1">
-      <description>I/O Port</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="2.0.1">
-      <description>Board support package for R9A09G057H44GBG</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="2.0.1">
-      <description>Board support package for RZV2H</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="2.0.1">
-      <description>Board support package for RZ/V2H (RZ/V2H) - FSP Data</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="2.0.1">
-      <description>Evaluation Kit RZ/V2H Support Files (RZ/V2H)</description>
-      <originalPack>Renesas.RZV_board_rzv2h_evk.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gtm" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gtm" variant="" vendor="Renesas" version="3.0.0">
       <description>General Timer</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_intc_irq" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_intc_irq" variant="" vendor="Renesas" version="3.0.0">
       <description>External INT (IRQ)</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_wdt" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="3.0.0">
+      <description>I/O Port</description>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_wdt" variant="" vendor="Renesas" version="3.0.0">
       <description>Watchdog Timer</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="3.0.0">
+      <description>Evaluation Kit RZ/V2H Support Files (RZ/V2H)</description>
+      <originalPack>Renesas.RZV_board_rzv2h_evk.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="3.0.0">
+      <description>Board support package for R9A09G057H44GBG</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="3.0.0">
+      <description>Board support package for RZV2H</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="3.0.0">
+      <description>Board support package for RZ/V2H (RZ/V2H) - FSP Data</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
     </component>
   </raComponentSelection>
   <raElcConfiguration/>
@@ -161,14 +162,14 @@
       <property id="module.driver.ioport.operation_single_output_port3" value="module.driver.ioport.operation_single_output_port.low"/>
       <property id="module.driver.ioport.edge_detect_single_input_port3" value="module.driver.ioport.edge_detect_single_input_port.rising"/>
     </module>
-    <module id="module.driver.external_irq_on_intc_irq.883424706">
+    <module id="module.driver.external_irq_on_intc_irq.1381058806">
       <property id="module.driver.external_irq.name" value="g_external_irq"/>
       <property id="module.driver.external_irq.channel" value="8"/>
       <property id="module.driver.external_irq.trigger" value="module.driver.external_irq.trigger.trig_falling"/>
       <property id="module.driver.external_irq.p_callback" value="ext_irq_callback"/>
       <property id="module.driver.external_irq.ipl" value="12"/>
     </module>
-    <module id="module.driver.timer_on_gtm.1211344038">
+    <module id="module.driver.timer_on_gtm.1327953409">
       <property id="module.driver.timer.name" value="g_timer"/>
       <property id="module.driver.timer.channel" value="enum.mcu.gtm.channels.0"/>
       <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_periodic"/>
@@ -180,7 +181,7 @@
       <property id="module.driver.timer.int.generateatstart" value="module.driver.timer.int.generateatstart.0"/>
       <property id="module.driver.timer.direction" value="module.driver.timer.direction.0"/>
     </module>
-    <module id="module.driver.watchdog_on_wdt.1633167965">
+    <module id="module.driver.watchdog_on_wdt.1557531472">
       <property id="module.driver.watchdog.name" value="g_wdt"/>
       <property id="module.driver.watchdog.channel" value="enum.mcu.wdt.channels.2"/>
       <property id="module.driver.watchdog.timeout" value="module.driver.watchdog.timeout.16384"/>
@@ -197,9 +198,9 @@
     </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
-      <stack module="module.driver.external_irq_on_intc_irq.883424706"/>
-      <stack module="module.driver.timer_on_gtm.1211344038"/>
-      <stack module="module.driver.watchdog_on_wdt.1633167965"/>
+      <stack module="module.driver.external_irq_on_intc_irq.1381058806"/>
+      <stack module="module.driver.timer_on_gtm.1327953409"/>
+      <stack module="module.driver.watchdog_on_wdt.1557531472"/>
     </context>
     <config id="config.driver.wdt">
       <property id="config.driver.wdt.param_checking_enable" value="config.driver.wdt.param_checking_enable.bsp"/>

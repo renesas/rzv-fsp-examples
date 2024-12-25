@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -245,7 +247,7 @@ FSP Configuration
       P42_4 AC5 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; Camera: CAM_FIELD; RIIC2: RIIC2_SCL; SCIF2: SCIF2_RTS" - None - - 
       P43_0 B18 GPT4_GTIOC4A - Middle - "Peripheral mode" - - "GPT4: GTIOC4A; GPT6: GTIOC6A; IRQ: IRQ4; MTU8: MTIOC8A; RSPI0: RSPI0_CK" - IO - - 
       P43_1 D17 GPT4_GTIOC4B - Middle - "Peripheral mode" - - "GPT4: GTIOC4B; GPT6: GTIOC6B; IRQ: IRQ5; MTU8: MTIOC8B; RSPI0: RSPI0_MOSI" - IO - - 
-      P43_2 E18 GPT5_GTIOC5A - Middle - "Peripheral mode" - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - IO - - 
+      P43_2 E18 - - - - Disabled - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - None - - 
       P43_3 C18 - - - - Disabled - - "GPT5: GTIOC5B; IRQ: IRQ7; MTU8: MTIOC8D; RSPI0: RSPI0_SSL" - None - - 
       P44_0 A19 - - - - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU3: MTIOC3A; RSPI1: RSPI1_CK; SSI1: SSI1_BCK" - None - - 
       P44_1 F17 - - - - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU3: MTIOC3B; RSPI1: RSPI1_MOSI; SSI1: SSI1_RCK" - None - - 
@@ -702,7 +704,7 @@ FSP Configuration
       P42_4 AC5 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; Camera: CAM_FIELD; RIIC2: RIIC2_SCL; SCIF2: SCIF2_RTS" - None - - 
       P43_0 B18 - - Middle - Disabled - - "GPT4: GTIOC4A; GPT6: GTIOC6A; IRQ: IRQ4; MTU8: MTIOC8A; RSPI0: RSPI0_CK" - IO - - 
       P43_1 D17 - - Middle - Disabled - - "GPT4: GTIOC4B; GPT6: GTIOC6B; IRQ: IRQ5; MTU8: MTIOC8B; RSPI0: RSPI0_MOSI" - IO - - 
-      P43_2 E18 - - Middle - Disabled - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - IO - - 
+      P43_2 E18 - - - - Disabled - - "GPT5: GTIOC5A; IRQ: IRQ6; MTU8: MTIOC8C; RSPI0: RSPI0_MISO" - None - - 
       P43_3 C18 - - - - Disabled - - "GPT5: GTIOC5B; IRQ: IRQ7; MTU8: MTIOC8D; RSPI0: RSPI0_SSL" - None - - 
       P44_0 A19 - - - - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU3: MTIOC3A; RSPI1: RSPI1_CK; SSI1: SSI1_BCK" - None - - 
       P44_1 F17 - - - - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU3: MTIOC3B; RSPI1: RSPI1_MOSI; SSI1: SSI1_RCK" - None - - 
@@ -971,7 +973,6 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Pin Output Support: Enabled
     Write Protect Enable: Disabled
-    Clock Source: P0CLK
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -1039,6 +1040,10 @@ FSP Configuration
       General: Channel: 4
       General: Mode: Periodic
       General: Period: 500
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Milliseconds
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -1066,9 +1071,9 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
@@ -1093,6 +1098,10 @@ FSP Configuration
       General: Channel: 3
       General: Mode: Periodic
       General: Period: 0x100000000
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Raw Counts
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -1120,9 +1129,9 @@ FSP Configuration
       Interrupts: Callback: input_capture_user_callback
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4

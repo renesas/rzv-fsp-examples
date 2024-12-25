@@ -35,7 +35,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
         /* Allow access to IP beyond AXI */
         pd_all_on_postproc_axi();

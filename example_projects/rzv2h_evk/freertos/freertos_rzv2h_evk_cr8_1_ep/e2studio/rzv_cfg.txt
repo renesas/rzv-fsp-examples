@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2H Family(CR8_1)
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common (CR8)
     stack size (bytes): FIQ stack size: 0x1000
@@ -2832,6 +2833,7 @@ FSP Configuration
     General: Use 16-bit Ticks: Disabled
     General: Idle Should Yield: Enabled
     General: Use Task Notifications: Enabled
+    General: Task Notification Array Entries: 1
     General: Use Mutexes: Disabled
     General: Use Recursive Mutexes: Disabled
     General: Use Counting Semaphores: Enabled
@@ -2876,6 +2878,8 @@ FSP Configuration
     Logging: Print String Function: printf(x)
     Logging: Logging Max Message Length: 192
     Logging: Logging Include Time and Task Name: Disabled
+    Logging: Debug Logging Name: Log Name
+    Logging: Logging Level: LOG_NONE
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"

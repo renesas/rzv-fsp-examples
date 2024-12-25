@@ -11,9 +11,6 @@
 #ifndef TIMER_PWM_H_
 #define TIMER_PWM_H_
 
-/* Board specific macros for conditional compilation */
-#define TIMER_PIN          (GPT_IO_PIN_GTIOCA)
-
 /* Macros definition */
 #define MAX_CYCLE       (2000u)        /* Maximum cycle */
 

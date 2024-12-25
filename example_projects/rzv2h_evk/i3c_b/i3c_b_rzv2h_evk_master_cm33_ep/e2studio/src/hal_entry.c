@@ -13,6 +13,7 @@
 #include "cr8_start.h"
 #include "common_utils.h"
 #include "i3c_master_ep.h"
+#define MODULE_NAME		"r_i3c_b"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -79,7 +80,7 @@ void hal_entry (void)
 
     /* version get API for FLEX pack information */
     R_FSP_VersionGet(&version);
-    APP_PRINT(BANNER_INFO,EP_VERSION,version.major, version.minor, version.patch );
+    APP_PRINT(BANNER_INFO,EP_VERSION,version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
     APP_PRINT(EP_INFO);
 
     /* Initialize GTM driver */
@@ -296,7 +297,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
 #if defined(BSP_FEATURE_BSP_HAS_CM33BOOT_SUPPORT) && (BSP_FEATURE_BSP_HAS_CM33BOOT_SUPPORT == 1)
         pd_all_on_preproc();

@@ -55,16 +55,12 @@
 
 void release_reset_ca55 (void)
 {
-    volatile uint32_t reg32;
-
     /* Set CA55 Core0 Reset vector address. */
     R_SYSC->SYS_ACPU_CFG_RVAL0 = CA55_RESET_VECTOR_ADDRESS;
 
     /* 1: Confirm that all signals of CA55 are in the reset state. */
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_0;
-    } while ((reg32 & CA55_PRV_CPG_RSTMON0_ALLCA55_BITS) != CA55_PRV_CPG_RSTMON0_ALLCA55_BITS);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_RSTMON0_ALLCA55_BITS & R_CPG->CPG_RSTMON_0),
+                               CA55_PRV_CPG_RSTMON0_ALLCA55_BITS);
 
     /* 2: Request output "Transition destination power mode for Cluster : ON" */
     R_CPG->CPG_LP_CA55_CTL1 = CA55_PRV_CPG_LP_CA55_CTL1_CLUSTER_POWR_ON_REQ_START;
@@ -76,56 +72,45 @@ void release_reset_ca55 (void)
     R_CPG->CPG_RST_1 = CR8_PRV_CPG_RST_1_CA55_14_TO_16;
 
     /* 5: Wait until released reset of CA55_RESET14-16 */
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_0;
-    } while ((reg32 & CA55_PRV_CPG_RSTMON0_ALLCA55_BITS) != CA55_PRV_CPG_RSTMON0_RELEASE_CA55_14_TO_16);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_RSTMON0_ALLCA55_BITS & R_CPG->CPG_RSTMON_0),
+                               CA55_PRV_CPG_RSTMON0_RELEASE_CA55_14_TO_16);
 
     /* 6: Release reset of CA55_RESET0-13 */
     R_CPG->CPG_RST_0 = CR8_PRV_CPG_RST_0_CA55_0_TO_13;
 
     /* 7: Wait until released reset of CA55_RESET0-13 */
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_0;
-    } while ((reg32 & CA55_PRV_CPG_RSTMON0_ALLCA55_BITS) != CA55_PRV_CPG_RSTMON0_RELEASE_CA55_ALL);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_RSTMON0_ALLCA55_BITS & R_CPG->CPG_RSTMON_0),
+                               CA55_PRV_CPG_RSTMON0_RELEASE_CA55_ALL);
 
     /* 8: Wait until "Power mode transition acceptance for Cluster : Transition accepted" */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CA55_CTL1;
-    } while ((reg32 & CA55_PRV_CPG_LP_CA55_CTL1_BITS_MASK) != CA55_PRV_CPG_LP_CA55_CTL1_CLUSTER_POWR_ON_REQ_ACK);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_LP_CA55_CTL1_BITS_MASK & R_CPG->CPG_LP_CA55_CTL1),
+                               CA55_PRV_CPG_LP_CA55_CTL1_CLUSTER_POWR_ON_REQ_ACK);
 
     /* 9: Wait until "Power mode transition acceptance for core 0 : Transition accepted" */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CA55_CTL2;
-    } while ((reg32 & CA55_PRV_CPG_LP_CA55_CTL2_CORE0_BITS_MASK) != CA55_PRV_CPG_LP_CA55_CTL2_CORE0_POWER_ON_REQ_ACK);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_LP_CA55_CTL2_CORE0_BITS_MASK & R_CPG->CPG_LP_CA55_CTL2),
+                               CA55_PRV_CPG_LP_CA55_CTL2_CORE0_POWER_ON_REQ_ACK);
 
     /* 10: Request stopped "Power mode transition request control for Cluster" */
     R_CPG->CPG_LP_CA55_CTL1 = CA55_PRV_CPG_LP_CA55_CTL1_CLUSTER_POWR_ON_REQ_STOP;
 
     /* 11: Wait until "Power mode transition acceptance for Cluster : Transition accepted" */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CA55_CTL1;
-    } while ((reg32 & CA55_PRV_CPG_LP_CA55_CTL1_BITS_MASK) != CA55_PRV_CPG_LP_CA55_CTL1_CLUSTER_POWR_ON_STAT);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_LP_CA55_CTL1_BITS_MASK & R_CPG->CPG_LP_CA55_CTL1),
+                               CA55_PRV_CPG_LP_CA55_CTL1_CLUSTER_POWR_ON_STAT);
 
     /* 12: Request stopped "Power mode transition request control for core 0" */
     R_CPG->CPG_LP_CA55_CTL2 = CA55_PRV_CPG_LP_CA55_CTL2_CORE0_POWER_ON_REQ_STOP;
 
     /* 13: Wait until "Power mode transition acceptance for core 0 : Transition accepted" */
-    do
-    {
-        reg32 = R_CPG->CPG_LP_CA55_CTL2;
-    } while ((reg32 & CA55_PRV_CPG_LP_CA55_CTL2_CORE0_BITS_MASK) != CA55_PRV_CPG_LP_CA55_CTL2_CORE0_POWER_ON_STAT);
+    FSP_HARDWARE_REGISTER_WAIT((CA55_PRV_CPG_LP_CA55_CTL2_CORE0_BITS_MASK & R_CPG->CPG_LP_CA55_CTL2),
+                               CA55_PRV_CPG_LP_CA55_CTL2_CORE0_POWER_ON_STAT);
 
     /* Release reset of SYC_0_RESET */
     R_BSP_MODULE_RSTOFF(FSP_IP_SYC, 0);
 }
 
-
 void load_ca55_prog (void)
 {
-    memcpy((void  *) (CA55_RESET_VECTOR_ADDRESS), (void  *)(RZV2H_SPIROM_BL2_BASE + BL2_BOOTPARM_SIZE), RZV2H_BL2_SIZE_MAX);
+    memcpy((void *) (CA55_RESET_VECTOR_ADDRESS),
+           (void *) (RZV2H_SPIROM_BL2_BASE + BL2_BOOTPARM_SIZE),
+           RZV2H_BL2_SIZE_MAX);
 }

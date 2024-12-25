@@ -63,7 +63,6 @@
         When connecting the conversion adapter "J-Link 9-pin Cortex-M Adapter" made by SEGGER will be required.
     (3) Connect PMOD LED to lower row PMOD Type1/1A on Expansion Board.
 
-
 NOTE:
 
 1. Timer period range in millisecond as per Example Project configuration:

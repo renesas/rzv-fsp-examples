@@ -9,10 +9,10 @@
     <option key="#DeviceCommand#" value="R9A09G057H44GBG"/>
     <option key="#RTOS#" value="_none"/>
     <option key="#pinconfiguration#" value="R9A09G057H44GBG.pincfg"/>
-    <option key="#FSPVersion#" value="2.0.1"/>
+    <option key="#FSPVersion#" value="3.0.0"/>
     <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
     <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
-    <option key="#ToolchainVersion#" value="12.2.1.arm-12-24"/>
+    <option key="#ToolchainVersion#" value="13.3.1.arm-13-24"/>
   </generalSettings>
   <raBspConfiguration>
     <config id="config.bsp.rzv2h.R9A09G057H44GBG">
@@ -26,6 +26,7 @@
       <property id="config.bsp.series" value="config.bsp.series.value"/>
     </config>
     <config id="config.bsp.rzv2h.fsp.cr8_1">
+      <property id="config.bsp.fsp.inline_irq_functions" value="config.bsp.common.inline_irq_functions.enabled"/>
       <property id="config.bsp.fsp.mcu.spi.max_bitrate" value="50000000"/>
       <property id="config.bsp.fsp.mcu.sci_b_uart.max_baud" value="16666667"/>
       <property id="config.bsp.fsp.mcu.sci_b_spi.max_bitrate" value="25000000"/>
@@ -41,6 +42,7 @@
       <property id="config.bsp.fsp.mcu.canfd.max_rxmb_number" value="96"/>
       <property id="config.bsp.fsp.mcu.canfd.afl_rules" value="768"/>
       <property id="config.bsp.fsp.mcu.canfd.afl_rules_each_chnl" value="128"/>
+      <property id="config.bsp.fsp.mcu.canfd.buffer_ram" value="14592"/>
     </config>
     <config id="config.bsp.rz.cr8">
       <property id="config.bsp.common.fiq" value="0x1000"/>
@@ -60,37 +62,33 @@
     </config>
   </raBspConfiguration>
   <raComponentSelection>
-    <component apiversion="" class="Projects" condition="" group="all" subgroup="baremetal_minimal_cr8" variant="" vendor="Renesas" version="2.0.1">
-      <description>Simple application. No RTOS included.</description>
-      <originalPack>Renesas.RZV_baremetal_minimal_cr2.0.1.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="3.0.0">
       <description>Board Support Package Common Files</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="3.0.0">
       <description>I/O Port</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="3.0.0">
       <description>Board support package for R9A09G057H44GBG</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="3.0.0">
       <description>Board support package for RZV2H</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="3.0.0">
       <description>Board support package for RZ/V2H (RZ/V2H) - FSP Data</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="3.0.0">
       <description>Evaluation Kit RZ/V2H Support Files (RZ/V2H)</description>
-      <originalPack>Renesas.RZV_board_rzv2h_evk.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV_board_rzv2h_evk.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_intc_irq" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_intc_irq" variant="" vendor="Renesas" version="3.0.0">
       <description>External INT (IRQ)</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
   </raComponentSelection>
   <raElcConfiguration/>
@@ -167,80 +165,23 @@
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.external_irq_on_intc_irq.35549402"/>
     </context>
-    <config id="config.driver.intc_irq">
-      <property id="config.driver.intc_irq.param_checking_enable" value="config.driver.intc_irq.param_checking_enable.bsp"/>
-    </config>
     <config id="config.driver.ioport">
       <property id="config.driver.ioport.checking" value="config.driver.ioport.checking.system"/>
+    </config>
+    <config id="config.driver.intc_irq">
+      <property id="config.driver.intc_irq.param_checking_enable" value="config.driver.intc_irq.param_checking_enable.bsp"/>
     </config>
   </raModuleConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="RZV2H-EVK.pincfg" selected="true" symbol="g_bsp_pin_cfg">
-      <configSetting altId="irq.irq0.p70" configurationId="irq.irq0"/>
-      <configSetting altId="irq.irq13.p57" configurationId="irq.irq13"/>
-      <configSetting altId="irq.irq4.p72" configurationId="irq.irq4"/>
       <configSetting altId="irq.irq7.p83" configurationId="irq.irq7"/>
-      <configSetting altId="irq.irq8.p74" configurationId="irq.irq8"/>
-      <configSetting altId="irq.irq9.p55" configurationId="irq.irq9"/>
       <configSetting altId="irq.mode.custom.free" configurationId="irq.mode"/>
-      <configSetting altId="p20.riic2.sda2" configurationId="p20"/>
-      <configSetting altId="p20.gpio_speed.gpio_speed_x6" configurationId="p20.gpio_drivecapacity"/>
-      <configSetting altId="p20.gpio_mode.gpio_mode_peripheral" configurationId="p20.gpio_mode"/>
-      <configSetting altId="p21.riic2.scl2" configurationId="p21"/>
-      <configSetting altId="p21.gpio_speed.gpio_speed_x6" configurationId="p21.gpio_drivecapacity"/>
-      <configSetting altId="p21.gpio_mode.gpio_mode_peripheral" configurationId="p21.gpio_mode"/>
-      <configSetting altId="p50.rsci0.txd0_mosi0_sda0" configurationId="p50"/>
-      <configSetting altId="p50.gpio_mode.gpio_mode_peripheral" configurationId="p50.gpio_mode"/>
-      <configSetting altId="p51.rsci0.rxd0_miso0_scl0" configurationId="p51"/>
-      <configSetting altId="p51.gpio_mode.gpio_mode_peripheral" configurationId="p51.gpio_mode"/>
-      <configSetting altId="p52.rsci0.sck0" configurationId="p52"/>
-      <configSetting altId="p52.gpio_mode.gpio_mode_peripheral" configurationId="p52.gpio_mode"/>
-      <configSetting altId="p53.rsci0.ss0_cts0n_rts0n" configurationId="p53"/>
-      <configSetting altId="p53.gpio_mode.gpio_mode_peripheral" configurationId="p53.gpio_mode"/>
-      <configSetting altId="p55.irq.irq9" configurationId="p55"/>
-      <configSetting altId="p55.gpio_mode.gpio_mode_peripheral" configurationId="p55.gpio_mode"/>
-      <configSetting altId="p55.smt.smt.enable" configurationId="p55.smt"/>
-      <configSetting altId="p57.irq.irq13" configurationId="p57"/>
-      <configSetting altId="p57.gpio_mode.gpio_mode_peripheral" configurationId="p57.gpio_mode"/>
-      <configSetting altId="p57.smt.smt.enable" configurationId="p57.smt"/>
-      <configSetting altId="p70.irq.irq0" configurationId="p70"/>
-      <configSetting altId="p70.gpio_mode.gpio_mode_peripheral" configurationId="p70.gpio_mode"/>
-      <configSetting altId="p70.smt.smt.enable" configurationId="p70.smt"/>
-      <configSetting altId="p72.irq.irq4" configurationId="p72"/>
-      <configSetting altId="p72.gpio_mode.gpio_mode_peripheral" configurationId="p72.gpio_mode"/>
-      <configSetting altId="p72.smt.smt.enable" configurationId="p72.smt"/>
-      <configSetting altId="p74.irq.irq8" configurationId="p74"/>
-      <configSetting altId="p74.gpio_mode.gpio_mode_peripheral" configurationId="p74.gpio_mode"/>
-      <configSetting altId="p74.smt.smt.enable" configurationId="p74.smt"/>
+      <configSetting altId="p01.output.toinput.high" configurationId="p01"/>
+      <configSetting altId="p01.gpio_mode.gpio_mode_out.toinput.high" configurationId="p01.gpio_mode"/>
       <configSetting altId="p83.irq.irq7" configurationId="p83"/>
       <configSetting altId="p83.gpio_mode.gpio_mode_peripheral" configurationId="p83.gpio_mode"/>
       <configSetting altId="p83.smt.smt.enable" configurationId="p83.smt"/>
-      <configSetting altId="pa7.rspi2.sslc0" configurationId="pa7"/>
-      <configSetting altId="pa7.gpio_speed.gpio_speed_x6" configurationId="pa7.gpio_drivecapacity"/>
-      <configSetting altId="pa7.gpio_mode.gpio_mode_peripheral" configurationId="pa7.gpio_mode"/>
-      <configSetting altId="pb3.rspi2.misoc" configurationId="pb3"/>
-      <configSetting altId="pb3.gpio_speed.gpio_speed_x6" configurationId="pb3.gpio_drivecapacity"/>
-      <configSetting altId="pb3.gpio_mode.gpio_mode_peripheral" configurationId="pb3.gpio_mode"/>
-      <configSetting altId="pb4.rspi2.mosic" configurationId="pb4"/>
-      <configSetting altId="pb4.gpio_speed.gpio_speed_x6" configurationId="pb4.gpio_drivecapacity"/>
-      <configSetting altId="pb4.gpio_mode.gpio_mode_peripheral" configurationId="pb4.gpio_mode"/>
-      <configSetting altId="pb5.rspi2.rspckc" configurationId="pb5"/>
-      <configSetting altId="pb5.gpio_speed.gpio_speed_x6" configurationId="pb5.gpio_drivecapacity"/>
-      <configSetting altId="pb5.gpio_mode.gpio_mode_peripheral" configurationId="pb5.gpio_mode"/>
-      <configSetting altId="riic2.mode.custom.free" configurationId="riic2.mode"/>
-      <configSetting altId="riic2.scl2.p21" configurationId="riic2.scl2"/>
-      <configSetting altId="riic2.sda2.p20" configurationId="riic2.sda2"/>
       <configSetting altId="riic8.mode.custom.free" configurationId="riic8.mode"/>
-      <configSetting altId="rsci0.mode.custom.free" configurationId="rsci0.mode"/>
-      <configSetting altId="rsci0.rxd0_miso0_scl0.p51" configurationId="rsci0.rxd0_miso0_scl0"/>
-      <configSetting altId="rsci0.sck0.p52" configurationId="rsci0.sck0"/>
-      <configSetting altId="rsci0.ss0_cts0n_rts0n.p53" configurationId="rsci0.ss0_cts0n_rts0n"/>
-      <configSetting altId="rsci0.txd0_mosi0_sda0.p50" configurationId="rsci0.txd0_mosi0_sda0"/>
-      <configSetting altId="rspi2.misoc.pb3" configurationId="rspi2.misoc"/>
-      <configSetting altId="rspi2.mode.custom.free" configurationId="rspi2.mode"/>
-      <configSetting altId="rspi2.mosic.pb4" configurationId="rspi2.mosic"/>
-      <configSetting altId="rspi2.rspckc.pb5" configurationId="rspi2.rspckc"/>
-      <configSetting altId="rspi2.sslc0.pa7" configurationId="rspi2.sslc0"/>
       <configSetting altId="xspi.mode.custom.free" configurationId="xspi.mode"/>
     </pincfg>
     <pincfg active="false" name="R9A09G057H44GBG.pincfg" selected="false" symbol=""/>

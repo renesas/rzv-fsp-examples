@@ -31,7 +31,10 @@
 #define CLEAR_FLAG  (0)
 #define NULL_CHAR   ('\0')
 
-#define EP_INFO                "\r\nThe example project demonstrates the modes of POEG module"\
+#define EP_INFO                "\r\nThe example project demonstrates the basic functionalities of "\
+                               "\r\nPOEG driver on Renesas RZV MCUs based on Renesas FSP.RZV MPUs is "\
+                               "\r\nused to demonstrate the various operating modes of a POEG driver."\
+                               "\r\nThe example project demonstrates the modes of POEG module"\
                                "\r\n1.POEG Software API mode-GPT Output disable by software API"\
                                "\r\n2.POEG Trigger Output Level mode-GPT Output disable from the GPT"\
                                "\r\n3.Enable Port output using POEG_Reset API."\

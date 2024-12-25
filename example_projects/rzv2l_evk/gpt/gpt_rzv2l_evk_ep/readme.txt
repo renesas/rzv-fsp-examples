@@ -56,7 +56,6 @@
         When connecting the conversion adapter "J-Link 9-pin Cortex-M Adapter" made by SEGGER will be required.
     (3) Connect PMOD0 PIN1-6 on SMARC Carrier Board and Pmod LED.
 
-
 NOTE:
 1. Timer period range in millisecond as per Example Project configuration:
     (1) RZ/V2L   --      (0 to 42949) ms

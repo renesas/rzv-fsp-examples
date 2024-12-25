@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -1038,13 +1040,13 @@ FSP Configuration
       General: Mode: Periodic
       General: TGRA(Output Compare or Input Capture Value): 0xBEBC
       General: TGRB(Output Compare or Input Capture Value): 0x5F5E
-      General: TGRC(Output Compare or Input Capture Value): 0x10000
-      General: TGRD(Output Compare or Input Capture Value): 0x10000
+      General: TGRC(The Buffer Value of TGRA): 0x10000
+      General: TGRD(The Buffer Value of TGRB): 0x10000
       General: Time Prescaler: P0CLK divided by 1024 (ch2)
       General: Clock Edge: Rising
       General: Counter Clear Source: TGRA
-      Noise Filter: Extarnal Clock: Enable: 
-      Noise Filter: Extarnal Clock: Clock Select: P0CLK divided by 1
+      Noise Filter: External Clock: Enable: 
+      Noise Filter: External Clock: Clock Select: P0CLK divided by 1
       Noise Filter: Input Capture: Enable: 
       Noise Filter: Input Capture: Clock Select: P0CLK divided by 1
       I/O Control: MTIOCnA Pin Function: Low Output at Toggle compare match
@@ -1052,10 +1054,10 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 24
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 24
-      Interrupts: Capture B Interrupt Enable: Enabled
-      Interrupts: Capture B Interrupt Priority: 24
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 24
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match B Interrupt Priority: 24
       Extra Features: Extra Features Enable: Disabled
       Extra Features: ADC Trigger: Start request cycle A (Start Request Delaying Function): 0
       Extra Features: ADC Trigger: Start request cycle B (Start Request Delaying Function): 0
@@ -1075,13 +1077,13 @@ FSP Configuration
       General: Mode: PWM
       General: TGRA(Output Compare or Input Capture Value): 0xBEBC
       General: TGRB(Output Compare or Input Capture Value): 0x5F5E
-      General: TGRC(Output Compare or Input Capture Value): 0x10000
-      General: TGRD(Output Compare or Input Capture Value): 0x10000
+      General: TGRC(The Buffer Value of TGRA): 0x10000
+      General: TGRD(The Buffer Value of TGRB): 0x10000
       General: Time Prescaler: P0CLK divided by 1024 (ch2)
       General: Clock Edge: Rising
       General: Counter Clear Source: TGRA
-      Noise Filter: Extarnal Clock: Enable: 
-      Noise Filter: Extarnal Clock: Clock Select: P0CLK divided by 1
+      Noise Filter: External Clock: Enable: 
+      Noise Filter: External Clock: Clock Select: P0CLK divided by 1
       Noise Filter: Input Capture: Enable: 
       Noise Filter: Input Capture: Clock Select: P0CLK divided by 1
       I/O Control: MTIOCnA Pin Function: High Output at High compare match
@@ -1089,10 +1091,10 @@ FSP Configuration
       Interrupts: Callback: user_mtu3_capture_b_callback
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 24
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 24
-      Interrupts: Capture B Interrupt Enable: Enabled
-      Interrupts: Capture B Interrupt Priority: 24
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 24
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match B Interrupt Priority: 24
       Extra Features: Extra Features Enable: Disabled
       Extra Features: ADC Trigger: Start request cycle A (Start Request Delaying Function): 0
       Extra Features: ADC Trigger: Start request cycle B (Start Request Delaying Function): 0
@@ -1112,13 +1114,13 @@ FSP Configuration
       General: Mode: PWM
       General: TGRA(Output Compare or Input Capture Value): 0xBEBC
       General: TGRB(Output Compare or Input Capture Value): 0x5F5E
-      General: TGRC(Output Compare or Input Capture Value): 0x10000
-      General: TGRD(Output Compare or Input Capture Value): 0x10000
+      General: TGRC(The Buffer Value of TGRA): 0x10000
+      General: TGRD(The Buffer Value of TGRB): 0x10000
       General: Time Prescaler: P0CLK divided by 1024 (ch2)
       General: Clock Edge: Rising
       General: Counter Clear Source: TGRA
-      Noise Filter: Extarnal Clock: Enable: 
-      Noise Filter: Extarnal Clock: Clock Select: P0CLK divided by 1
+      Noise Filter: External Clock: Enable: 
+      Noise Filter: External Clock: Clock Select: P0CLK divided by 1
       Noise Filter: Input Capture: Enable: 
       Noise Filter: Input Capture: Clock Select: P0CLK divided by 1
       I/O Control: MTIOCnA Pin Function: Low Output at Low compare match
@@ -1126,10 +1128,10 @@ FSP Configuration
       Interrupts: Callback: user_mtu3_one_shot_callback
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 24
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 24
-      Interrupts: Capture B Interrupt Enable: Enabled
-      Interrupts: Capture B Interrupt Priority: 24
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 24
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match B Interrupt Priority: 24
       Extra Features: Extra Features Enable: Disabled
       Extra Features: ADC Trigger: Start request cycle A (Start Request Delaying Function): 0
       Extra Features: ADC Trigger: Start request cycle B (Start Request Delaying Function): 0

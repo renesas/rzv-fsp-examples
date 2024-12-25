@@ -14,6 +14,7 @@ FSP Configuration
     Clock initialization: Disabled
     
   RZV2H Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x1000
@@ -25,6 +26,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     PLLCM33 1600000000Hz
@@ -2810,7 +2812,8 @@ FSP Configuration
     10-bit slave addressing: Disabled
     
   Module "QSPI Driver on r_xspi_qspi"
-    Parameter Checking Enable: Default (BSP)
+    Parameter Checking: Default (BSP)
+    Memory-mapping Support: Prefetch Function: Disable
     
   Module "SPI (r_spi_b)"
     Parameter Checking: Default (BSP)
@@ -2885,6 +2888,7 @@ FSP Configuration
       Name: g_i2c_master0
       Channel: 8
       Rate: Standard
+      Custom Rate (bps): 0
       Rise Time (ns): 120
       Fall Time (ns): 120
       Duty Cycle (%): 50
@@ -2903,7 +2907,6 @@ FSP Configuration
       General: SPI Protocol: 1S-4S-4S
       General: Address Bytes: 4
       General: Dummy Clocks for Read: 10
-      General: Prefetch Function: Disable
       Command Definitions: Page Program Command: 0x12
       Command Definitions: Read Command: 0xEC
       Command Definitions: Write Enable Command: 0x06
@@ -2951,6 +2954,9 @@ FSP Configuration
       SSL Negation Delay: 1 Clock
       Next Access Delay: 1 Clock
       SSL Level Keep: Disable
+      Transmit FIFO Threshold: 0
+      Receive FIFO Threshold: 0
+      Receive Data Ready Detect Adjustment: 0
       
       Instance "g_transfer0 Transfer Driver on r_dmac_b SPI0_TXI"
         Name: g_transfer0
@@ -3040,6 +3046,9 @@ FSP Configuration
       SSL Negation Delay: 1 Clock
       Next Access Delay: 1 Clock
       SSL Level Keep: Disable
+      Transmit FIFO Threshold: 0
+      Receive FIFO Threshold: 0
+      Receive Data Ready Detect Adjustment: 0
       
       Instance "g_transfer2 Transfer Driver on r_dmac_b SPI2_TXI"
         Name: g_transfer2

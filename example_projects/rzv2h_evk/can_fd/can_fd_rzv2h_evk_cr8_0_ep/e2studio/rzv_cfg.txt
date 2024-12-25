@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2H Family(CR8)
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common (CR8)
     stack size (bytes): FIQ stack size: 0x1000
@@ -2808,17 +2809,18 @@ FSP Configuration
     
   Module "CANFD Driver on r_canfd"
     Parameter Checking: Default (BSP)
-    Global Error Interrupt: Priority: 2
-    Global Error Interrupt: Sources: DLC Check, Message Lost, FD Payload Overflow
     Global Error Interrupt: Callback Channel: Channel 1
+    Global Error Interrupt: Priority: 2
+    Reception: FIFOs: Interrupt Priority: 12
+    Flexible Data (FD): Protocol Exceptions: Enabled (ISO 11898-1)
+    Global Error Interrupt: Sources: DLC Check, Message Lost, FD Payload Overflow
     Transmission Priority: Buffer Number
     DLC Check: Disabled
     Clock Source: CANFD_0_clkc
-    Flexible Data (FD): Protocol Exceptions: Enabled (ISO 11898-1)
     Flexible Data (FD): Payload Overflow: Reject
     Reception: Message Buffers: Number of Buffers: 1
     Reception: Message Buffers: Payload Size: 16 bytes
-    Reception: FIFOs: Interrupt Priority: 12
+    Interval Timer Prescaler: 0
     Reception: FIFOs: FIFO 0: Enable: Enabled
     Reception: FIFOs: FIFO 0: Interrupt Mode: Every Frame
     Reception: FIFOs: FIFO 0: Interrupt Threshold: 1/2 full
@@ -2859,6 +2861,222 @@ FSP Configuration
     Reception: FIFOs: FIFO 7: Interrupt Threshold: 1/2 full
     Reception: FIFOs: FIFO 7: Payload Size: 64 bytes
     Reception: FIFOs: FIFO 7: Depth: 16 stages
+    Common FIFOs: FIFO 0: Enable: Enabled
+    Common FIFOs: FIFO 0: Mode: Receive
+    Common FIFOs: FIFO 0: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 0: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 0: Interrupt Mode: Every frame
+    Common FIFOs: FIFO 0: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 0: Payload Size: 64 bytes
+    Common FIFOs: FIFO 0: Depth: 16 stages
+    Common FIFOs: FIFO 0: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 0: Interval TX Delay: 0
+    Common FIFOs: FIFO 0: Interval Timer: Reference clock
+    Common FIFOs: FIFO 0: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 1: Enable: Disabled
+    Common FIFOs: FIFO 1: Mode: Receive
+    Common FIFOs: FIFO 1: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 1: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 1: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 1: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 1: Payload Size: 64 bytes
+    Common FIFOs: FIFO 1: Depth: 16 stages
+    Common FIFOs: FIFO 1: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 1: Interval TX Delay: 0
+    Common FIFOs: FIFO 1: Interval Timer: Reference clock
+    Common FIFOs: FIFO 1: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 2: Enable: Disabled
+    Common FIFOs: FIFO 2: Mode: Receive
+    Common FIFOs: FIFO 2: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 2: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 2: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 2: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 2: Payload Size: 64 bytes
+    Common FIFOs: FIFO 2: Depth: 16 stages
+    Common FIFOs: FIFO 2: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 2: Interval TX Delay: 0
+    Common FIFOs: FIFO 2: Interval Timer: Reference clock
+    Common FIFOs: FIFO 2: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 3: Enable: Disabled
+    Common FIFOs: FIFO 3: Mode: Receive
+    Common FIFOs: FIFO 3: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 3: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 3: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 3: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 3: Payload Size: 64 bytes
+    Common FIFOs: FIFO 3: Depth: 16 stages
+    Common FIFOs: FIFO 3: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 3: Interval TX Delay: 0
+    Common FIFOs: FIFO 3: Interval Timer: Reference clock
+    Common FIFOs: FIFO 3: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 4: Enable: Disabled
+    Common FIFOs: FIFO 4: Mode: Receive
+    Common FIFOs: FIFO 4: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 4: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 4: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 4: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 4: Payload Size: 64 bytes
+    Common FIFOs: FIFO 4: Depth: 16 stages
+    Common FIFOs: FIFO 4: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 4: Interval TX Delay: 0
+    Common FIFOs: FIFO 4: Interval Timer: Reference clock
+    Common FIFOs: FIFO 4: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 5: Enable: Disabled
+    Common FIFOs: FIFO 5: Mode: Receive
+    Common FIFOs: FIFO 5: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 5: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 5: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 5: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 5: Payload Size: 64 bytes
+    Common FIFOs: FIFO 5: Depth: 16 stages
+    Common FIFOs: FIFO 5: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 5: Interval TX Delay: 0
+    Common FIFOs: FIFO 5: Interval Timer: Reference clock
+    Common FIFOs: FIFO 5: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 6: Enable: Disabled
+    Common FIFOs: FIFO 6: Mode: Receive
+    Common FIFOs: FIFO 6: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 6: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 6: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 6: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 6: Payload Size: 64 bytes
+    Common FIFOs: FIFO 6: Depth: 16 stages
+    Common FIFOs: FIFO 6: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 6: Interval TX Delay: 0
+    Common FIFOs: FIFO 6: Interval Timer: Reference clock
+    Common FIFOs: FIFO 6: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 7: Enable: Disabled
+    Common FIFOs: FIFO 7: Mode: Receive
+    Common FIFOs: FIFO 7: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 7: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 7: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 7: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 7: Payload Size: 64 bytes
+    Common FIFOs: FIFO 7: Depth: 16 stages
+    Common FIFOs: FIFO 7: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 7: Interval TX Delay: 0
+    Common FIFOs: FIFO 7: Interval Timer: Reference clock
+    Common FIFOs: FIFO 7: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 8: Enable: Disabled
+    Common FIFOs: FIFO 8: Mode: Receive
+    Common FIFOs: FIFO 8: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 8: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 8: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 8: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 8: Payload Size: 64 bytes
+    Common FIFOs: FIFO 8: Depth: 16 stages
+    Common FIFOs: FIFO 8: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 8: Interval TX Delay: 0
+    Common FIFOs: FIFO 8: Interval Timer: Reference clock
+    Common FIFOs: FIFO 8: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 9: Enable: Disabled
+    Common FIFOs: FIFO 9: Mode: Receive
+    Common FIFOs: FIFO 9: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 9: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 9: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 9: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 9: Payload Size: 64 bytes
+    Common FIFOs: FIFO 9: Depth: 16 stages
+    Common FIFOs: FIFO 9: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 9: Interval TX Delay: 0
+    Common FIFOs: FIFO 9: Interval Timer: Reference clock
+    Common FIFOs: FIFO 9: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 10: Enable: Disabled
+    Common FIFOs: FIFO 10: Mode: Receive
+    Common FIFOs: FIFO 10: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 10: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 10: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 10: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 10: Payload Size: 64 bytes
+    Common FIFOs: FIFO 10: Depth: 16 stages
+    Common FIFOs: FIFO 10: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 10: Interval TX Delay: 0
+    Common FIFOs: FIFO 10: Interval Timer: Reference clock
+    Common FIFOs: FIFO 10: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 11: Enable: Disabled
+    Common FIFOs: FIFO 11: Mode: Receive
+    Common FIFOs: FIFO 11: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 11: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 11: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 11: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 11: Payload Size: 64 bytes
+    Common FIFOs: FIFO 11: Depth: 16 stages
+    Common FIFOs: FIFO 11: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 11: Interval TX Delay: 0
+    Common FIFOs: FIFO 11: Interval Timer: Reference clock
+    Common FIFOs: FIFO 11: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 12: Enable: Disabled
+    Common FIFOs: FIFO 12: Mode: Receive
+    Common FIFOs: FIFO 12: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 12: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 12: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 12: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 12: Payload Size: 64 bytes
+    Common FIFOs: FIFO 12: Depth: 16 stages
+    Common FIFOs: FIFO 12: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 12: Interval TX Delay: 0
+    Common FIFOs: FIFO 12: Interval Timer: Reference clock
+    Common FIFOs: FIFO 12: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 13: Enable: Disabled
+    Common FIFOs: FIFO 13: Mode: Receive
+    Common FIFOs: FIFO 13: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 13: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 13: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 13: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 13: Payload Size: 64 bytes
+    Common FIFOs: FIFO 13: Depth: 16 stages
+    Common FIFOs: FIFO 13: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 13: Interval TX Delay: 0
+    Common FIFOs: FIFO 13: Interval Timer: Reference clock
+    Common FIFOs: FIFO 13: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 14: Enable: Disabled
+    Common FIFOs: FIFO 14: Mode: Receive
+    Common FIFOs: FIFO 14: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 14: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 14: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 14: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 14: Payload Size: 64 bytes
+    Common FIFOs: FIFO 14: Depth: 16 stages
+    Common FIFOs: FIFO 14: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 14: Interval TX Delay: 0
+    Common FIFOs: FIFO 14: Interval Timer: Reference clock
+    Common FIFOs: FIFO 14: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 15: Enable: Disabled
+    Common FIFOs: FIFO 15: Mode: Receive
+    Common FIFOs: FIFO 15: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 15: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 15: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 15: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 15: Payload Size: 64 bytes
+    Common FIFOs: FIFO 15: Depth: 16 stages
+    Common FIFOs: FIFO 15: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 15: Interval TX Delay: 0
+    Common FIFOs: FIFO 15: Interval Timer: Reference clock
+    Common FIFOs: FIFO 15: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 16: Enable: Disabled
+    Common FIFOs: FIFO 16: Mode: Receive
+    Common FIFOs: FIFO 16: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 16: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 16: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 16: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 16: Payload Size: 64 bytes
+    Common FIFOs: FIFO 16: Depth: 16 stages
+    Common FIFOs: FIFO 16: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 16: Interval TX Delay: 0
+    Common FIFOs: FIFO 16: Interval Timer: Reference clock
+    Common FIFOs: FIFO 16: Interval Timer Reference Clock Resolution: x1
+    Common FIFOs: FIFO 17: Enable: Disabled
+    Common FIFOs: FIFO 17: Mode: Receive
+    Common FIFOs: FIFO 17: RX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 17: TX Interrupt Enable: Disabled
+    Common FIFOs: FIFO 17: Interrupt Mode: Threshold
+    Common FIFOs: FIFO 17: Interrupt Threshold: 1/2 full
+    Common FIFOs: FIFO 17: Payload Size: 64 bytes
+    Common FIFOs: FIFO 17: Depth: 16 stages
+    Common FIFOs: FIFO 17: TX Message Buffer: TX Message Buffer 32
+    Common FIFOs: FIFO 17: Interval TX Delay: 0
+    Common FIFOs: FIFO 17: Interval Timer: Reference clock
+    Common FIFOs: FIFO 17: Interval Timer Reference Clock Resolution: x1
     Reception: Acceptance Filtering: Channel 0 Rule Count: 64
     Reception: Acceptance Filtering: Channel 1 Rule Count: 64
     Reception: Acceptance Filtering: Channel 2 Rule Count: 0

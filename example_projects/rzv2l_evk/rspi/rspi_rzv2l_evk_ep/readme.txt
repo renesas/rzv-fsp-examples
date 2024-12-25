@@ -69,7 +69,6 @@
         CK    ----> P44_0(PMOD0 PIN4) - P43_0(PMOD0 PIN7)
         SSL   ----> P44_3(PMOD0 PIN1) - GND  (PMOD0 PIN11)
 
-
 NOTE:
 1. User is expected to enter data of size not exceeding 64 bytes.
    As RSPI bit width is set to 32 bits, each 4 bytes of user data input will be transferred in single RSPI transmission.

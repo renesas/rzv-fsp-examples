@@ -8,13 +8,12 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-
 #include "hal_data.h"
 #include "common_utils.h"
 #include "mtu3_timer.h"
 #include "stdbool.h"
 #include "SEGGER_RTT.h"
-
+#define MODULE_NAME		"r_mtu3"
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 FSP_CPP_FOOTER
@@ -45,7 +44,7 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_INFO,EP_VERSION,version.major, version.minor, version.patch );
+    APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
     APP_PRINT(EP_INFO);
 
     /* Print Menu option of MTU3 timer*/
@@ -323,10 +322,9 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open (&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
     }
 }
 /*******************************************************************************************************************//**
  * @} (end addtogroup mtu3_ep)
  **********************************************************************************************************************/
-

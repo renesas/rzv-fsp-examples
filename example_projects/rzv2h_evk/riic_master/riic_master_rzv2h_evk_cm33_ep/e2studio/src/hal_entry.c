@@ -15,6 +15,7 @@
 #include "i2c_sensor.h"
 #include "stdbool.h"
 #include "stdint.h"
+#define MODULE_NAME		"r_riic_master"
 
 /*******************************************************************************************************************//**
  * @addtogroup r_riic_master_ep
@@ -42,12 +43,7 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_1);
-    APP_PRINT(BANNER_2);
-    APP_PRINT(BANNER_3,EP_VERSION);
-    APP_PRINT(BANNER_4,version.major, version.minor, version.patch);
-    APP_PRINT(BANNER_5);
-    APP_PRINT(BANNER_6);
+    APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
     APP_PRINT("\nThis project utilizes PMOD ACL sensor as iic slave device\n");
     APP_PRINT("Upon successful initialization, MPU displays sensor axis data\n");
     APP_PRINT("\nIf SDA line is kept in LOW by any error \n");
@@ -161,7 +157,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
 #if defined(BSP_FEATURE_BSP_HAS_CM33BOOT_SUPPORT) && (BSP_FEATURE_BSP_HAS_CM33BOOT_SUPPORT == 1)
         pd_all_on_preproc();

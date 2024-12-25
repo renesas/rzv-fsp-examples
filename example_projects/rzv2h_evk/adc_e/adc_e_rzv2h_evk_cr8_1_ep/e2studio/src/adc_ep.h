@@ -42,6 +42,14 @@
 
 #define SHIFT_BY_ONE     (0x01)
 #define SHIFT_BY_THREE   (0x03)
+#define BIT_SHIFT_8        (8u)
+#define BIT_SHIFT_12      (12u)
+#define BIT_SHIFT_15      (15u)
+#define ADC_12_BIT      (4096u)
+#define ADC_16_BIT     (32768u)
+#define V_ref            (1.8f)
+#define ADC_H_LMT       (3103u)
+#define ADC_L_LMT       (1241u)
 
 /* Macros for menu options to be displayed */
 #define MENUOPTION1       "\r\nMENU to Select\r\n"

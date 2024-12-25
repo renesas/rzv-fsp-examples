@@ -13,8 +13,8 @@
 #include <stdlib.h>
 #include "hal_data.h"
 
-#define CPG_PLLCA55_CLK1_INITVAL     (0x00002582)
-#define CPG_PLLCA55_CLK2_INITVAL     (0x00001e00)
+#define CPG_PLLCA55_CLK1_INITVAL    (0x00002582)
+#define CPG_PLLCA55_CLK2_INITVAL    (0x00001e00)
 
 #define CPG_PLLDSI_CLK1_INITVAL     (0x00003182)
 #define CPG_PLLDSI_CLK2_INITVAL     (0x000C1803)

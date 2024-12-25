@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2H Family(CR8_1)
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common (CR8)
     stack size (bytes): FIQ stack size: 0x1000

@@ -8,6 +8,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+/***********************************************************************************************************************
+ * Includes
+ **********************************************************************************************************************/
+
 #ifndef COMMON_UTILS_H_
 #define COMMON_UTILS_H_
 
@@ -16,11 +20,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "hal_data.h"
+/* SEGGER RTT and error related headers */
 #include "SEGGER_RTT.h"
-
-extern void app_read(unsigned char* p_data);
-extern int app_check_data();
-
 
 #define BIT_SHIFT_8  (8u)
 #define SIZE_64      (64u)
@@ -29,24 +30,24 @@ extern int app_check_data();
 
 #define RESET_VALUE             (0x00)
 
-#define EP_VERSION              ("2.0")
-#define MODULE_NAME             "r_i3c_b"
-#define BANNER_INFO             "\r\n******************************************************************\r\n"\
-                                "*   Renesas FSP Example Project for "MODULE_NAME" Module               *\r\n"\
-                                "*   Example Project Version %s                                  *\r\n"\
-                                "*   Flex Software Pack Version  %d.%d.%d                            *\r\n"\
-                                "******************************************************************\r\n"
+#define EP_VERSION              ("3.0.0")
+#define BANNER_INFO             "\r\n********************************************************************************"\
+                                "\r\n*   Renesas FSP Example Project for "MODULE_NAME" Module                             *"\
+                                "\r\n*   Example Project Version %s                                              *"\
+                                "\r\n*   Flex Software Pack Version  %d.%d.%d                                          *"\
+                                "\r\n********************************************************************************"\
+                                "\r\nRefer to readme.txt file for more details on Example Project and" \
+                                "\r\nFSP User's Manual for more information about "MODULE_NAME" driver\r\n"
 
 #define SEGGER_INDEX            (0)
-
 #define APP_PRINT(fn_, ...)      (SEGGER_RTT_printf (SEGGER_INDEX,(fn_), ##__VA_ARGS__))
 
 #define APP_ERR_PRINT(fn_, ...)  if(LVL_ERR)\
-                                 SEGGER_RTT_printf (SEGGER_INDEX, "[ERR] In Function: %s(), %s",__FUNCTION__,(fn_),##__VA_ARGS__);
+        SEGGER_RTT_printf (SEGGER_INDEX, "[ERR] In Function: %s(), %s",__FUNCTION__,(fn_),##__VA_ARGS__);
 
 #define APP_ERR_TRAP(err)        if(err) {\
-                                           SEGGER_RTT_printf(SEGGER_INDEX, "\r\nReturned Error Code: 0x%x  \r\n", err);\
-                                           __asm("BKPT #0\n");} /* trap upon the error  */
+        SEGGER_RTT_printf(SEGGER_INDEX, "\r\nReturned Error Code: 0x%x  \r\n", err);\
+        __asm("BKPT #0\n");} /* trap upon the error  */
 
 #define APP_READ(read_data)     SEGGER_RTT_Read (SEGGER_INDEX, read_data, sizeof(read_data));
 

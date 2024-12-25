@@ -7,6 +7,7 @@
  * 
  * SPDX-License-Identifier: BSD-3-Clause
  */
+
 #ifndef INTC_IRQ_EP_H_
 #define INTC_IRQ_EP_H_
 

@@ -26,7 +26,6 @@ bool volatile g_set_duty_cycle_0  = false;
 
 uint32_t g_current_period_counts  = RESET_VALUE;
 
-
 /*****************************************************************************************************************
  * @brief       Initialize MTU3 timer.
  * @param[in]   p_timer_ctl     Timer instance control structure

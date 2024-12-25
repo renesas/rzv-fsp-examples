@@ -12,6 +12,7 @@
 #include "pd_axi_on.h"
 #include "common_utils.h"
 #include "stdbool.h"
+#define MODULE_NAME     "r_gpt"
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 /*******************************************************************************************************************//**
@@ -50,7 +51,7 @@ void hal_entry(void)
         R_FSP_VersionGet(&version);
 
         /* Banner information */
-        APP_PRINT(BANNER_INFO, EP_VERSION, version.major, version.minor, version.patch);
+        APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
         APP_PRINT(EP_INFO);
 
         /* Open GPT instance as a periodic timer */
@@ -132,7 +133,7 @@ void hal_entry(void)
  *
  * @param[in]  event    Where at in the start up process the code is currently at
  **********************************************************************************************************************/
-void R_BSP_WarmStart(bsp_warm_start_event_t event)
+void R_BSP_WarmStart (bsp_warm_start_event_t event)
 {
     if (BSP_WARM_START_RESET == event)
     {
@@ -143,9 +144,13 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
+
+        /* Allow access to IP beyond AXI */
+        pd_all_on_postproc_axi();
     }
 }
+
 /*******************************************************************************************************************//**
  * @brief       User defined callback
  * @param[in]   p_args

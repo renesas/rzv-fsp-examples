@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2H Family(CR8)
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common (CR8)
     stack size (bytes): FIQ stack size: 0x1000
@@ -2810,7 +2811,6 @@ FSP Configuration
     Parameter Checking: Default (BSP)
     Pin Output Support: Enabled
     Write Protect Enable: Disabled
-    Clock Source: GPT_n_clks_gpt
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -2878,6 +2878,10 @@ FSP Configuration
       General: Channel: 4
       General: Mode: Periodic
       General: Period: 500
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Milliseconds
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -2905,16 +2909,16 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
       Interrupts: Dead Time Error Interrupt Enable: Disabled
       Interrupts: Dead Time Error Interrupt Priority: 4
       Extra Features: Extra Features: Disabled
-      Extra Features: Output Disable: POEG Link: POEG Channel 0 / Channel 4
+      Extra Features: Output Disable: POEG Link: POEG Channel 0
       Extra Features: Output Disable: Output Disable POEG Trigger: 
       Extra Features: ADC Trigger: Start Event Trigger: 
       Extra Features: Dead Time: Dead Time Count Up (Raw Counts): 0
@@ -2932,6 +2936,10 @@ FSP Configuration
       General: Channel: 3
       General: Mode: Periodic
       General: Period: 0x100000000
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Raw Counts
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Retain
@@ -2959,16 +2967,16 @@ FSP Configuration
       Interrupts: Callback: input_capture_user_callback
       Interrupts: Overflow/Crest Interrupt Enable: Enabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Enabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Enabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Enabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
       Interrupts: Dead Time Error Interrupt Enable: Disabled
       Interrupts: Dead Time Error Interrupt Priority: 4
       Extra Features: Extra Features: Disabled
-      Extra Features: Output Disable: POEG Link: POEG Channel 0 / Channel 4
+      Extra Features: Output Disable: POEG Link: POEG Channel 0
       Extra Features: Output Disable: Output Disable POEG Trigger: 
       Extra Features: ADC Trigger: Start Event Trigger: 
       Extra Features: Dead Time: Dead Time Count Up (Raw Counts): 0

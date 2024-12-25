@@ -7,6 +7,7 @@
  * 
  * SPDX-License-Identifier: BSD-3-Clause
  */
+
 #ifndef MTU3_TIMER_H_
 #define MTU3_TIMER_H_
 

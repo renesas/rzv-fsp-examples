@@ -252,7 +252,6 @@ void user_uart_callback(uart_callback_args_t *p_args)
                break;
              }
 
-
             /* Read all data provided by user until enter button is pressed */
             default:
             {

@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -226,16 +228,16 @@ FSP Configuration
       P37_0 W2 - - - - Disabled - - "Camera: CAM_DATA12; ETHER1: ET1_MDC; POEG: GTETRGC; SCIF2: SCIF2_SCK" - None - - 
       P37_1 W1 - - - - Disabled - - "Camera: CAM_DATA13; ETHER1: ET1_MDIO; POEG: GTETRGD; SCIF2: SCIF2_CTS" - None - - 
       P37_2 V2 - - - - Disabled - - "Camera: CAM_DATA14; ETHER1: ET1_LINKSTA; SCIF2: SCIF2_RTS" - None - - 
-      P38_0 A15 SCIF0_SCIF0_TXD - UltraHigh - "Peripheral mode" - - "CAN_: CAN_CLK; MTU4: MTIOC4A; POEG: GTETRGA; SCIF0: SCIF0_TXD; USB1: USB1_VBUSEN" - O - - 
-      P38_1 B15 SCIF0_SCIF0_RXD - UltraHigh - "Peripheral mode" - - "CAN0: CAN0_TX; MTU4: MTIOC4B; POEG: GTETRGB; SCIF0: SCIF0_RXD; USB1: USB1_OVRCUR" - I - - 
+      P38_0 A15 - - - - Disabled - - "CAN_: CAN_CLK; MTU4: MTIOC4A; POEG: GTETRGA; SCIF0: SCIF0_TXD; USB1: USB1_VBUSEN" - None - - 
+      P38_1 B15 - - - - Disabled - - "CAN0: CAN0_TX; MTU4: MTIOC4B; POEG: GTETRGB; SCIF0: SCIF0_RXD; USB1: USB1_OVRCUR" - None - - 
       P39_0 A16 - - - - Disabled - - "CAN0: CAN0_RX; MTU4: MTIOC4C; POEG: GTETRGC; SCIF0: SCIF0_SCK" - None - - 
       P39_1 C15 - - - - Disabled - - "CAN0: CAN0_TX_DATARATE_EN; MTU4: MTIOC4D; POEG: GTETRGD; SCIF0: SCIF0_CTS" - None - - 
       P39_2 B16 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; SCIF0: SCIF0_RTS" - None - - 
       P3_0 A14 - - - - Disabled - - "GPT3: GTIOC3A; IRQ: IRQ6; MTU2: MTIOC2A; RIIC2: RIIC2_SDA; SCIF4: SCIF4_SCK" - None - - 
       P3_1 B14 - - - - Disabled - - "Camera: CAM_FIELD; GPT3: GTIOC3B; IRQ: IRQ7; MTU2: MTIOC2B; RIIC2: RIIC2_SCL" - None - - 
-      P40_0 C17 SCIF1_SCIF1_TXD - UltraHigh - "Peripheral mode" - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU5: MTIC5U; SCI0: SCI0_RXD; SCIF1: SCIF1_TXD" - O - - 
-      P40_1 B17 SCIF1_SCIF1_RXD - UltraHigh - "Peripheral mode" - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU5: MTIC5V; SCI0: SCI0_TXD; SCIF1: SCIF1_RXD" - I - - 
-      P40_2 A17 SCIF1_SCIF1_SCK - UltraHigh - "Peripheral mode" - - "CAN1: CAN1_TX_DATARATE_EN; MTU5: MTIC5W; SCI0: SCI0_SCK; SCIF1: SCIF1_SCK" - IO - - 
+      P40_0 C17 - - - - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU5: MTIC5U; SCI0: SCI0_RXD; SCIF1: SCIF1_TXD" - None - - 
+      P40_1 B17 - - - - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU5: MTIC5V; SCI0: SCI0_TXD; SCIF1: SCIF1_RXD" - None - - 
+      P40_2 A17 - - - - Disabled - - "CAN1: CAN1_TX_DATARATE_EN; MTU5: MTIC5W; SCI0: SCI0_SCK; SCIF1: SCIF1_SCK" - None - - 
       P41_0 E17 GPIO - Middle - "Output mode (Low & Not Into Input)" - - "CAN1: CAN1_RX_DATARATE_EN; GPT3: GTIOC3A; GPT7: GTIOC7A; SCI0: SCI0_CTS_N_RTS_N; SCIF1: SCIF1_CTS" - IO - - 
       P41_1 A18 - - - - Disabled - - "GPT3: GTIOC3B; GPT7: GTIOC7B; SCIF1: SCIF1_RTS" - None - - 
       P42_0 AG4 - - - - Disabled - - "CAN_: CAN_CLK; MTU7: MTIOC7A; RSPI2: RSPI2_CK; SCIF2: SCIF2_TXD; USB1: USB1_VBUSEN" - None - - 
@@ -683,16 +685,16 @@ FSP Configuration
       P37_0 W2 - - - - Disabled - - "Camera: CAM_DATA12; ETHER1: ET1_MDC; POEG: GTETRGC; SCIF2: SCIF2_SCK" - None - - 
       P37_1 W1 - - - - Disabled - - "Camera: CAM_DATA13; ETHER1: ET1_MDIO; POEG: GTETRGD; SCIF2: SCIF2_CTS" - None - - 
       P37_2 V2 - - - - Disabled - - "Camera: CAM_DATA14; ETHER1: ET1_LINKSTA; SCIF2: SCIF2_RTS" - None - - 
-      P38_0 A15 - - Middle - Disabled - - "CAN_: CAN_CLK; MTU4: MTIOC4A; POEG: GTETRGA; SCIF0: SCIF0_TXD; USB1: USB1_VBUSEN" - O - - 
-      P38_1 B15 - - Middle - Disabled - - "CAN0: CAN0_TX; MTU4: MTIOC4B; POEG: GTETRGB; SCIF0: SCIF0_RXD; USB1: USB1_OVRCUR" - I - - 
+      P38_0 A15 - - - - Disabled - - "CAN_: CAN_CLK; MTU4: MTIOC4A; POEG: GTETRGA; SCIF0: SCIF0_TXD; USB1: USB1_VBUSEN" - None - - 
+      P38_1 B15 - - - - Disabled - - "CAN0: CAN0_TX; MTU4: MTIOC4B; POEG: GTETRGB; SCIF0: SCIF0_RXD; USB1: USB1_OVRCUR" - None - - 
       P39_0 A16 - - - - Disabled - - "CAN0: CAN0_RX; MTU4: MTIOC4C; POEG: GTETRGC; SCIF0: SCIF0_SCK" - None - - 
       P39_1 C15 - - - - Disabled - - "CAN0: CAN0_TX_DATARATE_EN; MTU4: MTIOC4D; POEG: GTETRGD; SCIF0: SCIF0_CTS" - None - - 
       P39_2 B16 - - - - Disabled - - "CAN0: CAN0_RX_DATARATE_EN; SCIF0: SCIF0_RTS" - None - - 
       P3_0 A14 - - - - Disabled - - "GPT3: GTIOC3A; IRQ: IRQ6; MTU2: MTIOC2A; RIIC2: RIIC2_SDA; SCIF4: SCIF4_SCK" - None - - 
       P3_1 B14 - - - - Disabled - - "Camera: CAM_FIELD; GPT3: GTIOC3B; IRQ: IRQ7; MTU2: MTIOC2B; RIIC2: RIIC2_SCL" - None - - 
-      P40_0 C17 - - Middle - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU5: MTIC5U; SCI0: SCI0_RXD; SCIF1: SCIF1_TXD" - O - - 
-      P40_1 B17 - - Middle - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU5: MTIC5V; SCI0: SCI0_TXD; SCIF1: SCIF1_RXD" - I - - 
-      P40_2 A17 - - Middle - Disabled - - "CAN1: CAN1_TX_DATARATE_EN; MTU5: MTIC5W; SCI0: SCI0_SCK; SCIF1: SCIF1_SCK" - IO - - 
+      P40_0 C17 - - - - Disabled - - "CAN1: CAN1_TX; GPT6: GTIOC6A; MTU5: MTIC5U; SCI0: SCI0_RXD; SCIF1: SCIF1_TXD" - None - - 
+      P40_1 B17 - - - - Disabled - - "CAN1: CAN1_RX; GPT6: GTIOC6B; MTU5: MTIC5V; SCI0: SCI0_TXD; SCIF1: SCIF1_RXD" - None - - 
+      P40_2 A17 - - - - Disabled - - "CAN1: CAN1_TX_DATARATE_EN; MTU5: MTIC5W; SCI0: SCI0_SCK; SCIF1: SCIF1_SCK" - None - - 
       P41_0 E17 - - Middle - Disabled - - "CAN1: CAN1_RX_DATARATE_EN; GPT3: GTIOC3A; GPT7: GTIOC7A; SCI0: SCI0_CTS_N_RTS_N; SCIF1: SCIF1_CTS" - IO - - 
       P41_1 A18 - - - - Disabled - - "GPT3: GTIOC3B; GPT7: GTIOC7B; SCIF1: SCIF1_RTS" - None - - 
       P42_0 AG4 - - - - Disabled - - "CAN_: CAN_CLK; MTU7: MTIOC7A; RSPI2: RSPI2_CK; SCIF2: SCIF2_TXD; USB1: USB1_VBUSEN" - None - - 

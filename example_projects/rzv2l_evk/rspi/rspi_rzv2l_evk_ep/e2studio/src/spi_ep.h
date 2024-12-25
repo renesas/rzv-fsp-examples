@@ -65,9 +65,6 @@ fsp_err_t spi_write_read(void);
 fsp_err_t spi_exit_demo(void);
 void spi_clean_up(void);
 
-
 /** @} */
-
-
 
 #endif /* SPI_EP_H_ */

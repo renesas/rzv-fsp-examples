@@ -29,7 +29,7 @@ fsp_err_t gtm_init(void)
 {
     fsp_err_t err = FSP_SUCCESS;     // Error status
 
-    /* Open Timer0 in One Shot Mode */
+    /* Open Timer2 in One Shot Mode */
     err = R_GTM_Open(&g_timer_one_shot_ctrl, &g_timer_one_shot_cfg);
     /* Handle error */
     if (FSP_SUCCESS != err)
@@ -43,7 +43,7 @@ fsp_err_t gtm_init(void)
     /* Handle error */
     if (FSP_SUCCESS != err)
     {
-        /* Close Timer0 in One Shot Mode */
+        /* Close Timer2 in One Shot Mode */
         if ( (FSP_SUCCESS != R_GTM_Close(&g_timer_one_shot_ctrl)))
         {
             APP_ERR_PRINT ("\r\nOne shot timer close failed.\r\nRestart the Application\r\n");
@@ -63,7 +63,7 @@ fsp_err_t gtm_start_oneshot_timer(void)
 {
     fsp_err_t err = FSP_SUCCESS;
 
-    /* Start Timer0 in one-shot mode */
+    /* Start Timer2 in one-shot mode */
     err = R_GTM_Start(&g_timer_one_shot_ctrl);
     /* Handle error */
     if (FSP_SUCCESS != err)

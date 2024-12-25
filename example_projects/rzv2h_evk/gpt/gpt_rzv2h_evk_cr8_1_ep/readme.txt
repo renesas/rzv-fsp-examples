@@ -63,7 +63,6 @@
         When connecting the conversion adapter "J-Link 9-pin Cortex-M Adapter" made by SEGGER will be required.
     (3) Connect PMOD LED to lower row PMOD Type1/1A on Expansion Board.
 
-
 NOTE:
 
 1. Timer period range in millisecond as per Example Project configuration:
@@ -75,5 +74,3 @@ NOTE:
 3. Segger RTT block address is required to connect J-Link RTTViewer.
    The RTT block address can be confirmed by searching "_SEGGER_RTT" in .map file 
    which is located in Debug folder and generated when building.
-
-   

@@ -7,6 +7,7 @@
  * 
  * SPDX-License-Identifier: BSD-3-Clause
  */
+
 #ifndef POEG_EP_H_
 #define POEG_EP_H_
 #include "common_utils.h"
@@ -31,7 +32,10 @@
 
 #define NULL_CHAR   ('\0')
 
-#define EP_INFO                "\r\nThe example project demonstrates the modes of POEG module"\
+#define EP_INFO                "\r\nThe example project demonstrates the basic functionalities of "\
+                               "\r\nPOEG driver on Renesas RZV MCUs based on Renesas FSP.RZV MPUs is "\
+                               "\r\nused to demonstrate the various operating modes of a POEG driver."\
+							   "\r\nThe example project demonstrates the modes of POEG module"\
                                "\r\n1.POEG Trigger Pin mode-GPT Output disable on GTETRG pin level"\
                                "\r\n2.POEG Software API mode-GPT Output disable by software API"\
                                "\r\n3.POEG Trigger Output Level mode-GPT Output disable from the GPT"\

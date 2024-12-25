@@ -8,7 +8,7 @@
 #include "pd_axi_on.h"
 #include "common_utils.h"
 #include "spi_ep.h"
-
+#define MODULE_NAME		"r_spi_b"
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 
@@ -34,13 +34,12 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_1);
-    APP_PRINT(BANNER_2);
-    APP_PRINT(BANNER_3,EP_VERSION);
-    APP_PRINT(BANNER_4,version.major, version.minor, version.patch );
-    APP_PRINT(BANNER_5);
-    APP_PRINT(BANNER_6);
-    APP_PRINT(BANNER_7);
+    APP_PRINT(BANNER_INFO,EP_VERSION,version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
+    APP_PRINT("\r\nThe project initializes SPI_B driver and configures SPI_B channels "\
+            "\r\nin Master and Slave mode. After initialization, master and slave"\
+            "\r\ncan transmit and receive data based on the commands from user."\
+            "\r\nRefer to the MPU User Manual for valid bit rates and corresponding"\
+            "\r\nclock settings.\r\n");
 
     /* Initialize SPI driver */
     err = spi_init();
@@ -143,7 +142,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
         /* Allow access to IP beyond AXI */
         pd_all_on_postproc_axi();

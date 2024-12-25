@@ -11,6 +11,18 @@
  * @{
  **********************************************************************************************************************/
 
+/* Initialize value of MSTOP Register */
+#define CPG_BUS_12_MSTOP_INITVAL    (0x06000000U)
+
+/* Initialize value of RST Registers */
+#define CPG_RST_15_INITVAL          (0x40004000U)
+#define CPG_RST_16_INITVAL          (0xFFFFFFFFU)
+#define CPG_RST_17_INITVAL          (0x03FF03FFU)
+
+/* Mask value of RSTMON Registers */
+#define CPG_RSTMON_7_MASKVAL        (0xFFFF0000U)
+#define CPG_RSTMON_8_MASKVAL        (0x000003FFU)
+
 /*******************************************************************************************************************//**
  *  @brief
  *  @param[IN]   None
@@ -19,26 +31,19 @@
  **********************************************************************************************************************/
 fsp_err_t pd_all_on_postproc_axi (void)
 {
-    fsp_err_t         err = FSP_SUCCESS;
-    volatile uint32_t reg32;
+    fsp_err_t err = FSP_SUCCESS;
 
     /* Allow access "from MCPU-Bus to ACPU-Bus" and "from ACPU-Bus to MCPU-Bus" */
-    R_CPG->CPG_BUS_12_MSTOP = 0x06000000;
+    R_CPG->CPG_BUS_12_MSTOP = CPG_BUS_12_MSTOP_INITVAL;
 
     /* Release reset of AXIs */
-    R_CPG->CPG_RST_15 = 0x40004000;    /* Release reset of RCPU_AXI_RESETN and MCPU_AXI_RESETN */
-    R_CPG->CPG_RST_16 = 0xFFFFFFFF;    /* Release reset of ACPU_AXI* and VIDEO_AXI* and DRP_AXI* and COM_AXI* and TZC_AXI* */
-    R_CPG->CPG_RST_17 = 0x03FF03FF;    /* Release reset of TZC_AXI* */
+    R_CPG->CPG_RST_15 = CPG_RST_15_INITVAL; /* Release reset of RCPU_AXI_RESETN and MCPU_AXI_RESETN */
+    R_CPG->CPG_RST_16 = CPG_RST_16_INITVAL; /* Release reset of ACPU_AXI* and VIDEO_AXI* and DRP_AXI* and COM_AXI* and TZC_AXI* */
+    R_CPG->CPG_RST_17 = CPG_RST_17_INITVAL; /* Release reset of TZC_AXI* */
 
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_7;
-    } while ((reg32 & 0xFFFF0000) != 0x00000000);
+    FSP_HARDWARE_REGISTER_WAIT((CPG_RSTMON_7_MASKVAL & R_CPG->CPG_RSTMON_7), 0x00000000);
 
-    do
-    {
-        reg32 = R_CPG->CPG_RSTMON_8;
-    } while ((reg32 & 0x000003FF) != 0x00000000);
+    FSP_HARDWARE_REGISTER_WAIT((CPG_RSTMON_8_MASKVAL & R_CPG->CPG_RSTMON_8), 0x00000000);
 
     return err;
 }

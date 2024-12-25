@@ -13,7 +13,7 @@
 /* External IRQ channel*/
 #define USER_SW_IRQ_NUMBER        (0x07)        /* Channel 7 */
 #define EP_INFO    "\r\nThis Example Project demonstrates the functionality of INTC_IRQ driver.\r\n" \
-    "On pressing the user push button, an external IRQ is triggered, which toggles on-board LED.\r\n"
+    "On pressing the user push button, an external IRQ is triggered, which toggles LED on PMOD LED.\r\n"
 
 
 /* Function declaration */

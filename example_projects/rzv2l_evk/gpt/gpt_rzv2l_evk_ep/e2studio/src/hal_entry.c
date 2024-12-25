@@ -13,7 +13,7 @@
 #include "gpt_timer.h"
 #include "stdbool.h"
 #include "stdint.h"
-
+#define MODULE_NAME		"r_gpt"
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
 /*******************************************************************************************************************//**
@@ -46,8 +46,9 @@ void hal_entry(void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_INFO, EP_VERSION, version.major, version.minor, version.patch);
+    APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
     APP_PRINT(EP_INFO);
+    R_BSP_SoftwareDelay(200, BSP_DELAY_UNITS_MILLISECONDS);
 
     /* Print Menu option of GPT timer*/
     print_timer_menu();
@@ -319,7 +320,7 @@ void R_BSP_WarmStart(bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open (&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open (&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
     }
 }
 /*******************************************************************************************************************//**

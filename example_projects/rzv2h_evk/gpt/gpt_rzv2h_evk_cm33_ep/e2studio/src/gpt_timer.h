@@ -24,7 +24,6 @@
 /* GPT Timer Pin for boards */
 #define TIMER_PIN           (GPT_IO_PIN_GTIOCB)
 
-
 #define GPT_MAX_PERIOD_COUNT     (0XFFFFFFFF)    /* Max Period Count for 32-bit Timer*/
 #define PERIODIC_MODE	   (1U)                  /* To check status of GPT Timer in Periodic mode */
 #define PWM_MODE	       (2U)                  /* To check status of GPT Timer in PWM mode */

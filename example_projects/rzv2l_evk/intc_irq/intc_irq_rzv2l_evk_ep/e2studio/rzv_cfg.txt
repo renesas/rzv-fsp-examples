@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -261,7 +263,7 @@ FSP Configuration
       P46_3 D13 - - - - Disabled - - "CAN1: CAN1_RX_DATARATE_EN; POEG: GTETRGD; RIIC3: RIIC3_SCL; SSI1: SSI1_RXD" - None - - 
       P47_0 B20 - - - - Disabled - - "IRQ: IRQ0; RSPI0: RSPI0_CK; SCI0: SCI0_RXD; SD/MMC0: SD0_CD; SSI1: SSI1_BCK" - None - - 
       P47_1 A20 - - - - Disabled - - "IRQ: IRQ1; RSPI0: RSPI0_MOSI; SCI0: SCI0_TXD; SD/MMC0: SD0_WP; SSI1: SSI1_RCK" - None - - 
-      P47_2 A21 IRQ_IRQ2 - Middle - "Peripheral mode" - - "IRQ: IRQ2; RSPI0: RSPI0_MISO; SCI0: SCI0_SCK; SD/MMC1: SD1_CD; SSI1: SSI1_TXD" - I - - 
+      P47_2 A21 - - - - Disabled - - "IRQ: IRQ2; RSPI0: RSPI0_MISO; SCI0: SCI0_SCK; SD/MMC1: SD1_CD; SSI1: SSI1_TXD" - None - - 
       P47_3 B21 - - - - Disabled - - "IRQ: IRQ3; RSPI0: RSPI0_SSL; SCI0: SCI0_CTS_N_RTS_N; SD/MMC1: SD1_WP; SSI1: SSI1_RXD" - None - - 
       P48_0 B22 - - - - Disabled - - "MTU: MTCLKA; RIIC2: RIIC2_SDA; RSPI1: RSPI1_CK; SCIF2: SCIF2_TXD" - None - - 
       P48_1 A23 - - - - Disabled - - "MTU: MTCLKB; RIIC2: RIIC2_SCL; RSPI1: RSPI1_MOSI; SCIF2: SCIF2_RXD" - None - - 
@@ -718,7 +720,7 @@ FSP Configuration
       P46_3 D13 - - - - Disabled - - "CAN1: CAN1_RX_DATARATE_EN; POEG: GTETRGD; RIIC3: RIIC3_SCL; SSI1: SSI1_RXD" - None - - 
       P47_0 B20 - - - - Disabled - - "IRQ: IRQ0; RSPI0: RSPI0_CK; SCI0: SCI0_RXD; SD/MMC0: SD0_CD; SSI1: SSI1_BCK" - None - - 
       P47_1 A20 - - - - Disabled - - "IRQ: IRQ1; RSPI0: RSPI0_MOSI; SCI0: SCI0_TXD; SD/MMC0: SD0_WP; SSI1: SSI1_RCK" - None - - 
-      P47_2 A21 - - Middle - Disabled - - "IRQ: IRQ2; RSPI0: RSPI0_MISO; SCI0: SCI0_SCK; SD/MMC1: SD1_CD; SSI1: SSI1_TXD" - I - - 
+      P47_2 A21 - - - - Disabled - - "IRQ: IRQ2; RSPI0: RSPI0_MISO; SCI0: SCI0_SCK; SD/MMC1: SD1_CD; SSI1: SSI1_TXD" - None - - 
       P47_3 B21 - - - - Disabled - - "IRQ: IRQ3; RSPI0: RSPI0_SSL; SCI0: SCI0_CTS_N_RTS_N; SD/MMC1: SD1_WP; SSI1: SSI1_RXD" - None - - 
       P48_0 B22 - - - - Disabled - - "MTU: MTCLKA; RIIC2: RIIC2_SDA; RSPI1: RSPI1_CK; SCIF2: SCIF2_TXD" - None - - 
       P48_1 A23 - - - - Disabled - - "MTU: MTCLKB; RIIC2: RIIC2_SCL; RSPI1: RSPI1_MOSI; SCIF2: SCIF2_RXD" - None - - 

@@ -35,11 +35,13 @@
 		
     (3) Connect PMOD LEDs to Pmod Type3/3A(CN3) (pin 1-6) on RZ/V2H EVK Expansion Board.
 	
-	(4) Connect Pmod Type1/1A(CN1) PIN1 of the RZ/V2H EVK Expansion Board and Tx Pin of CAN transceiver module 1.
+    (4) Connect Pmod Type1/1A(CN1) PIN1 of the RZ/V2H EVK Expansion Board and Tx Pin of CAN transceiver module 1.
         Connect Pmod Type1/1A(CN1) PIN2 of the RZ/V2H EVK Expansion Board and Rx Pin of CAN transceiver module 1.
         Connect Pmod Type1/1A(CN1) PIN3 of the RZ/V2H EVK Expansion Board and Tx Pin of CAN transceiver module 2.
         Connect Pmod Type1/1A(CN1) PIN4 of the RZ/V2H EVK Expansion Board and Rx Pin of CAN transceiver module 2.
-        Share the VCC and GND of 2 CAN transceiver modules and then connect them to the corresponding VCC and GND pins on the RZ/V2H EVK Expansion Board. (CN1 PIN 12 connect to VCC, CN1 PIN 11 connect to GND)
+        Share the VCC and GND of 2 CAN transceiver modules and then connect them to the corresponding VCC and GND pins on the RZ/V2H EVK Expansion Board. 
+        H3 HOLE of RZ/V2H EVK Expansion Board connect to VCC
+        CN1 PIN 11 connect to GND.
         Connect the Can_H Pin of CAN transceiver module 1 to Can_H Pin of CAN transceiver module 2.
         Connect the Can_L Pin of CAN transceiver module 1 to Can_L Pin of CAN transceiver module 2
     

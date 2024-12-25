@@ -26,7 +26,7 @@
         - Others : Default.
     (2) Connect the J-Link Base and the connector on the SMARC Module Board with JTAG cable.
         When connecting the conversion adapter "J-Link 9-pin Cortex-M Adapter" made by SEGGER will be required.
-    (3) Connect PMOD Type1/1A PIN7-12 on Expansion Board and Pmod BUTTON.
+    (3) Connect PMOD Type1/1A PIN7-12 on Expansion Board with Pmod BUTTON.
 
 Note:
 1. Segger RTT block address is required to connect J-Link RTTViewer. 

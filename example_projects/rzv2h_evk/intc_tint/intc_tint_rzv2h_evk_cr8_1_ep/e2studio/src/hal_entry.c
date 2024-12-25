@@ -9,6 +9,7 @@
 #include "hal_data.h"
 #include "common_utils.h"
 #include "intc_tint_ep.h"
+#define MODULE_NAME		"r_intc_tint"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -38,7 +39,7 @@ void hal_entry (void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the RTT */
-    APP_PRINT(BANNER_INFO,EP_VERSION,version.major, version.minor, version.patch);
+    APP_PRINT(BANNER_INFO,EP_VERSION,version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
     APP_PRINT(EP_INFO);
 
     /* Initialize TINT driver*/
@@ -71,70 +72,56 @@ void hal_entry (void)
     }
 
     /* Main loop */
-    while (true)
-    {
-        /* Toggle user LED  when user pushbutton is pressed*/
-        if(true == g_sw_press)
-        {
-            /* Clear user pushbutton flag */
-            g_sw_press = false;
+	while (true)
+	{
+		/* Toggle user LED  when user pushbutton is pressed*/
+		if(true == g_sw_press)
+		{
+			/* Clear user pushbutton flag */
+			g_sw_press = false;
 
-            /* Notify that user pushbutton is pressed */
-            APP_PRINT("User Pushbutton Pressed\r\n");
+			/* Notify that user pushbutton is pressed */
+			APP_PRINT("\r\nUser Pushbutton Pressed\r\n");
 
-            /* Read user LED  pin */
-            for (uint32_t i = 0; i < g_bsp_leds.led_count; i++)
-            {
-                /* Get pin to toggle */
-                bsp_io_port_pin_t pin = g_bsp_leds.p_leds[i];
+			/* Read user LED pin */
+			err = R_IOPORT_PinRead(&g_ioport_ctrl,(bsp_io_port_pin_t)leds.p_leds[RESET_VALUE], &led_current_state);
 
-                /* Read from this pin */
-                err = R_IOPORT_PinRead(&g_ioport_ctrl, pin, &led_current_state);
+			/* Handle error */
+			if (FSP_SUCCESS != err)
+			{
+				APP_ERR_PRINT("** R_IOPORT_PinRead FAILED ** \r\n");
+				/* Close TINT module.*/
+				intc_tint_deinit();
+				APP_ERR_TRAP(err);
+			}
 
-                /* Handle error */
-                if (FSP_SUCCESS != err)
-                {
-                    APP_ERR_PRINT("** R_IOPORT_PinRead FAILED ** \r\n");
-                    /* Close TINT module.*/
-                    intc_tint_deinit();
-                    APP_ERR_TRAP(err);
-                }
-            }
+			/* Reverse LED pin state*/
+			led_current_state ^= BSP_IO_LEVEL_HIGH;
 
-            /* Reverse LED pin state*/
-            led_current_state ^= BSP_IO_LEVEL_HIGH;
+			/* Toggle user LED */
+			err = R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t)leds.p_leds[RESET_VALUE], led_current_state);
 
-            /* Toggle user LED */
-            for (uint32_t i = 0; i < g_bsp_leds.led_count; i++)
-            {
-                /* Get pin to toggle */
-                uint32_t pin = g_bsp_leds.p_leds[i];
+			/* Handle error */
+			if (FSP_SUCCESS != err)
+			{
+				APP_ERR_PRINT("** R_IOPORT_PinWrite FAILED ** \r\n");
+				/* Close TINT module.*/
+				intc_tint_deinit();
+				APP_ERR_TRAP(err);
+			}
+			if(BSP_IO_LEVEL_HIGH == led_current_state)
 
-                /* Write to this pin */
-                err = R_IOPORT_PinWrite(&g_ioport_ctrl, (bsp_io_port_pin_t)pin, led_current_state);
-
-                /* Handle error */
-                if (FSP_SUCCESS != err)
-                {
-                    APP_ERR_PRINT("** R_IOPORT_PinWrite FAILED ** \r\n");
-                    /* Close TINT module.*/
-                    intc_tint_deinit();
-                    APP_ERR_TRAP(err);
-                }
-            }
-
-                if(BSP_IO_LEVEL_HIGH == led_current_state)
-                {
-                    /* Print LED Pin state */
-                    APP_PRINT("LED State: High{ON}\r\n\r\n");
-                }
-                else
-                {
-                    /* Print LED Pin state */
-                    APP_PRINT("LED State: Low{OFF}\r\n\r\n");
-                }
-        }
-    }
+			{
+				/* Print LED Pin state */
+				APP_PRINT("LED State: High{ON}\r\n");
+			}
+			else
+			{
+				/* Print LED Pin state */
+				APP_PRINT("LED State: Low{OFF}\r\n");
+			}
+		}
+	}
 }
 
 /*******************************************************************************************************************//**
@@ -154,7 +141,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
         /* Allow access to IP beyond AXI */
         pd_all_on_postproc_axi();

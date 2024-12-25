@@ -173,7 +173,7 @@ static void can_data_check_operation(void)
     else if(RESET_VALUE == strncmp((char*)&g_canfd_ch0_rx_frame.data[ZERO], (char*)&rx_data[ZERO], CAN_CLASSIC_FRAME_DATA_BYTES))
     {
         /* Cleaning receive frame */
-        memset(&g_canfd_ch0_rx_frame.data[ZERO], NULL_CHAR, CAN_CLASSIC_FRAME_DATA_BYTES);
+        memset(&g_canfd_ch0_rx_frame.data[ZERO], NULL_CHAR, CAN_FD_DATA_LENGTH_CODE);
 
         APP_PRINT("\nReceived Acknowledgement for Classic CAN Frame transmission.\nCAN operation Successful. Data length = %d\n", g_canfd_ch0_rx_frame.data_length_code);
         APP_PRINT("\n 3. Data transmission over FD frame\n");
@@ -199,7 +199,7 @@ static void can_data_check_operation(void)
     else if(RESET_VALUE == strncmp((char*)&g_canfd_ch1_rx_frame.data[ZERO], (char*)&tx_fd_data[ZERO], CAN_FD_DATA_LENGTH_CODE)) // acknowledging for second transmission
     {
         /* Cleaning receive frame */
-        memset(&g_canfd_ch1_rx_frame.data[ZERO], NULL_CHAR, CAN_CLASSIC_FRAME_DATA_BYTES);
+        memset(&g_canfd_ch1_rx_frame.data[ZERO], NULL_CHAR, CAN_FD_DATA_LENGTH_CODE);
 
         APP_PRINT("\nReceived data over FD Frame.\nCAN operation Successful. Data length = %d\n", g_canfd_ch1_rx_frame.data_length_code);
         APP_PRINT("\n 4. Sending modified data over FD Frame now as acknowledgement for received FD data.\n");
@@ -225,7 +225,7 @@ static void can_data_check_operation(void)
     else if(RESET_VALUE == strncmp((char*)&g_canfd_ch0_rx_frame.data[ZERO], (char*)&rx_fd_data[ZERO], CAN_FD_DATA_LENGTH_CODE)) // acknowledgement for second transmission
     {
         /* Cleaning receive frame */
-        memset(&g_canfd_ch0_rx_frame.data[ZERO], NULL_CHAR, CAN_CLASSIC_FRAME_DATA_BYTES);
+        memset(&g_canfd_ch0_rx_frame.data[ZERO], NULL_CHAR, CAN_FD_DATA_LENGTH_CODE);
 
         APP_PRINT("\nReceived Acknowledgement for FD Frame.\nCAN operation Successful. Data length = %d\n\n", g_canfd_ch0_rx_frame.data_length_code);
         APP_PRINT("\nPlease enter any key on Terminal Emulator to initiate CAN transmission.\n");

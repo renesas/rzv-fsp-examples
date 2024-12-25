@@ -11,6 +11,7 @@ FSP Configuration
     series: 2
     
   RZV2L Family
+    Enable inline BSP IRQ functions: Enabled
     
   RZ Common
     Secure stack size (bytes): 0x200
@@ -22,6 +23,7 @@ FSP Configuration
     Error Log: No Error Log
     PFS Protect: Enabled
     C Runtime Initialization : Enabled
+    Early BSP Initialization : Disabled
     
   Clocks
     OSC 24000000Hz
@@ -160,8 +162,8 @@ FSP Configuration
       MD_OSCDRV1 D27 - - - - - - - - - None - - 
       NMI AJ2 - - - - - - - - - None - - 
       OTP_VDD18 G17 "Power, System_OTP_VDD18" - - - - - - - - IO "Read only" - 
-      P0_0 A11 GPT0_GTIOC0A - Middle - "Peripheral mode" - - "GPT0: GTIOC0A; IRQ: IRQ0; MTU0: MTIOC0A; SCI0: SCI0_RXD; SCIF3: SCIF3_TXD" - IO - - 
-      P0_1 B12 GPT0_GTIOC0B - Middle - "Peripheral mode" - - "GPT0: GTIOC0B; IRQ: IRQ1; MTU0: MTIOC0B; SCI0: SCI0_TXD; SCIF3: SCIF3_RXD" - IO - - 
+      P0_0 A11 - - - - Disabled - - "GPT0: GTIOC0A; IRQ: IRQ0; MTU0: MTIOC0A; SCI0: SCI0_RXD; SCIF3: SCIF3_TXD" - None - - 
+      P0_1 B12 - - - - Disabled - - "GPT0: GTIOC0B; IRQ: IRQ1; MTU0: MTIOC0B; SCI0: SCI0_TXD; SCIF3: SCIF3_RXD" - None - - 
       P10_0 AJ22 - - - - Disabled - - "CAN_: CAN_CLK; Display: DISP_DATA6; MTU6: MTIOC6A; POEG: GTETRGA" - None - - 
       P10_1 AH22 - - - - Disabled - - "CAN0: CAN0_TX; Display: DISP_DATA7; MTU6: MTIOC6B; POEG: GTETRGB" - None - - 
       P11_0 AG22 - - - - Disabled - - "CAN0: CAN0_RX; Display: DISP_DATA8; MTU6: MTIOC6C; POEG: GTETRGC" - None - - 
@@ -617,8 +619,8 @@ FSP Configuration
       MD_OSCDRV1 D27 - - - - - - - - - None - - 
       NMI AJ2 - - - - - - - - - None - - 
       OTP_VDD18 G17 "Power, System_OTP_VDD18" - - - - - - - - IO "Read only" - 
-      P0_0 A11 - - Middle - Disabled - - "GPT0: GTIOC0A; IRQ: IRQ0; MTU0: MTIOC0A; SCI0: SCI0_RXD; SCIF3: SCIF3_TXD" - IO - - 
-      P0_1 B12 - - Middle - Disabled - - "GPT0: GTIOC0B; IRQ: IRQ1; MTU0: MTIOC0B; SCI0: SCI0_TXD; SCIF3: SCIF3_RXD" - IO - - 
+      P0_0 A11 - - - - Disabled - - "GPT0: GTIOC0A; IRQ: IRQ0; MTU0: MTIOC0A; SCI0: SCI0_RXD; SCIF3: SCIF3_TXD" - None - - 
+      P0_1 B12 - - - - Disabled - - "GPT0: GTIOC0B; IRQ: IRQ1; MTU0: MTIOC0B; SCI0: SCI0_TXD; SCIF3: SCIF3_RXD" - None - - 
       P10_0 AJ22 - - - - Disabled - - "CAN_: CAN_CLK; Display: DISP_DATA6; MTU6: MTIOC6A; POEG: GTETRGA" - None - - 
       P10_1 AH22 - - - - Disabled - - "CAN0: CAN0_TX; Display: DISP_DATA7; MTU6: MTIOC6B; POEG: GTETRGB" - None - - 
       P11_0 AG22 - - - - Disabled - - "CAN0: CAN0_RX; Display: DISP_DATA8; MTU6: MTIOC6C; POEG: GTETRGC" - None - - 
@@ -967,14 +969,13 @@ FSP Configuration
   Module "I/O Port (r_ioport)"
     Parameter Checking: Default (BSP)
     
-  Module "Port Output Enable for GPT (r_poeg)"
-    Parameter Checking: Default (BSP)
-    
   Module "Timer, General PWM (r_gpt)"
     Parameter Checking: Default (BSP)
     Pin Output Support: Enabled with Extra Features
     Write Protect Enable: Disabled
-    Clock Source: P0CLK
+    
+  Module "Port Output Enable for GPT (r_poeg)"
+    Parameter Checking: Default (BSP)
     
   HAL
     Instance "g_ioport I/O Port (r_ioport)"
@@ -1037,31 +1038,15 @@ FSP Configuration
       ELC Single Port 3: Output Direction Setting: Output Operation: Disabled
       ELC Single Port 3: Input Direction Setting: Edge Detection: Disabled
       
-    Instance "g_poeg0 Port Output Enable for GPT (r_poeg)"
-      General: Name: g_poeg0
-      General: Channel: 0
-      General: Trigger: GPT Output Level
-      Input: GTETRG Polarity: Active Low
-      Input: GTETRG Noise Filter: Clock Source / 32
-      Interrupts: Callback: channel0_user_callback
-      Interrupts: POEG Interrupt Enable: Enabled
-      Interrupts: Interrupt Priority: 1
-      
-    Instance "g_poeg1 Port Output Enable for GPT (r_poeg)"
-      General: Name: g_poeg1
-      General: Channel: 1
-      General: Trigger: 
-      Input: GTETRG Polarity: Active Low
-      Input: GTETRG Noise Filter: Clock Source / 32
-      Interrupts: Callback: NULL
-      Interrupts: POEG Interrupt Enable: Enabled
-      Interrupts: Interrupt Priority: 1
-      
     Instance "g_timer_pwm1 Timer, General PWM (r_gpt)"
       General: Name: g_timer_pwm1
       General: Channel: 4
-      General: Mode: PWM
+      General: Mode: Saw-wave PWM
       General: Period: 1000
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Raw Counts
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Toggle
@@ -1089,9 +1074,9 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Disabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Disabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Disabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
@@ -1111,11 +1096,25 @@ FSP Configuration
       Extra Features: Output Disable: GTIOCA Disable Setting: Level Low
       Extra Features: Output Disable: GTIOCB Disable Setting: Level Low
       
+      Instance "g_poeg0 Port Output Enable for GPT (r_poeg)"
+        General: Name: g_poeg0
+        General: Channel: 0
+        General: Trigger: GPT Output Level
+        Input: GTETRG Polarity: Active Low
+        Input: GTETRG Noise Filter: Clock source / 32
+        Interrupts: Callback: channel0_user_callback
+        Interrupts: POEG Interrupt Enable: Enabled
+        Interrupts: Interrupt Priority: 1
+        
     Instance "g_timer_pwm2 Timer, General PWM (r_gpt)"
       General: Name: g_timer_pwm2
       General: Channel: 7
-      General: Mode: PWM
+      General: Mode: Saw-wave PWM
       General: Period: 1000
+      General: Compare Match: Compare Match A: Status: Disabled
+      General: Compare Match: Compare Match A: Compare match value: 0
+      General: Compare Match: Compare Match B: Status: Disabled
+      General: Compare Match: Compare Match B: Compare match value: 0
       General: Period Unit: Raw Counts
       Output: Custom Waveform: GTIOA: Initial Output Level: Pin Level Low
       Output: Custom Waveform: GTIOA: Cycle End Output Level: Pin Level Toggle
@@ -1143,9 +1142,9 @@ FSP Configuration
       Interrupts: Callback: NULL
       Interrupts: Overflow/Crest Interrupt Enable: Disabled
       Interrupts: Overflow/Crest Interrupt Priority: 4
-      Interrupts: Capture A Interrupt Enable: Disabled
-      Interrupts: Capture A Interrupt Priority: 4
-      Interrupts: Capture B Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Enable: Disabled
+      Interrupts: Capture/Compare match A Interrupt Priority: 4
+      Interrupts: Capture/Compare match B Interrupt Enable: Disabled
       Interrupts: Capture B Interrupt Priority: 4
       Interrupts: Underflow/Trough Interrupt Enable: Disabled
       Interrupts: Underflow/Trough Interrupt Priority: 4
@@ -1165,3 +1164,13 @@ FSP Configuration
       Extra Features: Output Disable: GTIOCA Disable Setting: Level Low
       Extra Features: Output Disable: GTIOCB Disable Setting: Level Low
       
+      Instance "g_poeg1 Port Output Enable for GPT (r_poeg)"
+        General: Name: g_poeg1
+        General: Channel: 1
+        General: Trigger: 
+        Input: GTETRG Polarity: Active Low
+        Input: GTETRG Noise Filter: Clock source / 32
+        Interrupts: Callback: NULL
+        Interrupts: POEG Interrupt Enable: Enabled
+        Interrupts: Interrupt Priority: 1
+        

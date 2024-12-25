@@ -27,6 +27,12 @@ static fsp_err_t pmic_read_reg(uint8_t reg_address, uint8_t * reg_data);
 static fsp_err_t pmic_write_reg(uint8_t reg_address, uint8_t reg_data);
 static fsp_err_t validate_i2c_event(void);
 
+/* PMIC Register Definitions */
+ #define PMIC_HW_REV_ADDR          (0xF8)
+ #define PMIC_MPIO3_CONFIG_ADDR    (0x8D)
+ #define PMIC_MPIO3_CONFIG_DATA    (0x00)
+ #define PMIC_BLOCK_EN_ADDR        (0x6C)
+
 /*******************************************************************************************************************//**
  *  @brief       Change PMIC status from SLEEP to ACTIVE
  *  @param[IN]   None
@@ -50,25 +56,25 @@ fsp_err_t pmic_sleep_to_active (void)
         return err;
     }
 
-    reg_address = 0xF8;
+    reg_address = PMIC_HW_REV_ADDR;
     pmic_read_reg(reg_address, &reg_data);
     APP_PRINT("HW REV addr:%x, data:%x\r\n", reg_address, reg_data);
 
-    reg_address = 0x8D;
+    reg_address = PMIC_MPIO3_CONFIG_ADDR;
     pmic_read_reg(reg_address, &reg_data);
     APP_PRINT("MPIO3 Config addr:%x, data:%x\r\n", reg_address, reg_data);
 
-    reg_address = 0x6C;
+    reg_address = PMIC_BLOCK_EN_ADDR;
     pmic_read_reg(reg_address, &reg_data);
     APP_PRINT("Block EN addr:%x, data:%x\r\n", reg_address, reg_data);
 
     APP_PRINT("Write to MPIO3 Config\r\n");
 
-    reg_address = 0x8D;
-    reg_data    = 0x00;
+    reg_address = PMIC_MPIO3_CONFIG_ADDR;
+    reg_data    = PMIC_MPIO3_CONFIG_DATA;
     pmic_write_reg(reg_address, reg_data);
 
-    reg_address = 0x8D;
+    reg_address = PMIC_MPIO3_CONFIG_ADDR;
     pmic_read_reg(reg_address, &reg_data);
     APP_PRINT("MPIO3 Config addr:%x, data:%x\r\n", reg_address, reg_data);
 

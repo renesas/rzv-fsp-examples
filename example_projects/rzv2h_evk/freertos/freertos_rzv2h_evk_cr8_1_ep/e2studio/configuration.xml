@@ -9,11 +9,10 @@
     <option key="#DeviceCommand#" value="R9A09G057H44GBG"/>
     <option key="#RTOS#" value="rtos.awsfreertos"/>
     <option key="#pinconfiguration#" value="R9A09G057H44GBG.pincfg"/>
-    <option key="#FSPVersion#" value="2.0.1"/>
+    <option key="#FSPVersion#" value="3.0.0"/>
     <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
     <option key="#SELECTED_TOOLCHAIN#" value="gcc-arm-embedded"/>
-    <option key="#ToolchainVersion#" value="12.2.1.arm-12-24"/>
-    <option key="#ConfigurationFragments#" value="Renesas##BSP##Board##rzv2h_evk##"/>
+    <option key="#ToolchainVersion#" value="13.3.1.arm-13-24"/>
   </generalSettings>
   <raBspConfiguration>
     <config id="config.bsp.rzv2h.R9A09G057H44GBG">
@@ -27,6 +26,7 @@
       <property id="config.bsp.series" value="config.bsp.series.value"/>
     </config>
     <config id="config.bsp.rzv2h.fsp.cr8_1">
+      <property id="config.bsp.fsp.inline_irq_functions" value="config.bsp.common.inline_irq_functions.enabled"/>
       <property id="config.bsp.fsp.mcu.spi.max_bitrate" value="50000000"/>
       <property id="config.bsp.fsp.mcu.sci_b_uart.max_baud" value="16666667"/>
       <property id="config.bsp.fsp.mcu.sci_b_spi.max_bitrate" value="25000000"/>
@@ -42,6 +42,7 @@
       <property id="config.bsp.fsp.mcu.canfd.max_rxmb_number" value="96"/>
       <property id="config.bsp.fsp.mcu.canfd.afl_rules" value="768"/>
       <property id="config.bsp.fsp.mcu.canfd.afl_rules_each_chnl" value="128"/>
+      <property id="config.bsp.fsp.mcu.canfd.buffer_ram" value="14592"/>
     </config>
     <config id="config.bsp.rz.cr8">
       <property id="config.bsp.common.fiq" value="0x1000"/>
@@ -61,45 +62,45 @@
     </config>
   </raBspConfiguration>
   <raComponentSelection>
-    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="2.0.1">
-      <description>Board Support Package Common Files</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="2.0.1">
-      <description>I/O Port</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gtm" variant="" vendor="Renesas" version="2.0.1">
-      <description>General Timer</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="Middleware" condition="" group="all" subgroup="rm_freertos_port" variant="" vendor="Renesas" version="2.0.1">
+    <component apiversion="" class="Middleware" condition="" group="all" subgroup="rm_freertos_port" variant="" vendor="Renesas" version="3.0.0">
       <description>FreeRTOS Port</description>
-      <originalPack>Renesas.RZV.2.0.1.pack</originalPack>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="RTOS" condition="" group="FreeRTOS" subgroup="all" variant="" vendor="AWS" version="10.4.6+fsp.2.0.1">
+    <component apiversion="" class="Common" condition="" group="all" subgroup="fsp_common" variant="" vendor="Renesas" version="3.0.0">
+      <description>Board Support Package Common Files</description>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_gtm" variant="" vendor="Renesas" version="3.0.0">
+      <description>General Timer</description>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ioport" variant="" vendor="Renesas" version="3.0.0">
+      <description>I/O Port</description>
+      <originalPack>Renesas.RZV.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="RTOS" condition="" group="FreeRTOS" subgroup="all" variant="" vendor="AWS" version="10.6.1+fsp.3.0.0">
       <description>FreeRTOS</description>
-      <originalPack>Amazon.FreeRTOS-Kernel.10.4.6+fsp.2.0.1.pack</originalPack>
+      <originalPack>Amazon.FreeRTOS-Kernel.10.6.1+fsp.3.0.0.pack</originalPack>
     </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="2.0.1">
-      <description>Board support package for R9A09G057H44GBG</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="2.0.1">
-      <description>Board support package for RZV2H</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="2.0.1">
-      <description>Board support package for RZ/V2H (RZ/V2H) - FSP Data</description>
-      <originalPack>Renesas.RZV_mcu_rzv2h.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="2.0.1">
-      <description>Evaluation Kit RZ/V2H Support Files (RZ/V2H)</description>
-      <originalPack>Renesas.RZV_board_rzv2h_evk.2.0.1.pack</originalPack>
-    </component>
-    <component apiversion="" class="Heaps" condition="" group="FreeRTOS" subgroup="heap_4" variant="" vendor="AWS" version="10.4.6+fsp.2.0.1">
+    <component apiversion="" class="Heaps" condition="" group="FreeRTOS" subgroup="heap_4" variant="" vendor="AWS" version="10.6.1+fsp.3.0.0">
       <description>FreeRTOS - Memory Management - Heap 4</description>
-      <originalPack>Amazon.FreeRTOS-Kernel.10.4.6+fsp.2.0.1.pack</originalPack>
+      <originalPack>Amazon.FreeRTOS-Kernel.10.6.1+fsp.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="Board" subgroup="rzv2h_evk" variant="" vendor="Renesas" version="3.0.0">
+      <description>Evaluation Kit RZ/V2H Support Files (RZ/V2H)</description>
+      <originalPack>Renesas.RZV_board_rzv2h_evk.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="R9A09G057H44GBG" vendor="Renesas" version="3.0.0">
+      <description>Board support package for R9A09G057H44GBG</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="device" variant="" vendor="Renesas" version="3.0.0">
+      <description>Board support package for RZV2H</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
+    </component>
+    <component apiversion="" class="BSP" condition="" group="rzv2h" subgroup="fsp" variant="" vendor="Renesas" version="3.0.0">
+      <description>Board support package for RZ/V2H (RZ/V2H) - FSP Data</description>
+      <originalPack>Renesas.RZV_mcu_rzv2h.3.0.0.pack</originalPack>
     </component>
   </raComponentSelection>
   <raElcConfiguration/>
@@ -178,7 +179,7 @@
       <property id="module.driver.timer.direction" value="module.driver.timer.direction.0"/>
     </module>
     <module id="module.middleware.rm_freertos_port.0"/>
-    <module id="module.driver.timer_on_gtm.247272568">
+    <module id="module.driver.timer_on_gtm.1476295227">
       <property id="module.driver.timer.name" value="g_periodic_timer_msgq"/>
       <property id="module.driver.timer.channel" value="enum.mcu.gtm.channels.1"/>
       <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_periodic"/>
@@ -190,7 +191,7 @@
       <property id="module.driver.timer.int.generateatstart" value="module.driver.timer.int.generateatstart.0"/>
       <property id="module.driver.timer.direction" value="module.driver.timer.direction.0"/>
     </module>
-    <module id="module.driver.timer_on_gtm.343751045">
+    <module id="module.driver.timer_on_gtm.430004173">
       <property id="module.driver.timer.name" value="g_periodic_timer_sem"/>
       <property id="module.driver.timer.channel" value="enum.mcu.gtm.channels.1"/>
       <property id="module.driver.timer.mode" value="module.driver.timer.mode.mode_periodic"/>
@@ -202,14 +203,14 @@
       <property id="module.driver.timer.int.generateatstart" value="module.driver.timer.int.generateatstart.0"/>
       <property id="module.driver.timer.direction" value="module.driver.timer.direction.0"/>
     </module>
-    <module id="module.freertos.heap.4.371867976"/>
-    <object id="rtos.awsfreertos.object.queue.1227038177">
+    <module id="module.freertos.heap.4.1686855544"/>
+    <object id="rtos.awsfreertos.object.queue.683565983">
       <property id="rtos.awsfreertos.object.queue.symbol" value="g_queue"/>
       <property id="rtos.awsfreertos.object.queue.item_size" value="15"/>
       <property id="rtos.awsfreertos.object.queue.queue_length" value="4"/>
       <property id="rtos.awsfreertos.object.queue.allocation" value="rtos.awsfreertos.object.queue.allocation.static"/>
     </object>
-    <object id="rtos.awsfreertos.object.binary_semaphore.733886662">
+    <object id="rtos.awsfreertos.object.binary_semaphore.1363574224">
       <property id="rtos.awsfreertos.object.binary_semaphore.symbol" value="g_binary_semaphore"/>
       <property id="rtos.awsfreertos.object.binary_semaphore.allocation" value="rtos.awsfreertos.object.binary_semaphore.allocation.static"/>
     </object>
@@ -218,11 +219,11 @@
       <stack module="module.middleware.rm_freertos_port.0">
         <stack module="module.driver.timer_on_gtm.4" requires="module.middleware.rm_freertos_port.requires.gtm.ticker"/>
       </stack>
-      <stack module="module.driver.timer_on_gtm.247272568"/>
-      <stack module="module.driver.timer_on_gtm.343751045"/>
-      <stack module="module.freertos.heap.4.371867976"/>
+      <stack module="module.driver.timer_on_gtm.1476295227"/>
+      <stack module="module.driver.timer_on_gtm.430004173"/>
+      <stack module="module.freertos.heap.4.1686855544"/>
     </context>
-    <context id="rtos.awsfreertos.thread.2085049952">
+    <context id="rtos.awsfreertos.thread.548356893">
       <property id="_symbol" value="sender_task"/>
       <property id="rtos.awsfreertos.thread.name" value="Sender Task"/>
       <property id="rtos.awsfreertos.thread.stack" value="1024"/>
@@ -231,7 +232,7 @@
       <property id="rtos.awsfreertos.thread.allocation" value="rtos.awsfreertos.thread.allocation.static"/>
       <property id="rtos.awsfreertos.thread.secure_context" value="rtos.awsfreertos.thread.secure_context.enable"/>
     </context>
-    <context id="rtos.awsfreertos.thread.1789127266">
+    <context id="rtos.awsfreertos.thread.1772923782">
       <property id="_symbol" value="receiver_task"/>
       <property id="rtos.awsfreertos.thread.name" value="Receiver Task"/>
       <property id="rtos.awsfreertos.thread.stack" value="512"/>
@@ -240,7 +241,7 @@
       <property id="rtos.awsfreertos.thread.allocation" value="rtos.awsfreertos.thread.allocation.dynamic"/>
       <property id="rtos.awsfreertos.thread.secure_context" value="rtos.awsfreertos.thread.secure_context.enable"/>
     </context>
-    <context id="rtos.awsfreertos.thread.1170864376">
+    <context id="rtos.awsfreertos.thread.1970863683">
       <property id="_symbol" value="semaphore_task"/>
       <property id="rtos.awsfreertos.thread.name" value="Semaphore Task"/>
       <property id="rtos.awsfreertos.thread.stack" value="1024"/>
@@ -276,6 +277,7 @@
       <property id="config.awsfreertos.thread.configuse_16_bit_ticks" value="config.awsfreertos.thread.configuse_16_bit_ticks.disabled"/>
       <property id="config.awsfreertos.thread.configidle_should_yield" value="config.awsfreertos.thread.configidle_should_yield.enabled"/>
       <property id="config.awsfreertos.thread.configuse_task_notifications" value="config.awsfreertos.thread.configuse_task_notifications.enabled"/>
+      <property id="config.awsfreertos.thread.configtask_notifications_array_enteries" value="1"/>
       <property id="config.awsfreertos.thread.configuse_mutexes" value="config.awsfreertos.thread.configuse_mutexes.disabled"/>
       <property id="config.awsfreertos.thread.configuse_recursive_mutexes" value="config.awsfreertos.thread.configuse_recursive_mutexes.disabled"/>
       <property id="config.awsfreertos.thread.configuse_counting_semaphores" value="config.awsfreertos.thread.configuse_counting_semaphores.enabled"/>
@@ -320,6 +322,8 @@
       <property id="config.awsfreertos.thread.print_function" value="printf(x)"/>
       <property id="config.awsfreertos.thread.max_length" value="192"/>
       <property id="config.awsfreertos.thread.include_time_and_task" value="config.awsfreertos.thread.include_time_and_task.disabled"/>
+      <property id="config.awsfreertos.thread.debug_logging_name" value="Log Name"/>
+      <property id="config.awsfreertos.thread.logging_level" value="config.awsfreertos.thread.logging_level.log_none"/>
     </config>
   </raModuleConfiguration>
   <raPinConfiguration>

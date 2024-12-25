@@ -69,7 +69,6 @@
 
         Connect J1 on Pmod USBUART with PC.
 
-
 NOTE:
 1. Segger RTT block address is required to connect J-Link RTTViewer. 
    The RTT block address can be confirmed by searching "_SEGGER_RTT" in .map file

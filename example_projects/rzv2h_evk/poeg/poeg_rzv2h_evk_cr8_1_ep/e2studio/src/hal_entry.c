@@ -12,6 +12,7 @@
 #include "pd_axi_on.h"
 #include "common_utils.h"
 #include "poeg_ep.h"
+#define MODULE_NAME		"r_poeg"
 
 FSP_CPP_HEADER
 void R_BSP_WarmStart(bsp_warm_start_event_t event);
@@ -52,10 +53,11 @@ void hal_entry (void)
     R_FSP_VersionGet(&version);
 
     /* Example Project information printed on the Console */
-    APP_PRINT(BANNER_INFO, EP_VERSION, version.major, version.minor, version.patch);
+    APP_PRINT(BANNER_INFO, EP_VERSION, version.version_id_b.major, version.version_id_b.minor, version.version_id_b.patch);
+    R_BSP_SoftwareDelay(200, BSP_DELAY_UNITS_MILLISECONDS);
     APP_PRINT(EP_INFO);
-    R_BSP_SoftwareDelay(500, BSP_DELAY_UNITS_MILLISECONDS);
-    
+    R_BSP_SoftwareDelay(200, BSP_DELAY_UNITS_MILLISECONDS);
+
     /* Initialize the POEG0 */
     err = init_poeg0_module();
     /* Handle error */
@@ -285,7 +287,6 @@ fsp_err_t poeg_ouput_disable_and_reset_options(void)
     return err;
 }
 
-
 /*******************************************************************************************************************//**
  * @brief       This function is used for POEG Channel0 callback to disable the IRQ and set the Mode flags
  * @param[in]   poeg_callback_args_t * p_arg
@@ -304,7 +305,6 @@ void channel0_user_callback (poeg_callback_args_t * p_args)
      * it from firing continuously */
     R_BSP_IrqDisable(POEG_GROUP0_IRQn);
 }
-
 
 /*******************************************************************************************************************//**
  * @brief       This function is used for POEG Channel1 callback to disable the IRQ and set the Mode flag
@@ -351,18 +351,24 @@ fsp_err_t reset_poeg_module(void)
     {
         case POEG_CHANNEL_0:
         {
-            /* Wait until the GPT status flags are all 0 before resetting. */
-            while((R_GPT4->GTST_b.DTEF != 0) || (R_GPT4->GTST_b.OABHF != 0) || (R_GPT4->GTST_b.OABLF != 0))
+            /* Invert GTIOCB and apply it to GTIOCA */
+            uint32_t gtiob = g_timer_pwm1_ctrl.p_reg->GTIOR_b.GTIOB;
+            uint32_t inverted_gtiob = (~gtiob) & R_GPT0_GTIOR_GTIOA_Msk;
+
+            /* Apply the inverted configuration safely */
+            g_timer_pwm1_ctrl.p_reg->GTIOR_b.GTIOA = (uint8_t)(inverted_gtiob & R_GPT0_GTIOR_GTIOA_Msk);
+
+            /* GTIOR changes take effect after the next cycle end. */
+            while (g_timer_pwm1_ctrl.p_reg->GTCNT < g_timer_pwm1_cfg.period_counts - 1)
             {
                 ;
             }
-            err = R_POEG_Reset(&g_poeg0_ctrl);
-            /* Handle error */
-            if (FSP_SUCCESS != err)
+
+            do
             {
-                APP_ERR_PRINT("\r\n POEG 0 reset failed\r\n");
-                return(err);
-            }
+                err = R_POEG_Reset(&g_poeg0_ctrl);
+            } while (FSP_SUCCESS != err);
+
             APP_PRINT("\r\n RESET POEG 0 successful\r\n");
             R_IOPORT_PinWrite(&g_ioport_ctrl, LED_PIN_POEG0, BSP_IO_LEVEL_LOW);
             g_interrupt_output_level_flag = CLEAR_FLAG;
@@ -371,18 +377,24 @@ fsp_err_t reset_poeg_module(void)
 
         case POEG_CHANNEL_1:
         {
-            /* Wait until the GPT status flags are all 0 before resetting. */
-            while((R_GPT7->GTST_b.DTEF != 0) || (R_GPT7->GTST_b.OABHF != 0) || (R_GPT7->GTST_b.OABLF != 0))
+            /* Invert GTIOCB and apply it to GTIOCA */
+            uint32_t gtiob = g_timer_pwm2_ctrl.p_reg->GTIOR_b.GTIOB;
+            uint32_t inverted_gtiob = (~gtiob) & R_GPT0_GTIOR_GTIOA_Msk;
+
+            /* Apply the inverted configuration safely */
+            g_timer_pwm2_ctrl.p_reg->GTIOR_b.GTIOA = (uint8_t)(inverted_gtiob & R_GPT0_GTIOR_GTIOA_Msk);
+
+            /* GTIOR changes take effect after the next cycle end. */
+            while (g_timer_pwm2_ctrl.p_reg->GTCNT < g_timer_pwm2_cfg.period_counts - 1)
             {
                 ;
             }
-            err = R_POEG_Reset(&g_poeg1_ctrl);
-            /* Handle error */
-            if (FSP_SUCCESS != err)
+
+            do
             {
-                APP_ERR_PRINT("\r\n POEG 1 is reset failed\r\n");
-                return(err);
-            }
+                err = R_POEG_Reset(&g_poeg1_ctrl);
+            } while (FSP_SUCCESS != err);
+
             APP_PRINT("\r\n RESET POEG 1 successful\r\n");
             R_IOPORT_PinWrite(&g_ioport_ctrl, LED_PIN_POEG1, BSP_IO_LEVEL_LOW);
             g_interrupt_pin_trigger_flag = CLEAR_FLAG;
@@ -426,7 +438,7 @@ void R_BSP_WarmStart (bsp_warm_start_event_t event)
         /* C runtime environment and system clocks are setup. */
 
         /* Configure pins. */
-        R_IOPORT_Open(&g_ioport_ctrl, &g_bsp_pin_cfg);
+        R_IOPORT_Open(&IOPORT_CFG_CTRL, &IOPORT_CFG_NAME);
 
         /* Allow access to IP beyond AXI */
         pd_all_on_postproc_axi();

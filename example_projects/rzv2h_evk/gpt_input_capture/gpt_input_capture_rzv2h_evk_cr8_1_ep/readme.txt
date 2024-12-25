@@ -63,7 +63,6 @@
         When connecting the conversion adapter "J-Link 9-pin Cortex-M Adapter" made by SEGGER will be required.
     (3) Connect PMOD1/1A PIN 3 (GPT ch3) to PMOD2/2A pin 7 (GPT ch4)
 
-
 NOTE:
 
 1. Segger RTT block address is required to connect J-Link RTTViewer.
